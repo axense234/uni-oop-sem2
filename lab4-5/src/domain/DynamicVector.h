@@ -5,11 +5,31 @@
 typedef Movie TElem;
 typedef int TElemId;
 
+class MemoryRepo;
+
 class DynamicVector
 {
+
+    friend class MemoryRepo;
+
 private:
     int size, capacity, factor;
     TElem *elems;
+
+    /**
+     * @brief Resizes the vector when capacity is reached.
+     *
+     */
+    void resize();
+
+    /**
+     * @brief Gets an elem by given id.
+     *
+     * @exception Throws std::exception if it cannot find the elem.
+     * @param id Given id.
+     * @return TElem
+     */
+    TElem getElemById(TElemId id);
 
 public:
     /**
@@ -67,11 +87,4 @@ public:
      *
      */
     void clear();
-
-private:
-    /**
-     * @brief Resizes the vector when capacity is reached.
-     *
-     */
-    void resize();
 };

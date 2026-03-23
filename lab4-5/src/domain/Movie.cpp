@@ -50,3 +50,28 @@ std::string Movie::getTrailer() const
 {
     return this->trailer;
 }
+
+void Movie::setTitle(const std::string &title)
+{
+    this->title = title;
+}
+
+void Movie::setTrailer(const std::string &trailer)
+{
+    this->trailer = trailer;
+}
+
+void Movie::setGenre(MovieGenre genre)
+{
+    this->genre = genre;
+}
+
+void Movie::setYearOfRelease(short yor)
+{
+    this->yearOfRelease = yor;
+}
+
+void Movie::setNumberOfLikes(int nbLikes)
+{
+    this->numberOfLikes = nbLikes;
+}

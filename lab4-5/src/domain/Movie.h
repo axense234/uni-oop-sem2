@@ -66,4 +66,10 @@ public:
     short getYearOfRelease() const;
     int getNumberOfLikes() const;
     std::string getTrailer() const;
+
+    void setTitle(const std::string &title);
+    void setGenre(MovieGenre genre);
+    void setYearOfRelease(short yor);
+    void setNumberOfLikes(int nbLikes);
+    void setTrailer(const std::string &trailer);
 };

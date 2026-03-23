@@ -10,6 +10,19 @@ DynamicVector::DynamicVector(int capacity, int factor)
     this->elems = new TElem[this->capacity];
 }
 
+TElem DynamicVector::getElemById(TElemId id)
+{
+    for (int i = 0; i < this->size; ++i)
+    {
+        if (this->elems[i].getId() == id)
+        {
+            return this->elems[i];
+        }
+    }
+
+    throw std::exception();
+}
+
 DynamicVector::DynamicVector(const DynamicVector &vector)
 {
     this->size = vector.size;
