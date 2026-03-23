@@ -42,8 +42,6 @@ private:
     int numberOfLikes;
     std::string trailer;
 
-    int getId() const;
-
 public:
     /**
      * @brief Default constructor.
@@ -62,6 +60,7 @@ public:
      */
     Movie(int id, const std::string &title, MovieGenre genre, short yearOfRelease, int numberOfLikes, const std::string &trailer);
 
+    int getId() const;
     std::string getTitle() const;
     MovieGenre getGenre() const;
     short getYearOfRelease() const;

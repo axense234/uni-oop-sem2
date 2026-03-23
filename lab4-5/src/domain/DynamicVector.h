@@ -21,6 +21,27 @@ public:
     DynamicVector(int capacity = 5, int factor = 2);
 
     /**
+     * @brief Copy constructor.
+     *
+     * @param other the DynamicVector to copy from
+     */
+    DynamicVector(const DynamicVector &other);
+
+    /**
+     * @brief Assignment operator.
+     *
+     * @param other the DynamicVector to assign from
+     * @return DynamicVector& reference to this vector
+     */
+    DynamicVector &operator=(const DynamicVector &other);
+
+    /**
+     * @brief Destructor.
+     *
+     */
+    ~DynamicVector();
+
+    /**
      * @brief Returns the current length of the vector.
      *
      * @return int
@@ -32,15 +53,25 @@ public:
      *
      * @param elem
      */
-    void add(TElem elem);
+    void add(const TElem &elem);
 
     /**
-     * @brief Removes a TElem elem from the list of elements by it's id.
+     * @brief Removes a TElem elem from the list of elements by its id.
      *
-     * @param elem
+     * @param id
      */
     void remove(TElemId id);
 
+    /**
+     * @brief Clears the dynamic vector.
+     *
+     */
+    void clear();
+
 private:
+    /**
+     * @brief Resizes the vector when capacity is reached.
+     *
+     */
     void resize();
 };
