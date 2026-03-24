@@ -1,4 +1,6 @@
 #include "DynamicVector.h"
+#include "DynamicVectorIterator.h"
+
 #include <exception>
 
 DynamicVector::DynamicVector(int capacity, int factor)
@@ -121,4 +123,9 @@ void DynamicVector::remove(TElemId id)
 void DynamicVector::clear()
 {
     this->size = 0;
+}
+
+DynamicVectorIterator DynamicVector::iterator() const
+{
+    return DynamicVectorIterator(*this);
 }

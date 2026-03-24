@@ -1,9 +1,11 @@
 #pragma once
 
-#include "../controllers/Menu.ui.controller.h"
 #include "../domain/Movie.h"
+#include "../services/Movie.services.h"
 
 #include <string>
+
+class MenuUIController;
 
 enum Mode
 {
@@ -13,17 +15,20 @@ enum Mode
 
 class MenuUI
 {
-    friend class MenuController;
+    friend class MenuUIController;
 
 private:
     Mode mode;
+
+    MovieServices &movieServices;
+    const MemoryRepo &database;
 
 public:
     /**
      * @brief Constructor
      *
      */
-    MenuUI();
+    MenuUI(const MemoryRepo &db, MovieServices &mS);
 
     Mode getMode() const;
 
@@ -78,13 +83,6 @@ public:
      * @return Movie
      */
     Movie getUserMovie();
-
-    /**
-     * @brief Get a Movie Id from the user.
-     *
-     * @return int
-     */
-    int getUserMovieId();
 
     /**
      * @brief Returns a dynamic instance of the MenuController.

@@ -36,4 +36,10 @@ public:
      *
      */
     void displayMovies();
+
+    /**
+     * @brief Displays a movie.
+     *
+     */
+    void displayMovie();
 };

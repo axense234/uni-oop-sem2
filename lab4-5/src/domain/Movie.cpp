@@ -4,6 +4,7 @@
 
 Movie::Movie()
 {
+    this->id = -1;
     this->title = "";
     this->genre = ACTION;
     this->yearOfRelease = 0;
@@ -74,4 +75,9 @@ void Movie::setYearOfRelease(short yor)
 void Movie::setNumberOfLikes(int nbLikes)
 {
     this->numberOfLikes = nbLikes;
+}
+
+void Movie::setId(int id)
+{
+    this->id = id;
 }

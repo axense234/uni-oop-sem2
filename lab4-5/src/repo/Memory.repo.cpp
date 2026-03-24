@@ -1,8 +1,9 @@
 #include "Memory.repo.h"
+#include "../domain/DynamicVectorIterator.h"
 
-DynamicVector MemoryRepo::getElems()
+DynamicVectorIterator MemoryRepo::getElemsIterator() const
 {
-    return this->elements;
+    return this->elements.iterator();
 }
 
 TElem MemoryRepo::getElemById(TElemId id)
@@ -62,4 +63,9 @@ bool MemoryRepo::updateById(TElemId id, TElem payload)
     {
         return false;
     }
+}
+
+int MemoryRepo::size()
+{
+    return this->elements.size;
 }

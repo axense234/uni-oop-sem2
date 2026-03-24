@@ -37,4 +37,12 @@ public:
      * @param payload Update Movie object.
      */
     bool updateMovieById(int id, Movie payload);
+
+    /**
+     * @brief Finds and returns a movie by given id.
+     *
+     * @param id int
+     * @return Found Movie or Default Movie (with id = -1)
+     */
+    Movie getMovieById(int id);
 };

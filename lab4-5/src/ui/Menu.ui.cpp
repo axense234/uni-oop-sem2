@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-MenuUI::MenuUI()
+MenuUI::MenuUI(const MemoryRepo &db, MovieServices &mS) : database(db), movieServices(mS)
 {
     this->mode = ADMIN;
 }
@@ -30,6 +30,7 @@ void MenuUI::genres()
 
 void MenuUI::intro(Mode mode)
 {
+    std::cout << std::endl;
     std::cout << "Movies Application Console Interface Thing" << std::endl;
     std::cout << "type \"help\" for available commands " << std::endl;
 
@@ -54,8 +55,10 @@ void MenuUI::help(Mode mode)
         std::cout << "add: Adds a given Movie to the database" << std::endl;
         std::cout << "remove: Removes a Movie from the database using an id." << std::endl;
         std::cout << "update: Updates a Movie from the database by id, using a payload" << std::endl;
+        std::cout << "find: Finds a Movie from the database by id and displays it." << std::endl;
     }
 
+    std::cout << std::endl;
     std::cout << "public commands" << std::endl;
     std::cout << "=======================================" << std::endl;
     std::cout << "genres: Displays the possible movie genre values." << std::endl;
@@ -234,7 +237,7 @@ Movie MenuUI::getUserMovie()
 {
     Movie movie;
 
-    std::cout << "Movie: " << std::endl;
+    std::cout << "MOVIE" << std::endl;
     movie.setTitle(this->getUserMovieTitle());
     movie.setGenre(this->getUserMovieGenre());
     movie.setYearOfRelease(this->getUserMovieYearOfRelease());
@@ -249,6 +252,8 @@ void MenuUI::start()
     Mode appMode = this->getUserMode();
     this->intro(appMode);
     MenuUIController controller = this->controller();
+
+    Helpers::insertTenMovieEntriesInTheDatabase(this->movieServices);
 
     while (true)
     {
@@ -270,6 +275,10 @@ void MenuUI::start()
         {
             controller.updateMovie();
         }
+        else if (command == "find" && appMode == ADMIN)
+        {
+            controller.displayMovie();
+        }
         else if (command == "genres")
         {
             this->genres();
@@ -280,7 +289,7 @@ void MenuUI::start()
         }
         else if (command == "exit")
         {
-            std::cout << "???" << std::endl;
+            std::cout << "Exited the program." << std::endl;
             exit(1);
         }
         else

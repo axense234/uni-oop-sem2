@@ -6,11 +6,13 @@ typedef Movie TElem;
 typedef int TElemId;
 
 class MemoryRepo;
+class DynamicVectorIterator;
 
 class DynamicVector
 {
 
     friend class MemoryRepo;
+    friend class DynamicVectorIterator;
 
 private:
     int size, capacity, factor;
@@ -87,4 +89,11 @@ public:
      *
      */
     void clear();
+
+    /**
+     * @brief Iterator
+     *
+     * @return DynamicVectorIterator
+     */
+    DynamicVectorIterator iterator() const;
 };

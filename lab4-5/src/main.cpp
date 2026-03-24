@@ -5,7 +5,9 @@
 int main()
 {
 
-    MenuUI ui;
+    MemoryRepo repo;
+    MovieServices movieServices{repo};
+    MenuUI ui{repo, movieServices};
     ui.start();
 
     return 0;

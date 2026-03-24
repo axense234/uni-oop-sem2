@@ -1,13 +1,18 @@
 #pragma once
 
 #include "../domain/DynamicVector.h"
+#include "../domain/DynamicVectorIterator.h"
+
+typedef DynamicVectorIterator MemoryRepoIterator;
 
 class MovieServices;
+class MenuUIController;
 
 class MemoryRepo
 {
 
     friend class MovieServices;
+    friend class MenuUIController;
 
 private:
     DynamicVector elements;
@@ -22,9 +27,9 @@ private:
     TElem getElemById(TElemId id);
 
     /**
-     * @brief Returns the elems.
+     * @brief Returns the elems iterator.
      */
-    DynamicVector getElems();
+    MemoryRepoIterator getElemsIterator() const;
 
 public:
     /**
@@ -61,4 +66,11 @@ public:
      * @return false If update was not a success.
      */
     bool updateById(TElemId id, TElem payload);
+
+    /**
+     * @brief Returns the number of elems in the repo.
+     *
+     * @return int
+     */
+    int size();
 };

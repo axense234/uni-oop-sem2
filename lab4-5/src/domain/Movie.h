@@ -26,13 +26,14 @@ enum MovieGenre
 };
 
 // forward dec
-class MovieIterator;
 class DynamicVector;
+class MovieServices;
 
 class Movie
 {
 
     friend class DynamicVector;
+    friend class MovieServices;
 
 private:
     int id;
@@ -41,6 +42,8 @@ private:
     short yearOfRelease;
     int numberOfLikes;
     std::string trailer;
+
+    void setId(int id);
 
 public:
     /**
