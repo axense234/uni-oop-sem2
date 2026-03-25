@@ -7,12 +7,14 @@ typedef int TElemId;
 
 class MemoryRepo;
 class DynamicVectorIterator;
+class DynamicVectorTests;
 
 class DynamicVector
 {
 
     friend class MemoryRepo;
     friend class DynamicVectorIterator;
+    friend class DynamicVectorTests;
 
 private:
     int size, capacity, factor;

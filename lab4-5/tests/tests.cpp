@@ -1,7 +1,10 @@
 #include <iostream>
+#include <exception>
 
-#include "domain/DynamicVector.tests.h"
-#include "domain/Movie.tests.h"
+#include "../tests/domain/Movie.tests.h"
+#include "../tests/domain/DynamicVector.tests.h"
+#include "../tests/services/Movie.services.tests.h"
+#include "../tests/repo/Memory.repo.tests.h"
 
 using namespace std;
 
@@ -9,14 +12,16 @@ int main()
 {
 
     MovieTests movieTests;
+    movieTests.runAllMovieTests();
+
     DynamicVectorTests dynamicVectorTests;
+    dynamicVectorTests.runAllDynamicVectorTests();
 
-    movieTests.testProperties();
+    MemoryRepoTests memoryRepoTests;
+    memoryRepoTests.runAllMemoryRepoTests();
 
-    dynamicVectorTests.testAdd();
-    dynamicVectorTests.testRemove();
-
-    cout << "yo" << endl;
+    MovieServicesTests movieServicesTests;
+    movieServicesTests.runAllMovieServicesTests();
 
     return 0;
 }
