@@ -1,6 +1,5 @@
 #include "Menu.ui.h"
 #include "../helpers/Helpers.h"
-#include "../controllers/Menu.ui.controller.h"
 
 #include <iostream>
 
@@ -251,7 +250,6 @@ void MenuUI::start()
 {
     Mode appMode = this->getUserMode();
     this->intro(appMode);
-    MenuUIController controller = this->controller();
 
     Helpers::insertTenMovieEntriesInTheDatabase(this->movieServices);
 
@@ -261,23 +259,23 @@ void MenuUI::start()
 
         if (command == "movies" && appMode == ADMIN)
         {
-            controller.displayMovies();
+            this->displayMovies();
         }
         else if (command == "add" && appMode == ADMIN)
         {
-            controller.addMovie();
+            this->addMovie();
         }
         else if (command == "remove" && appMode == ADMIN)
         {
-            controller.deleteMovie();
+            this->deleteMovie();
         }
         else if (command == "update" && appMode == ADMIN)
         {
-            controller.updateMovie();
+            this->updateMovie();
         }
         else if (command == "find" && appMode == ADMIN)
         {
-            controller.displayMovie();
+            this->displayMovie();
         }
         else if (command == "genres")
         {
@@ -300,7 +298,95 @@ void MenuUI::start()
     }
 }
 
-MenuUIController MenuUI::controller()
+void MenuUI::addMovie()
 {
-    return MenuUIController(*this);
+    Movie movie = this->getUserMovie();
+
+    if (this->movieServices.addMovie(movie))
+    {
+        std::cout << "Successfully added a movie to the database. :)" << std::endl;
+    }
+    else
+    {
+        std::cout << "Could not add a movie to the database. >:(" << std::endl;
+    }
+}
+
+void MenuUI::deleteMovie()
+{
+    int movieId = this->getUserMovieId();
+
+    if (this->movieServices.removeMovieById(movieId))
+    {
+        std::cout << "Successfully removed a movie from the database. :)" << std::endl;
+    }
+    else
+    {
+        std::cout << "Could not remove a movie from the database. >:(" << std::endl;
+    }
+}
+
+void MenuUI::updateMovie()
+{
+    int movieId = this->getUserMovieId();
+
+    Movie foundMovie = this->movieServices.getMovieById(movieId);
+
+    if (foundMovie.getId() == -1)
+    {
+        std::cout << "Could not find movie by id in the database :>." << std::endl;
+        return;
+    }
+
+    Movie payload = this->getUserMovie();
+
+    if (this->movieServices.updateMovieById(movieId, payload))
+    {
+        std::cout << "Successfully updated a movie from the database. :)" << std::endl;
+    }
+    else
+    {
+        std::cout << "Could not update a movie from the database. >:(" << std::endl;
+    }
+}
+
+void MenuUI::displayMovies()
+{
+    MemoryRepoIterator it = this->database.getElemsIterator();
+
+    it.first();
+    while (it.valid())
+    {
+        Movie movie = it.getCurrent();
+        std::cout << "Title: " << movie.getTitle() << std::endl;
+        std::cout << "Id: " << movie.getId() << std::endl;
+        std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(movie.getGenre()) << std::endl;
+        std::cout << "Year of Release: " << movie.getYearOfRelease() << std::endl;
+        std::cout << "Number of Likes: " << movie.getNumberOfLikes() << std::endl;
+        std::cout << "Trailer: " << movie.getTrailer() << std::endl;
+        std::cout << std::endl;
+
+        it.next();
+    }
+}
+
+void MenuUI::displayMovie()
+{
+    int movieId = this->getUserMovieId();
+
+    Movie foundMovie = this->movieServices.getMovieById(movieId);
+    if (foundMovie.getId() != -1)
+    {
+        std::cout << "Title: " << foundMovie.getTitle() << std::endl;
+        std::cout << "Id: " << foundMovie.getId() << std::endl;
+        std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(foundMovie.getGenre()) << std::endl;
+        std::cout << "Year of Release: " << foundMovie.getYearOfRelease() << std::endl;
+        std::cout << "Number of Likes: " << foundMovie.getNumberOfLikes() << std::endl;
+        std::cout << "Trailer: " << foundMovie.getTrailer() << std::endl;
+        std::cout << std::endl;
+    }
+    else
+    {
+        std::cout << "Could not find a movie by id from the database. >:(" << std::endl;
+    }
 }

@@ -6,15 +6,15 @@
 typedef DynamicVectorIterator MemoryRepoIterator;
 
 class MovieServices;
-class MenuUIController;
 class MemoryRepoTests;
+class MenuUI;
 
 class MemoryRepo
 {
 
     friend class MovieServices;
-    friend class MenuUIController;
     friend class MemoryRepoTests;
+    friend class MenuUI;
 
 private:
     DynamicVector elements;

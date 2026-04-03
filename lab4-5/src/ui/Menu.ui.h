@@ -5,8 +5,6 @@
 
 #include <string>
 
-class MenuUIController;
-
 enum Mode
 {
     ADMIN,
@@ -15,7 +13,6 @@ enum Mode
 
 class MenuUI
 {
-    friend class MenuUIController;
 
 private:
     Mode mode;
@@ -83,11 +80,33 @@ public:
      * @return Movie
      */
     Movie getUserMovie();
+    /**
+     * @brief Adds a movie.
+     *
+     */
+    void addMovie();
 
     /**
-     * @brief Returns a dynamic instance of the MenuController.
+     * @brief Deletes a movie.
      *
-     * @return MenuController
      */
-    MenuUIController controller();
+    void deleteMovie();
+
+    /**
+     * @brief Updates a movie.
+     *
+     */
+    void updateMovie();
+
+    /**
+     * @brief Displays all the movies.
+     *
+     */
+    void displayMovies();
+
+    /**
+     * @brief Displays a movie.
+     *
+     */
+    void displayMovie();
 };
