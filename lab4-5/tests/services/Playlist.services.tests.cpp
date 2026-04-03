@@ -1,26 +1,26 @@
-#include "Movie.services.tests.h"
+#include "Playlist.services.tests.h"
 #include <exception>
 
 using namespace std;
 
-Movie MovieServicesTests::createTestMovie(int id, const string &title, MovieGenre genre, short year, int likes, const string &trailer)
+Movie PlaylistServicesTests::createTestMovie(int id, const string &title, MovieGenre genre, short year, int likes, const string &trailer)
 {
     return Movie(id, title, genre, year, likes, trailer);
 }
 
-void MovieServicesTests::testConstructor()
+void PlaylistServicesTests::testConstructor()
 {
-    cout << "Testing MovieServices constructor..." << endl;
+    cout << "Testing PlaylistServicesTests constructor..." << endl;
 
     MemoryRepo repo;
     MovieServices services(repo);
 
     assert(services.getMovieById(1).getId() == -1);
 
-    cout << "MovieServices constructor test passed" << endl;
+    cout << "PlaylistServicesTests constructor test passed" << endl;
 }
 
-void MovieServicesTests::testAddMovie()
+void PlaylistServicesTests::testAddMovie()
 {
     cout << "Testing addMovie()..." << endl;
 
@@ -42,7 +42,7 @@ void MovieServicesTests::testAddMovie()
     cout << "addMovie() test passed" << endl;
 }
 
-void MovieServicesTests::testAddMultipleMovies()
+void PlaylistServicesTests::testAddMultipleMovies()
 {
     cout << "Testing addMovie() with multiple movies..." << endl;
 
@@ -72,7 +72,7 @@ void MovieServicesTests::testAddMultipleMovies()
     cout << "addMovie() with multiple movies test passed" << endl;
 }
 
-void MovieServicesTests::testAddMovieAutoId()
+void PlaylistServicesTests::testAddMovieAutoId()
 {
     cout << "Testing addMovie() auto-increment ID..." << endl;
 
@@ -93,7 +93,7 @@ void MovieServicesTests::testAddMovieAutoId()
     cout << "addMovie() auto-increment ID test passed" << endl;
 }
 
-void MovieServicesTests::testRemoveMovieById()
+void PlaylistServicesTests::testRemoveMovieById()
 {
     cout << "Testing removeMovieById()..." << endl;
 
@@ -118,7 +118,7 @@ void MovieServicesTests::testRemoveMovieById()
     cout << "removeMovieById() test passed" << endl;
 }
 
-void MovieServicesTests::testRemoveNonExistentMovie()
+void PlaylistServicesTests::testRemoveNonExistentMovie()
 {
     cout << "Testing removeMovieById() with non-existent ID..." << endl;
 
@@ -137,7 +137,7 @@ void MovieServicesTests::testRemoveNonExistentMovie()
     cout << "removeMovieById() with non-existent ID test passed" << endl;
 }
 
-void MovieServicesTests::testUpdateMovieById()
+void PlaylistServicesTests::testUpdateMovieById()
 {
     cout << "Testing updateMovieById()..." << endl;
 
@@ -148,7 +148,7 @@ void MovieServicesTests::testUpdateMovieById()
     services.addMovie(original);
 }
 
-void MovieServicesTests::testGetMovieById()
+void PlaylistServicesTests::testGetMovieById()
 {
     cout << "Testing getMovieById()..." << endl;
 
@@ -172,7 +172,7 @@ void MovieServicesTests::testGetMovieById()
     cout << "getMovieById() test passed" << endl;
 }
 
-void MovieServicesTests::testGetNonExistentMovie()
+void PlaylistServicesTests::testGetNonExistentMovie()
 {
     cout << "Testing getMovieById() with non-existent ID..." << endl;
 
@@ -189,7 +189,7 @@ void MovieServicesTests::testGetNonExistentMovie()
     cout << "getMovieById() with non-existent ID test passed" << endl;
 }
 
-void MovieServicesTests::testSequentialOperations()
+void PlaylistServicesTests::testSequentialOperations()
 {
     cout << "Testing sequential operations..." << endl;
 
@@ -235,7 +235,7 @@ void MovieServicesTests::testSequentialOperations()
     cout << "Sequential operations test passed" << endl;
 }
 
-void MovieServicesTests::testIdAutoIncrement()
+void PlaylistServicesTests::testIdAutoIncrement()
 {
     cout << "Testing ID auto-increment across operations..." << endl;
 
@@ -261,30 +261,7 @@ void MovieServicesTests::testIdAutoIncrement()
     cout << "ID auto-increment test passed" << endl;
 }
 
-void MovieServicesTests::testFilterMoviesByGenre()
-{
-    MemoryRepo repo;
-    MovieServices services(repo);
-
-    Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
-    Movie m2 = createTestMovie(2, "Movie2", COMEDY, 2021, 200, "trailer2");
-    Movie m3 = createTestMovie(3, "Movie3", DRAMA, 2022, 300, "trailer3");
-    Movie m4 = createTestMovie(4, "Movie4", DRAMA, 2022, 300, "trailer3");
-    Movie m5 = createTestMovie(5, "Movie5", DRAMA, 2022, 300, "trailer3");
-    Movie m6 = createTestMovie(6, "Movie6", DRAMA, 2022, 300, "trailer3");
-
-    services.addMovie(m1);
-    services.addMovie(m2);
-    services.addMovie(m3);
-    services.addMovie(m4);
-    services.addMovie(m5);
-    services.addMovie(m6);
-
-    DynamicVector filtered = services.filterMoviesByGenre(DRAMA);
-    assert(filtered.size == 4);
-}
-
-void MovieServicesTests::runAllMovieServicesTests()
+void PlaylistServicesTests::runAllPlaylistServicesTests()
 {
 
     testConstructor();

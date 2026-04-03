@@ -8,6 +8,7 @@ typedef int TElemId;
 class MemoryRepo;
 class DynamicVectorIterator;
 class DynamicVectorTests;
+class MovieServicesTests;
 
 class DynamicVector
 {
@@ -15,6 +16,7 @@ class DynamicVector
     friend class MemoryRepo;
     friend class DynamicVectorIterator;
     friend class DynamicVectorTests;
+    friend class MovieServicesTests;
 
 private:
     int size, capacity, factor;

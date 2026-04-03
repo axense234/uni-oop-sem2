@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-class MovieServicesTests
+class PlaylistServicesTests
 {
 private:
     Movie createTestMovie(int id, const std::string &title, MovieGenre genre, short year, int likes, const std::string &trailer);
@@ -21,8 +21,7 @@ private:
     void testGetNonExistentMovie();
     void testSequentialOperations();
     void testIdAutoIncrement();
-    void testFilterMoviesByGenre();
 
 public:
-    void runAllMovieServicesTests();
+    void runAllPlaylistServicesTests();
 };
