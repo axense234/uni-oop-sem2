@@ -3,7 +3,7 @@
 #include "../repo/Memory.repo.h"
 #include "../domain/Movie.h"
 
-class MovieServices
+class PlaylistServices
 {
 private:
     MemoryRepo &repo;
@@ -14,7 +14,7 @@ public:
      *
      * @param repo reference to a repo
      */
-    MovieServices(MemoryRepo &repo);
+    PlaylistServices(MemoryRepo &repo);
 
     /**
      * @brief Adds a movie to the repository.
@@ -39,18 +39,10 @@ public:
     bool updateMovieById(int id, Movie payload);
 
     /**
-     * @brief Finds and returns a movie by given id.
+     * @brief Finds and returns a movie from the repo by given id.
      *
      * @param id int
      * @return Found Movie or Default Movie (with id = -1)
      */
     Movie getMovieById(int id);
-
-    /**
-     * @brief Filters database movies by genre and returns a copy of those movies.
-     *
-     * @param genre Gnere
-     * @return Movie* Copy
-     */
-    DynamicVector filterMoviesByGenre(std::optional<MovieGenre> genre);
 };

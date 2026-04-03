@@ -28,12 +28,14 @@ enum MovieGenre
 // forward dec
 class DynamicVector;
 class MovieServices;
+class PlaylistServices;
 
 class Movie
 {
 
     friend class DynamicVector;
     friend class MovieServices;
+    friend class PlaylistServices;
 
 private:
     int id;

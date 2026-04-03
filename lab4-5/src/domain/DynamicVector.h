@@ -93,9 +93,16 @@ public:
     void clear();
 
     /**
-     * @brief Iterator
+     * @brief Iterator starting from the first element.
      *
      * @return DynamicVectorIterator
      */
-    DynamicVectorIterator iterator() const;
+    DynamicVectorIterator begin() const;
+
+    /**
+     * @brief Iterator starting from the last element.
+     *
+     * @return DynamicVectorIterator
+     */
+    DynamicVectorIterator end() const;
 };

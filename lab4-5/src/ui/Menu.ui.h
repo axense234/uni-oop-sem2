@@ -2,8 +2,12 @@
 
 #include "../domain/Movie.h"
 #include "../services/Movie.services.h"
+#include "../services/Playlist.services.h"
 
 #include <string>
+
+class MenuUIInput;
+class MenuUIOutput;
 
 enum Mode
 {
@@ -17,7 +21,10 @@ class MenuUI
 private:
     Mode mode;
 
+    const MenuUIOutput &output;
+    const MenuUIInput &input;
     MovieServices &movieServices;
+    PlaylistServices &playlistServices;
     const MemoryRepo &database;
 
 public:
@@ -25,61 +32,15 @@ public:
      * @brief Constructor
      *
      */
-    MenuUI(const MemoryRepo &db, MovieServices &mS);
-
-    Mode getMode() const;
+    MenuUI(const MenuUIInput &input, const MenuUIOutput &output, const MemoryRepo &db, PlaylistServices &playlist, MovieServices &mS);
 
     /**
-     * @brief Starts the menu program.
-     *
-     */
-    void start();
-
-    /**
-     * @brief Displays the possible movie genres.
-     *
-     */
-    void genres();
-
-    /**
-     * @brief Displays the program intro.
-     *
-     * @param mode ADMIN or USER
-     */
-    void intro(Mode mode);
-
-    /**
-     * @brief Displays a list of available program commands.
-     *
-     * @param mode ADMIN or USER
-     */
-    void help(Mode mode);
-
-    /**
-     * @brief Gets a command from the user.
-     */
-    std::string getUserCommand();
-
-    int getUserMovieId();
-    std::string getUserMovieTitle();
-    MovieGenre getUserMovieGenre();
-    short getUserMovieYearOfRelease();
-    int getUserMovieNumberOfLikes();
-    std::string getUserMovieTrailer();
-
-    /**
-     * @brief Gets the application mode from the user.
+     * @brief Getter
      *
      * @return Mode
      */
-    Mode getUserMode();
+    Mode getMode() const;
 
-    /**
-     * @brief Gets a Movie from the user.
-     *
-     * @return Movie
-     */
-    Movie getUserMovie();
     /**
      * @brief Adds a movie.
      *
@@ -109,4 +70,10 @@ public:
      *
      */
     void displayMovie();
+
+    /**
+     * @brief Starts the menu program.
+     *
+     */
+    void start();
 };

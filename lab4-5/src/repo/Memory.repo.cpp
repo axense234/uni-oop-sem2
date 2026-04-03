@@ -1,9 +1,9 @@
 #include "Memory.repo.h"
 #include "../domain/DynamicVectorIterator.h"
 
-DynamicVectorIterator MemoryRepo::getElemsIterator() const
+std::pair<DynamicVectorIterator, DynamicVectorIterator> MemoryRepo::iterators() const
 {
-    return this->elements.iterator();
+    return std::pair<DynamicVectorIterator, DynamicVectorIterator>{this->elements.begin(), this->elements.end()};
 }
 
 TElem MemoryRepo::getElemById(TElemId id)

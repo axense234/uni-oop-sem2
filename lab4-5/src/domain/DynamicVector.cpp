@@ -125,7 +125,14 @@ void DynamicVector::clear()
     this->size = 0;
 }
 
-DynamicVectorIterator DynamicVector::iterator() const
+DynamicVectorIterator DynamicVector::begin() const
 {
-    return DynamicVectorIterator(*this);
+    DynamicVectorIterator it = DynamicVectorIterator(*this, 0);
+    return it;
+}
+
+DynamicVectorIterator DynamicVector::end() const
+{
+    DynamicVectorIterator it = DynamicVectorIterator(*this, this->size);
+    return it;
 }

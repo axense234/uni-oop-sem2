@@ -2,10 +2,10 @@
 
 #include "../domain/DynamicVector.h"
 #include "../domain/DynamicVectorIterator.h"
-
-typedef DynamicVectorIterator MemoryRepoIterator;
+#include <utility>
 
 class MovieServices;
+class PlaylistServices;
 class MemoryRepoTests;
 class MenuUI;
 
@@ -13,6 +13,7 @@ class MemoryRepo
 {
 
     friend class MovieServices;
+    friend class PlaylistServices;
     friend class MemoryRepoTests;
     friend class MenuUI;
 
@@ -31,7 +32,7 @@ private:
     /**
      * @brief Returns the elems iterator.
      */
-    MemoryRepoIterator getElemsIterator() const;
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators() const;
 
 public:
     /**
