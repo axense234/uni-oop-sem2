@@ -45,4 +45,17 @@ public:
      * @return Found Movie or Default Movie (with id = -1)
      */
     Movie getMovieById(int id);
+
+    /**
+     * @brief Finds and returns a movie by given title.
+     *
+     * @param title given title
+     * @return Found Movie or Default Movie (with id = -1)
+     */
+    Movie getMovieByTitle(std::string name);
+
+    /**
+     * @brief Returns the elems iterator.
+     */
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators() const;
 };

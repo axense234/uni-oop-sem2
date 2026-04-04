@@ -1,8 +1,13 @@
 #include "Movie.services.h"
+#include "../domain/DynamicVectorIterator.h"
 
-#include <vector>
-#include <optional>
+#include <utility>
 #include <iostream>
+
+std::pair<DynamicVectorIterator, DynamicVectorIterator> MovieServices::iterators() const
+{
+    return this->repo.iterators();
+}
 
 MovieServices::MovieServices(MemoryRepo &r) : repo(r) {}
 
@@ -43,26 +48,39 @@ Movie MovieServices::getMovieById(int id)
     }
 }
 
-DynamicVector MovieServices::filterMoviesByGenre(std::optional<MovieGenre> genre)
+Movie MovieServices::getMovieByTitle(std::string title)
+{
+    try
+    {
+        return this->repo.getElemByTitle(title);
+    }
+    catch (const std::exception &e)
+    {
+        return Movie{};
+    }
+}
+
+DynamicVector<TElem, TElemId, TElemIdentifier> MovieServices::filterMoviesByGenre(MovieGenre genre)
 {
 
-    if (!genre)
+    // note for future self, enums dont really work with the ! operator which took me too long to figure out
+    if (genre == EMPTY)
     {
         return this->repo.elements;
     }
 
     std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = this->repo.iterators();
 
-    DynamicVector filteredMovies;
+    DynamicVector<TElem, TElemId, TElemIdentifier> filteredMovies;
 
     while (iterators.first != iterators.second)
     {
-        Movie curr = iterators.first.getCurrent();
-        if (curr.getGenre() == genre.value())
+        Movie curr = *iterators.first;
+        if (curr.getGenre() == genre)
         {
             filteredMovies.add(curr);
         }
-        iterators.first++;
+        ++iterators.first;
     }
 
     return filteredMovies;

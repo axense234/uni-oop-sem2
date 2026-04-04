@@ -1,9 +1,18 @@
 #include "Playlist.services.h"
+#include "../domain/DynamicVectorIterator.h"
 
+#include <utility>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <iterator>
 #include <optional>
+#include <string>
+
+std::pair<DynamicVectorIterator, DynamicVectorIterator> PlaylistServices::iterators() const
+{
+    return this->repo.iterators();
+}
 
 PlaylistServices::PlaylistServices(MemoryRepo &r) : repo(r) {}
 
@@ -37,6 +46,18 @@ Movie PlaylistServices::getMovieById(int id)
     try
     {
         return this->repo.getElemById(id);
+    }
+    catch (const std::exception &e)
+    {
+        return Movie{};
+    }
+}
+
+Movie PlaylistServices::getMovieByTitle(std::string title)
+{
+    try
+    {
+        return this->repo.getElemByTitle(title);
     }
     catch (const std::exception &e)
     {

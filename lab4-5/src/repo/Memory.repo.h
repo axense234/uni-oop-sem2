@@ -8,6 +8,7 @@ class MovieServices;
 class PlaylistServices;
 class MemoryRepoTests;
 class MenuUI;
+class HelpersTests;
 
 class MemoryRepo
 {
@@ -16,9 +17,10 @@ class MemoryRepo
     friend class PlaylistServices;
     friend class MemoryRepoTests;
     friend class MenuUI;
+    friend class HelpersTests;
 
 private:
-    DynamicVector elements;
+    DynamicVector<TElem, TElemId, TElemIdentifier> elements;
 
     /**
      * @brief Get an element by id.
@@ -28,6 +30,15 @@ private:
      * @return TElem
      */
     TElem getElemById(TElemId id);
+
+    /**
+     * @brief Get an element by title.
+     *
+     * @exception Throws std::exception if the elem cannot be found.
+     * @param title Id of desired elem.
+     * @return TElem
+     */
+    TElem getElemByTitle(TElemIdentifier title);
 
     /**
      * @brief Returns the elems iterator.

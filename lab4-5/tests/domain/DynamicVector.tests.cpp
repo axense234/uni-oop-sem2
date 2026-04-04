@@ -2,6 +2,9 @@
 #include "../../src/domain/DynamicVectorIterator.h"
 #include <exception>
 
+#include <iostream>
+#include <assert.h>
+
 using namespace std;
 
 Movie DynamicVectorTests::createTestMovie(int id, const string &title, MovieGenre genre, short year, int likes, const string &trailer)
@@ -13,13 +16,13 @@ void DynamicVectorTests::testConstructor()
 {
     cout << "Testing constructor..." << endl;
 
-    DynamicVector v1;
+    DynamicVector<Movie, int, string> v1;
     assert(v1.length() == 0);
 
-    DynamicVector v2(10);
+    DynamicVector<Movie, int, string> v2(10);
     assert(v2.length() == 0);
 
-    DynamicVector v3(15, 3);
+    DynamicVector<Movie, int, string> v3(15, 3);
     assert(v3.length() == 0);
 
     cout << "Constructor test passed" << endl;
@@ -29,14 +32,14 @@ void DynamicVectorTests::testCopyConstructor()
 {
     cout << "Testing copy constructor..." << endl;
 
-    DynamicVector original;
+    DynamicVector<Movie, int, string> original;
     Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
     Movie m2 = createTestMovie(2, "The Matrix", SCIFI, 1999, 2000, "trailer2");
 
     original.add(m1);
     original.add(m2);
 
-    DynamicVector copy(original);
+    DynamicVector<Movie, int, string> copy(original);
 
     assert(copy.length() == original.length());
     assert(copy.length() == 2);
@@ -62,14 +65,14 @@ void DynamicVectorTests::testAssignmentOperator()
 {
     cout << "Testing assignment operator..." << endl;
 
-    DynamicVector v1;
+    DynamicVector<Movie, int, string> v1;
     Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
     Movie m2 = createTestMovie(2, "The Matrix", SCIFI, 1999, 2000, "trailer2");
 
     v1.add(m1);
     v1.add(m2);
 
-    DynamicVector v2;
+    DynamicVector<Movie, int, string> v2;
     v2 = v1;
 
     assert(v2.length() == v1.length());
@@ -78,7 +81,7 @@ void DynamicVectorTests::testAssignmentOperator()
     v1 = v1;
     assert(v1.length() == 2);
 
-    DynamicVector v3;
+    DynamicVector<Movie, int, string> v3;
     v3 = v2 = v1;
     assert(v3.length() == 2);
 
@@ -89,7 +92,7 @@ void DynamicVectorTests::testLength()
 {
     cout << "Testing length()..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
     assert(v.length() == 0);
 
     Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
@@ -113,7 +116,7 @@ void DynamicVectorTests::testAdd()
 {
     cout << "Testing add()..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     for (int i = 1; i <= 5; i++)
     {
@@ -138,7 +141,7 @@ void DynamicVectorTests::testAddWithResize()
 {
     cout << "Testing add() with automatic resize..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v(5, 2);
 
     for (int i = 1; i <= 10; i++)
     {
@@ -179,7 +182,7 @@ void DynamicVectorTests::testRemove()
 {
     cout << "Testing remove()..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     for (int i = 1; i <= 5; i++)
     {
@@ -206,7 +209,7 @@ void DynamicVectorTests::testRemoveNonExistent()
 {
     cout << "Testing remove() with non-existent element..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
     Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
     v.add(m1);
 
@@ -230,7 +233,7 @@ void DynamicVectorTests::testClear()
 {
     cout << "Testing clear()..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     v.clear();
     assert(v.length() == 0);
@@ -256,7 +259,7 @@ void DynamicVectorTests::testGetElemById()
 {
     cout << "Testing getElemById()..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     for (int i = 1; i <= 5; i++)
     {
@@ -281,7 +284,7 @@ void DynamicVectorTests::testGetElemByIdNonExistent()
 {
     cout << "Testing getElemById() with non-existent ID..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
     Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
     v.add(m1);
 
@@ -300,11 +303,59 @@ void DynamicVectorTests::testGetElemByIdNonExistent()
     cout << "getElemById() with non-existent ID test passed" << endl;
 }
 
+void DynamicVectorTests::testGetElemByIdentifier()
+{
+    cout << "Testing getElemByIdentifier()..." << endl;
+
+    DynamicVector<Movie, int, string> v;
+
+    for (int i = 1; i <= 5; i++)
+    {
+        Movie movie = createTestMovie(i, "Movie" + to_string(i), ACTION, 2020, i * 100, "trailer" + to_string(i));
+        v.add(movie);
+    }
+
+    Movie m3 = v.getElemByIdentifier("Movie3");
+    assert(m3.getId() == 3);
+    assert(m3.getTitle() == "Movie3");
+
+    Movie m1 = v.getElemByIdentifier("Movie1");
+    assert(m1.getId() == 1);
+
+    Movie m5 = v.getElemByIdentifier("Movie5");
+    assert(m5.getId() == 5);
+
+    cout << "getElemByIdentifier() test passed" << endl;
+}
+
+void DynamicVectorTests::testGetElemByIdentifierNonExistent()
+{
+    cout << "Testing getElemByIdentifier() with non-existent identifier..." << endl;
+
+    DynamicVector<Movie, int, string> v;
+    Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
+    v.add(m1);
+
+    bool exceptionThrown = false;
+    try
+    {
+        v.getElemByIdentifier("NonExistentMovie");
+    }
+    catch (exception &)
+    {
+        exceptionThrown = true;
+    }
+
+    assert(exceptionThrown);
+
+    cout << "getElemByIdentifier() with non-existent identifier test passed" << endl;
+}
+
 void DynamicVectorTests::testIterator()
 {
     cout << "Testing iterator..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     DynamicVectorIterator emptyIt = v.begin();
     assert(emptyIt.valid() == false);
@@ -347,11 +398,46 @@ void DynamicVectorTests::testIterator()
     cout << "Iterator test passed" << endl;
 }
 
+void DynamicVectorTests::testResize()
+{
+    cout << "Testing resize()..." << endl;
+
+    DynamicVector<Movie, int, string> v(3, 2);
+
+    assert(v.length() == 0);
+
+    for (int i = 1; i <= 3; i++)
+    {
+        Movie movie = createTestMovie(i, "Movie" + to_string(i), ACTION, 2020, i * 100, "trailer" + to_string(i));
+        v.add(movie);
+    }
+    assert(v.length() == 3);
+
+    Movie m4 = createTestMovie(4, "Movie4", ACTION, 2020, 400, "trailer4");
+    v.add(m4);
+    assert(v.length() == 4);
+
+    for (int i = 5; i <= 8; i++)
+    {
+        Movie movie = createTestMovie(i, "Movie" + to_string(i), ACTION, 2020, i * 100, "trailer" + to_string(i));
+        v.add(movie);
+    }
+    assert(v.length() == 8);
+
+    for (int i = 1; i <= 8; i++)
+    {
+        Movie movie = v.getElemById(i);
+        assert(movie.getId() == i);
+    }
+
+    cout << "resize() test passed" << endl;
+}
+
 void DynamicVectorTests::testMultipleOperations()
 {
     cout << "Testing multiple operations in sequence..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     for (int i = 1; i <= 100; i++)
     {
@@ -387,7 +473,7 @@ void DynamicVectorTests::testEdgeCases()
 {
     cout << "Testing edge cases..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
 
     const int largeNumber = 1000;
     for (int i = 1; i <= largeNumber; i++)
@@ -416,18 +502,18 @@ void DynamicVectorTests::testMemoryManagement()
 {
     cout << "Testing memory management..." << endl;
 
-    DynamicVector v1;
+    DynamicVector<Movie, int, string> v1;
     Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
     v1.add(m1);
 
-    DynamicVector v2 = v1;
+    DynamicVector<Movie, int, string> v2 = v1;
 
     v1.clear();
 
     assert(v2.length() == 1);
     assert(v2.getElemById(1).getId() == 1);
 
-    DynamicVector v3;
+    DynamicVector<Movie, int, string> v3;
     v3 = v2;
     v2.clear();
     assert(v3.length() == 1);
@@ -439,11 +525,11 @@ void DynamicVectorTests::testConstCorrectness()
 {
     cout << "Testing const correctness..." << endl;
 
-    DynamicVector v;
+    DynamicVector<Movie, int, string> v;
     Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
     v.add(m1);
 
-    const DynamicVector &constV = v;
+    const DynamicVector<Movie, int, string> &constV = v;
 
     assert(constV.length() == 1);
 
@@ -467,7 +553,10 @@ void DynamicVectorTests::runAllDynamicVectorTests()
     testClear();
     testGetElemById();
     testGetElemByIdNonExistent();
+    testGetElemByIdentifier();
+    testGetElemByIdentifierNonExistent();
     testIterator();
+    testResize();
     testMultipleOperations();
     testEdgeCases();
     testMemoryManagement();

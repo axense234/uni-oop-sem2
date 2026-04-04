@@ -5,8 +5,14 @@
 
 #include <optional>
 
+class MenuUI;
+class HelpersTests;
+
 class MovieServices
 {
+    friend class MenuUI;
+    friend class HelpersTests;
+
 private:
     MemoryRepo &repo;
 
@@ -49,10 +55,23 @@ public:
     Movie getMovieById(int id);
 
     /**
+     * @brief Finds and returns a movie by given title.
+     *
+     * @param title given title
+     * @return Found Movie or Default Movie (with id = -1)
+     */
+    Movie getMovieByTitle(std::string name);
+
+    /**
      * @brief Filters database movies by genre and returns a copy of those movies.
      *
-     * @param genre Gnere
+     * @param genre Genre
      * @return Movie* Copy
      */
-    DynamicVector filterMoviesByGenre(std::optional<MovieGenre> genre = std::nullopt);
+    DynamicVector<TElem, TElemId, TElemIdentifier> filterMoviesByGenre(MovieGenre genre = EMPTY);
+
+    /**
+     * @brief Returns the elems iterator.
+     */
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators() const;
 };

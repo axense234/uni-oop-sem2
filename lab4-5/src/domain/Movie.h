@@ -22,20 +22,24 @@ enum MovieGenre
     SCIFI,
     SPORT,
     WAR,
-    WESTERN
+    WESTERN,
+    EMPTY
 };
 
 // forward dec
+template <typename TElem, typename TElemId, typename TElemIdentifier>
 class DynamicVector;
 class MovieServices;
 class PlaylistServices;
+class MovieTests;
 
 class Movie
 {
-
+    template <typename TElem, typename TElemId, typename TElemIdentifier>
     friend class DynamicVector;
     friend class MovieServices;
     friend class PlaylistServices;
+    friend class MovieTests;
 
 private:
     int id;

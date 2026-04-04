@@ -5,10 +5,10 @@
 class DynamicVectorIterator
 {
 
-    friend class DynamicVector;
+    friend class DynamicVector<TElem, TElemId, TElemIdentifier>;
 
 private:
-    const DynamicVector &vector;
+    const DynamicVector<TElem, TElemId, TElemIdentifier> &vector;
     int currentIndex;
 
     /**
@@ -16,7 +16,7 @@ private:
      *
      * @param v DynamicVector reference.
      */
-    DynamicVectorIterator(const DynamicVector &v, int initialIndex);
+    DynamicVectorIterator(const DynamicVector<TElem, TElemId, TElemIdentifier> &v, int initialIndex);
 
 public:
     void first();
@@ -24,7 +24,7 @@ public:
     TElem getCurrent();
     bool valid();
 
-    DynamicVectorIterator operator++();
+    DynamicVectorIterator &operator++();
     DynamicVectorIterator operator++(int);
     TElem &operator*();
     bool operator!=(DynamicVectorIterator comparable);

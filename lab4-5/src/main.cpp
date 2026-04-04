@@ -16,9 +16,7 @@ int main()
     MenuUIInput input;
     MenuUIOutput output;
 
-    // todo: make it so the ui doesnt use the database
-
-    MenuUI ui{input, output, database, playlistServices, movieServices};
+    MenuUI ui{input, output, playlistServices, movieServices};
     ui.start();
 
     return 0;

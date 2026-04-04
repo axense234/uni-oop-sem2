@@ -1,15 +1,18 @@
 #pragma once
 
 #include "Movie.h"
+#include <string>
 
 typedef Movie TElem;
 typedef int TElemId;
+typedef std::string TElemIdentifier;
 
 class MemoryRepo;
 class DynamicVectorIterator;
 class DynamicVectorTests;
 class MovieServicesTests;
 
+template <typename TElem, typename TElemId, typename TElemIdentifier>
 class DynamicVector
 {
 
@@ -36,6 +39,15 @@ private:
      * @return TElem
      */
     TElem getElemById(TElemId id);
+
+    /**
+     * @brief Gets an elem by given identiifer.
+     *
+     * @exception Throws std::exception if it cannot find the elem.
+     * @param identifier Given identifier.
+     * @return TElem
+     */
+    TElem getElemByIdentifier(TElemIdentifier identifier);
 
 public:
     /**

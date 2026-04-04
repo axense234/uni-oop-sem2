@@ -98,6 +98,9 @@ void MovieTests::testIdManipulation()
 
     assert(movie.getId() == 10);
 
+    movie.setId(20);
+    assert(movie.getId() == 20);
+
     cout << "ID manipulation test passed" << endl;
 }
 
@@ -192,7 +195,6 @@ void MovieTests::testConstCorrectness()
 
 void MovieTests::runAllMovieTests()
 {
-
     testDefaultConstructor();
     testParameterizedConstructor();
     testGetters();

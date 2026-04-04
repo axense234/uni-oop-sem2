@@ -18,6 +18,13 @@ private:
     std::string getUserCommand() const;
 
     /**
+     * @brief Returns a char representing the confirmation of the user
+     *
+     * @return bool
+     */
+    bool getUserConfirmation() const;
+
+    /**
      * @brief Gets a movie id from the user.
      *
      * @return int

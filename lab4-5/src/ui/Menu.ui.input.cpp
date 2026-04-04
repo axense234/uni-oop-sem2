@@ -58,6 +58,30 @@ std::string MenuUIInput::getUserCommand() const
     }
 }
 
+bool MenuUIInput::getUserConfirmation() const
+{
+    char command;
+
+    while (true)
+    {
+        std::cout << "Y/N: ";
+        if (std::cin >> command && (command == 'Y' || command == 'N' || command == 'y' || command == 'n'))
+        {
+            if (command == 'Y' || command == 'y')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        std::cin.clear();
+        std::cout << "What?";
+    }
+}
+
 int MenuUIInput::getUserMovieId() const
 {
     int id;

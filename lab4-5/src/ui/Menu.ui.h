@@ -21,18 +21,17 @@ class MenuUI
 private:
     Mode mode;
 
-    const MenuUIOutput &output;
     const MenuUIInput &input;
-    MovieServices &movieServices;
+    const MenuUIOutput &output;
     PlaylistServices &playlistServices;
-    const MemoryRepo &database;
+    MovieServices &movieServices;
 
 public:
     /**
      * @brief Constructor
      *
      */
-    MenuUI(const MenuUIInput &input, const MenuUIOutput &output, const MemoryRepo &db, PlaylistServices &playlist, MovieServices &mS);
+    MenuUI(const MenuUIInput &input, const MenuUIOutput &output, PlaylistServices &playlist, MovieServices &mS);
 
     /**
      * @brief Getter
@@ -42,34 +41,54 @@ public:
     Mode getMode() const;
 
     /**
-     * @brief Adds a movie.
+     * @brief Adds a movie to the database.
      *
      */
-    void addMovie();
+    void addMovieToDatabase();
 
     /**
-     * @brief Deletes a movie.
+     * @brief Deletes a movie from the database.
      *
      */
-    void deleteMovie();
+    void deleteMovieFromDatabase();
 
     /**
-     * @brief Updates a movie.
+     * @brief Deletes a user movie from the playlist.
      *
      */
-    void updateMovie();
+    void deleteMovieFromPlaylist();
 
     /**
-     * @brief Displays all the movies.
+     * @brief Updates a movie from the database.
      *
      */
-    void displayMovies();
+    void updateMovieFromDatabase();
 
     /**
-     * @brief Displays a movie.
+     * @brief Displays all the movies in the database.
      *
      */
-    void displayMovie();
+    void displayMoviesFromDatabase();
+
+    /**
+     * @brief Displays all the movies in the user's playlist.
+     *
+     */
+    void displayMoviesFromPlaylist();
+
+    /**
+     * @brief Displays a movie from the database.
+     *
+     */
+    void displayMovieFromDatabase();
+
+    /**
+     * @brief Cycles through the database movies one movie at a time, displaying it's contents.
+     * @brief Automatically opens up the shown movie trailer in the user's default browser.
+     * @brief The user then can choose to either add the movie to the watch list, or continue viewing the next.
+     *
+     */
+    void handleUserPlaylist();
 
     /**
      * @brief Starts the menu program.

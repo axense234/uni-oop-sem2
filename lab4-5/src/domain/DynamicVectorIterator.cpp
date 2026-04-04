@@ -1,8 +1,8 @@
 #include "DynamicVectorIterator.h"
 
-DynamicVectorIterator::DynamicVectorIterator(const DynamicVector &v, int initialIndex) : vector(v)
+DynamicVectorIterator::DynamicVectorIterator(const DynamicVector<TElem, TElemId, TElemIdentifier> &v, int initialIndex) : vector(v)
 {
-    this->currentIndex = initialIndex || 0;
+    this->currentIndex = initialIndex;
 }
 
 bool DynamicVectorIterator::valid()
@@ -28,7 +28,7 @@ TElem DynamicVectorIterator::getCurrent()
     return this->vector.elems[this->currentIndex];
 }
 
-DynamicVectorIterator DynamicVectorIterator::operator++()
+DynamicVectorIterator &DynamicVectorIterator::operator++()
 {
     this->currentIndex++;
     return *this;

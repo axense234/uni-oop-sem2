@@ -19,9 +19,22 @@ TElem MemoryRepo::getElemById(TElemId id)
     }
 }
 
+TElem MemoryRepo::getElemByTitle(TElemIdentifier identifier)
+{
+    try
+    {
+        TElem foundElem = this->elements.getElemByIdentifier(identifier);
+        return foundElem;
+    }
+    catch (const std::exception &e)
+    {
+        throw e;
+    }
+}
+
 MemoryRepo::MemoryRepo()
 {
-    this->elements = DynamicVector{5, 2};
+    this->elements = DynamicVector<TElem, TElemId, TElemIdentifier>{5, 2};
 }
 
 bool MemoryRepo::add(TElem elem)

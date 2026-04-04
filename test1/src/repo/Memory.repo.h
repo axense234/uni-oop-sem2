@@ -5,10 +5,12 @@
 #include "../domain/School.h"
 
 class SchoolServices;
+class HelpersTests;
 
 class MemoryRepo
 {
     friend class SchoolServices;
+    friend class HelpersTests;
 
 private:
     std::vector<School> data;

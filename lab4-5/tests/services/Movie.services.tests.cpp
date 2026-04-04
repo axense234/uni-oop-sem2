@@ -283,6 +283,9 @@ void MovieServicesTests::testFilterMoviesByGenre()
     DynamicVector filtered = services.filterMoviesByGenre(DRAMA);
     assert(filtered.length() == 4);
     cout << "filter movies by genre worked" << endl;
+    DynamicVector filtered2 = services.filterMoviesByGenre();
+    assert(filtered2.length() == 6);
+    cout << "filter movies by no genre worked" << endl;
 }
 
 void MovieServicesTests::runAllMovieServicesTests()

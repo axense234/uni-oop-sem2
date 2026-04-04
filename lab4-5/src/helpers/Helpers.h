@@ -31,4 +31,11 @@ public:
      * @return std::string
      */
     static std::string convertGivenMovieGenreToString(MovieGenre genre);
+
+    /**
+     * @brief Opens up a provided url in the user's browser.
+     *
+     * @param url the url
+     */
+    static void openURL(const std::string &url);
 };

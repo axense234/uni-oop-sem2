@@ -4,8 +4,11 @@
 #include "../helpers/Helpers.h"
 
 #include <iostream>
+#include <thread>
+#include <chrono>
+#include <string>
 
-MenuUI::MenuUI(const MenuUIInput &input, const MenuUIOutput &output, const MemoryRepo &db, PlaylistServices &playlist, MovieServices &mS) : input(input), output(output), database(db), playlistServices(playlist), movieServices(mS)
+MenuUI::MenuUI(const MenuUIInput &input, const MenuUIOutput &output, PlaylistServices &playlist, MovieServices &mS) : input(input), output(output), playlistServices(playlist), movieServices(mS)
 {
     this->mode = ADMIN;
 }
@@ -15,7 +18,7 @@ Mode MenuUI::getMode() const
     return this->mode;
 }
 
-void MenuUI::addMovie()
+void MenuUI::addMovieToDatabase()
 {
     Movie movie = this->input.getUserMovie();
 
@@ -29,11 +32,20 @@ void MenuUI::addMovie()
     }
 }
 
-void MenuUI::deleteMovie()
+void MenuUI::deleteMovieFromDatabase()
 {
-    int movieId = this->input.getUserMovieId();
+    std::string movieTitle = this->input.getUserMovieTitle();
 
-    if (this->movieServices.removeMovieById(movieId))
+    // find the movie
+    Movie foundMovie = this->movieServices.getMovieByTitle(movieTitle);
+
+    if (foundMovie.getId() == -1)
+    {
+        std::cout << "Couldn't find the movie to remove it." << std::endl;
+        return;
+    }
+
+    if (this->movieServices.removeMovieById(foundMovie.getId()))
     {
         std::cout << "Successfully removed a movie from the database. :)" << std::endl;
     }
@@ -43,21 +55,58 @@ void MenuUI::deleteMovie()
     }
 }
 
-void MenuUI::updateMovie()
+void MenuUI::deleteMovieFromPlaylist()
 {
-    int movieId = this->input.getUserMovieId();
+    std::string movieTitle = this->input.getUserMovieTitle();
 
-    Movie foundMovie = this->movieServices.getMovieById(movieId);
+    // find the movie
+    Movie foundMovie = this->movieServices.getMovieByTitle(movieTitle);
 
     if (foundMovie.getId() == -1)
     {
-        std::cout << "Could not find movie by id in the database :>." << std::endl;
+        std::cout << "Couldn't find the movie to remove it." << std::endl;
+        return;
+    }
+
+    // deleting from the playlist
+    if (this->playlistServices.removeMovieById(foundMovie.getId()))
+    {
+        std::cout << "Successfully removed a movie from the playlist. :)" << std::endl;
+    }
+    else
+    {
+        std::cout << "Could not remove a movie from the playlist. >:(" << std::endl;
+    }
+
+    // asking the user if they liked the movie
+    std::cout << "Liked the movie?: " << std::endl;
+    bool confirmation = this->input.getUserConfirmation();
+
+    // liking the movie in the database
+    if (confirmation)
+    {
+        Movie payload = foundMovie;
+        payload.setNumberOfLikes(foundMovie.getNumberOfLikes() + 1);
+        this->movieServices.updateMovieById(foundMovie.getId(), payload);
+    }
+}
+
+void MenuUI::updateMovieFromDatabase()
+{
+    std::string movieTitle = this->input.getUserMovieTitle();
+
+    // find the movie
+    Movie foundMovie = this->movieServices.getMovieByTitle(movieTitle);
+
+    if (foundMovie.getId() == -1)
+    {
+        std::cout << "Couldn't find the movie to remove it." << std::endl;
         return;
     }
 
     Movie payload = this->input.getUserMovie();
 
-    if (this->movieServices.updateMovieById(movieId, payload))
+    if (this->movieServices.updateMovieById(foundMovie.getId(), payload))
     {
         std::cout << "Successfully updated a movie from the database. :)" << std::endl;
     }
@@ -67,10 +116,11 @@ void MenuUI::updateMovie()
     }
 }
 
-void MenuUI::displayMovies()
+void MenuUI::displayMoviesFromDatabase()
 {
-    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = this->database.iterators();
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = this->movieServices.iterators();
 
+    int count = 0;
     while (iterators.first != iterators.second)
     {
         Movie movie = iterators.first.getCurrent();
@@ -83,14 +133,54 @@ void MenuUI::displayMovies()
         std::cout << std::endl;
 
         iterators.first++;
+        count++;
+    }
+
+    if (count == 0)
+    {
+        std::cout << "no movies in the database to display" << std::endl;
     }
 }
 
-void MenuUI::displayMovie()
+void MenuUI::displayMoviesFromPlaylist()
 {
-    int movieId = this->input.getUserMovieId();
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = this->playlistServices.iterators();
 
-    Movie foundMovie = this->movieServices.getMovieById(movieId);
+    int count = 0;
+    while (iterators.first != iterators.second)
+    {
+        Movie movie = iterators.first.getCurrent();
+        std::cout << "Title: " << movie.getTitle() << std::endl;
+        std::cout << "Id: " << movie.getId() << std::endl;
+        std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(movie.getGenre()) << std::endl;
+        std::cout << "Year of Release: " << movie.getYearOfRelease() << std::endl;
+        std::cout << "Number of Likes: " << movie.getNumberOfLikes() << std::endl;
+        std::cout << "Trailer: " << movie.getTrailer() << std::endl;
+        std::cout << std::endl;
+
+        iterators.first++;
+        count++;
+    }
+
+    if (count == 0)
+    {
+        std::cout << "no movies in the playlist to display" << std::endl;
+    }
+}
+
+void MenuUI::displayMovieFromDatabase()
+{
+    std::string movieTitle = this->input.getUserMovieTitle();
+
+    // find the movie
+    Movie foundMovie = this->movieServices.getMovieByTitle(movieTitle);
+
+    if (foundMovie.getId() == -1)
+    {
+        std::cout << "Couldn't find the movie to remove it." << std::endl;
+        return;
+    }
+
     if (foundMovie.getId() != -1)
     {
         std::cout << "Title: " << foundMovie.getTitle() << std::endl;
@@ -107,6 +197,69 @@ void MenuUI::displayMovie()
     }
 }
 
+void MenuUI::handleUserPlaylist()
+{
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = this->movieServices.iterators();
+    DynamicVectorIterator usedIterator = iterators.first;
+
+    if (this->movieServices.repo.size() == 0)
+    {
+        std::cout << "no movies in the database to scroll through" << std::endl;
+    }
+
+    while (true)
+    {
+        // circular thingie
+        if (!usedIterator.valid())
+        {
+            usedIterator.first();
+        }
+
+        // display the current movie
+        Movie movie = usedIterator.getCurrent();
+        std::cout << "Title: " << movie.getTitle() << std::endl;
+        std::cout << "Id: " << movie.getId() << std::endl;
+        std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(movie.getGenre()) << std::endl;
+        std::cout << "Year of Release: " << movie.getYearOfRelease() << std::endl;
+        std::cout << "Number of Likes: " << movie.getNumberOfLikes() << std::endl;
+        std::cout << "Trailer: " << movie.getTrailer() << std::endl;
+        std::cout << "Opening the trailer......." << std::endl;
+        std::cout << std::endl;
+
+        // sleep for like 1 second
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+
+        // we open up the url in the browser
+        Helpers::openURL(movie.getTrailer());
+
+        // now we see if the user liked the trailer
+        std::cout << "Did you like the trailer and want to add the movie to the playlist?" << std::endl;
+        bool confirmation = this->input.getUserConfirmation();
+
+        if (confirmation)
+        {
+            this->playlistServices.addMovie(movie);
+
+            std::cout << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+        }
+        else
+        {
+            // the user can either stop scrolling or move on to the next movie
+            std::cout << "Next?" << std::endl;
+            bool continueConfirmation = this->input.getUserConfirmation();
+
+            if (!continueConfirmation)
+                return;
+
+            std::cout << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+        }
+
+        usedIterator++;
+    }
+}
+
 void MenuUI::start()
 {
     Mode appMode = this->input.getUserMode();
@@ -118,26 +271,41 @@ void MenuUI::start()
     {
         std::string command = this->input.getUserCommand();
 
+        // ADMIN
         if (command == "movies" && appMode == ADMIN)
         {
-            this->displayMovies();
+            this->displayMoviesFromDatabase();
         }
         else if (command == "add" && appMode == ADMIN)
         {
-            this->addMovie();
+            this->addMovieToDatabase();
         }
         else if (command == "remove" && appMode == ADMIN)
         {
-            this->deleteMovie();
+            this->deleteMovieFromDatabase();
         }
         else if (command == "update" && appMode == ADMIN)
         {
-            this->updateMovie();
+            this->updateMovieFromDatabase();
         }
         else if (command == "find" && appMode == ADMIN)
         {
-            this->displayMovie();
+            this->displayMovieFromDatabase();
         }
+        // USER
+        else if (command == "playlist")
+        {
+            this->displayMoviesFromPlaylist();
+        }
+        else if (command == "playlist-delete")
+        {
+            this->deleteMovieFromPlaylist();
+        }
+        else if (command == "scroll")
+        {
+            this->handleUserPlaylist();
+        }
+        // UTIL
         else if (command == "genres")
         {
             this->output.genres();

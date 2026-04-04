@@ -2,8 +2,10 @@
 #include "DynamicVectorIterator.h"
 
 #include <exception>
+#include <string>
 
-DynamicVector::DynamicVector(int capacity, int factor)
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+DynamicVector<TElem, TElemId, TElemIdentifier>::DynamicVector(int capacity, int factor)
 {
     this->capacity = capacity;
     this->factor = factor;
@@ -12,7 +14,8 @@ DynamicVector::DynamicVector(int capacity, int factor)
     this->elems = new TElem[this->capacity];
 }
 
-TElem DynamicVector::getElemById(TElemId id)
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+TElem DynamicVector<TElem, TElemId, TElemIdentifier>::getElemById(TElemId id)
 {
     for (int i = 0; i < this->size; ++i)
     {
@@ -25,7 +28,22 @@ TElem DynamicVector::getElemById(TElemId id)
     throw std::exception();
 }
 
-DynamicVector::DynamicVector(const DynamicVector &vector)
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+TElem DynamicVector<TElem, TElemId, TElemIdentifier>::getElemByIdentifier(TElemIdentifier identifier)
+{
+    for (int i = 0; i < this->size; ++i)
+    {
+        if (this->elems[i].getTitle() == identifier)
+        {
+            return this->elems[i];
+        }
+    }
+
+    throw std::exception();
+}
+
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+DynamicVector<TElem, TElemId, TElemIdentifier>::DynamicVector(const DynamicVector &vector)
 {
     this->size = vector.size;
     this->capacity = vector.capacity;
@@ -38,7 +56,8 @@ DynamicVector::DynamicVector(const DynamicVector &vector)
     }
 }
 
-DynamicVector &DynamicVector::operator=(const DynamicVector &vector)
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+DynamicVector<TElem, TElemId, TElemIdentifier> &DynamicVector<TElem, TElemId, TElemIdentifier>::operator=(const DynamicVector &vector)
 {
     this->size = vector.size;
     this->capacity = vector.capacity;
@@ -54,17 +73,20 @@ DynamicVector &DynamicVector::operator=(const DynamicVector &vector)
     return *this;
 }
 
-DynamicVector::~DynamicVector()
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+DynamicVector<TElem, TElemId, TElemIdentifier>::~DynamicVector()
 {
     delete[] this->elems;
 }
 
-int DynamicVector::length() const
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+int DynamicVector<TElem, TElemId, TElemIdentifier>::length() const
 {
     return this->size;
 }
 
-void DynamicVector::resize()
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+void DynamicVector<TElem, TElemId, TElemIdentifier>::resize()
 {
     int newCapacity = this->capacity * (this->factor > 1 ? this->factor : 2);
     this->capacity = newCapacity;
@@ -80,7 +102,8 @@ void DynamicVector::resize()
     this->elems = aux;
 }
 
-void DynamicVector::add(const TElem &elem)
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+void DynamicVector<TElem, TElemId, TElemIdentifier>::add(const TElem &elem)
 {
     if (this->size == this->capacity)
     {
@@ -91,7 +114,8 @@ void DynamicVector::add(const TElem &elem)
     this->size++;
 }
 
-void DynamicVector::remove(TElemId id)
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+void DynamicVector<TElem, TElemId, TElemIdentifier>::remove(TElemId id)
 {
     if (this->size == 0)
     {
@@ -120,19 +144,25 @@ void DynamicVector::remove(TElemId id)
     this->size--;
 }
 
-void DynamicVector::clear()
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+void DynamicVector<TElem, TElemId, TElemIdentifier>::clear()
 {
     this->size = 0;
 }
 
-DynamicVectorIterator DynamicVector::begin() const
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+DynamicVectorIterator DynamicVector<TElem, TElemId, TElemIdentifier>::begin() const
 {
     DynamicVectorIterator it = DynamicVectorIterator(*this, 0);
     return it;
 }
 
-DynamicVectorIterator DynamicVector::end() const
+template <typename TElem, typename TElemId, typename TElemIdentifier>
+DynamicVectorIterator DynamicVector<TElem, TElemId, TElemIdentifier>::end() const
 {
     DynamicVectorIterator it = DynamicVectorIterator(*this, this->size);
     return it;
 }
+
+// we either do this or move the methods in the .h file and remove the cpp file
+template class DynamicVector<Movie, int, std::string>;

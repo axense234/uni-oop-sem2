@@ -1,15 +1,18 @@
 #pragma once
+
 #include "../../src/domain/DynamicVector.h"
 #include "../../src/domain/Movie.h"
-#include <cassert>
-#include <iostream>
 #include <string>
+
+using namespace std;
 
 class DynamicVectorTests
 {
 private:
-    Movie createTestMovie(int id, const std::string &title, MovieGenre genre, short year, int likes, const std::string &trailer);
+    Movie createTestMovie(int id, const string &title, MovieGenre genre, short year, int likes, const string &trailer);
 
+public:
+    // Existing tests
     void testConstructor();
     void testCopyConstructor();
     void testAssignmentOperator();
@@ -21,12 +24,14 @@ private:
     void testClear();
     void testGetElemById();
     void testGetElemByIdNonExistent();
+    void testGetElemByIdentifier();
+    void testGetElemByIdentifierNonExistent();
     void testIterator();
     void testMultipleOperations();
     void testEdgeCases();
     void testMemoryManagement();
     void testConstCorrectness();
+    void testResize();
 
-public:
     void runAllDynamicVectorTests();
 };
