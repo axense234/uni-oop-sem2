@@ -1,9 +1,8 @@
 #include "Movie.services.h"
 
 #include <vector>
-#include <algorithm>
-#include <iterator>
 #include <optional>
+#include <iostream>
 
 MovieServices::MovieServices(MemoryRepo &r) : repo(r) {}
 
@@ -44,7 +43,7 @@ Movie MovieServices::getMovieById(int id)
     }
 }
 
-DynamicVector MovieServices::filterMoviesByGenre(std::optional<MovieGenre> genre = std::nullopt)
+DynamicVector MovieServices::filterMoviesByGenre(std::optional<MovieGenre> genre)
 {
 
     if (!genre)
@@ -56,12 +55,15 @@ DynamicVector MovieServices::filterMoviesByGenre(std::optional<MovieGenre> genre
 
     DynamicVector filteredMovies;
 
-    std::copy_if(
-        iterators.first,
-        iterators.second,
-        std::back_inserter(filteredMovies),
-        [&](const TElem &first)
-        { return first.getGenre() == genre.value(); });
+    while (iterators.first != iterators.second)
+    {
+        Movie curr = iterators.first.getCurrent();
+        if (curr.getGenre() == genre.value())
+        {
+            filteredMovies.add(curr);
+        }
+        iterators.first++;
+    }
 
     return filteredMovies;
 }

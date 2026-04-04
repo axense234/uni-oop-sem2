@@ -41,8 +41,8 @@ void DynamicVectorTests::testCopyConstructor()
     assert(copy.length() == original.length());
     assert(copy.length() == 2);
 
-    DynamicVectorIterator it1 = original.iterator();
-    DynamicVectorIterator it2 = copy.iterator();
+    DynamicVectorIterator it1 = original.begin();
+    DynamicVectorIterator it2 = copy.begin();
 
     while (it1.valid() && it2.valid())
     {
@@ -122,7 +122,7 @@ void DynamicVectorTests::testAdd()
         assert(v.length() == i);
     }
 
-    DynamicVectorIterator it = v.iterator();
+    DynamicVectorIterator it = v.begin();
     int expectedId = 1;
     while (it.valid())
     {
@@ -151,7 +151,7 @@ void DynamicVectorTests::testAddWithResize()
     for (int i = 1; i <= 10; i++)
     {
         bool found = false;
-        DynamicVectorIterator it = v.iterator();
+        DynamicVectorIterator it = v.begin();
         while (it.valid())
         {
             if (it.getCurrent().getId() == i)
@@ -190,7 +190,7 @@ void DynamicVectorTests::testRemove()
     v.remove(3);
     assert(v.length() == 4);
 
-    DynamicVectorIterator it = v.iterator();
+    DynamicVectorIterator it = v.begin();
     int expectedIds[] = {1, 2, 4, 5};
     for (int i = 0; i < 4; i++)
     {
@@ -306,7 +306,7 @@ void DynamicVectorTests::testIterator()
 
     DynamicVector v;
 
-    DynamicVectorIterator emptyIt = v.iterator();
+    DynamicVectorIterator emptyIt = v.begin();
     assert(emptyIt.valid() == false);
 
     for (int i = 1; i <= 5; i++)
@@ -315,7 +315,7 @@ void DynamicVectorTests::testIterator()
         v.add(movie);
     }
 
-    DynamicVectorIterator it = v.iterator();
+    DynamicVectorIterator it = v.begin();
     int expectedId = 1;
     int count = 0;
 
@@ -331,7 +331,7 @@ void DynamicVectorTests::testIterator()
 
     v.remove(3);
 
-    DynamicVectorIterator newIt = v.iterator();
+    DynamicVectorIterator newIt = v.begin();
 
     int expectedIds[] = {1, 2, 4, 5};
     int index = 0;
@@ -447,7 +447,7 @@ void DynamicVectorTests::testConstCorrectness()
 
     assert(constV.length() == 1);
 
-    DynamicVectorIterator it = constV.iterator();
+    DynamicVectorIterator it = v.begin();
     assert(it.valid());
     assert(it.getCurrent().getId() == 1);
 

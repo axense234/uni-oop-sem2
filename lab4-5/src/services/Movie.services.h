@@ -3,6 +3,8 @@
 #include "../repo/Memory.repo.h"
 #include "../domain/Movie.h"
 
+#include <optional>
+
 class MovieServices
 {
 private:
@@ -52,5 +54,5 @@ public:
      * @param genre Gnere
      * @return Movie* Copy
      */
-    DynamicVector filterMoviesByGenre(std::optional<MovieGenre> genre);
+    DynamicVector filterMoviesByGenre(std::optional<MovieGenre> genre = std::nullopt);
 };

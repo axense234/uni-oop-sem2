@@ -281,7 +281,8 @@ void MovieServicesTests::testFilterMoviesByGenre()
     services.addMovie(m6);
 
     DynamicVector filtered = services.filterMoviesByGenre(DRAMA);
-    assert(filtered.size == 4);
+    assert(filtered.length() == 4);
+    cout << "filter movies by genre worked" << endl;
 }
 
 void MovieServicesTests::runAllMovieServicesTests()
@@ -298,4 +299,5 @@ void MovieServicesTests::runAllMovieServicesTests()
     testGetNonExistentMovie();
     testSequentialOperations();
     testIdAutoIncrement();
+    testFilterMoviesByGenre();
 }
