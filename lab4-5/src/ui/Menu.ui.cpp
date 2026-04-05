@@ -199,13 +199,16 @@ void MenuUI::displayMovieFromDatabase()
 
 void MenuUI::handleUserPlaylist()
 {
-    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = this->movieServices.iterators();
-    DynamicVectorIterator usedIterator = iterators.first;
+    MovieGenre givenGenre = this->input.getUserMovieGenre();
+    DynamicVector filteredMovies = this->movieServices.filterMoviesByGenre(givenGenre);
 
-    if (this->movieServices.repo.size() == 0)
+    if (filteredMovies.length() == 0)
     {
-        std::cout << "no movies in the database to scroll through" << std::endl;
+        std::cout << "no movies in the database to scroll through matched given genre" << std::endl;
+        return;
     }
+
+    DynamicVectorIterator usedIterator = filteredMovies.begin();
 
     while (true)
     {
