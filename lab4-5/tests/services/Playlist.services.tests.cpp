@@ -13,7 +13,7 @@ void PlaylistServicesTests::testConstructor()
     cout << "Testing PlaylistServicesTests constructor..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     assert(services.getMovieById(1).getId() == -1);
 
@@ -25,7 +25,7 @@ void PlaylistServicesTests::testAddMovie()
     cout << "Testing addMovie()..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
 
@@ -47,7 +47,7 @@ void PlaylistServicesTests::testAddMultipleMovies()
     cout << "Testing addMovie() with multiple movies..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
     Movie m2 = createTestMovie(0, "The Matrix", SCIFI, 1999, 2000, "trailer2");
@@ -77,7 +77,7 @@ void PlaylistServicesTests::testAddMovieAutoId()
     cout << "Testing addMovie() auto-increment ID..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     for (int i = 1; i <= 10; i++)
     {
@@ -98,7 +98,7 @@ void PlaylistServicesTests::testRemoveMovieById()
     cout << "Testing removeMovieById()..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
     Movie m2 = createTestMovie(0, "The Matrix", SCIFI, 1999, 2000, "trailer2");
@@ -123,7 +123,7 @@ void PlaylistServicesTests::testRemoveNonExistentMovie()
     cout << "Testing removeMovieById() with non-existent ID..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
     services.addMovie(m1);
@@ -142,7 +142,7 @@ void PlaylistServicesTests::testUpdateMovieById()
     cout << "Testing updateMovieById()..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie original = createTestMovie(0, "Original Title", ACTION, 2020, 100, "original_trailer");
     services.addMovie(original);
@@ -153,7 +153,7 @@ void PlaylistServicesTests::testGetMovieById()
     cout << "Testing getMovieById()..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
     Movie m2 = createTestMovie(0, "The Matrix", SCIFI, 1999, 2000, "trailer2");
@@ -172,12 +172,36 @@ void PlaylistServicesTests::testGetMovieById()
     cout << "getMovieById() test passed" << endl;
 }
 
+void PlaylistServicesTests::testGetMovieByTitle()
+{
+    cout << "Testing getMovieByTitle()..." << endl;
+
+    MemoryRepo repo;
+    PlaylistServices services(repo);
+
+    Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
+    Movie m2 = createTestMovie(0, "The Matrix", SCIFI, 1999, 2000, "trailer2");
+
+    services.addMovie(m1);
+    services.addMovie(m2);
+
+    Movie found1 = services.getMovieByTitle("Inception");
+    assert(found1.getId() == 1);
+    assert(found1.getTitle() == "Inception");
+
+    Movie found2 = services.getMovieByTitle("The Matrix");
+    assert(found2.getId() == 2);
+    assert(found2.getTitle() == "The Matrix");
+
+    cout << "getMovieByTitle() test passed" << endl;
+}
+
 void PlaylistServicesTests::testGetNonExistentMovie()
 {
     cout << "Testing getMovieById() with non-existent ID..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
     services.addMovie(m1);
@@ -194,7 +218,7 @@ void PlaylistServicesTests::testSequentialOperations()
     cout << "Testing sequential operations..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     for (int i = 1; i <= 20; i++)
     {
@@ -240,7 +264,7 @@ void PlaylistServicesTests::testIdAutoIncrement()
     cout << "Testing ID auto-increment across operations..." << endl;
 
     MemoryRepo repo;
-    MovieServices services(repo);
+    PlaylistServices services(repo);
 
     Movie m1 = createTestMovie(1, "Movie1", ACTION, 2020, 100, "trailer1");
     Movie m2 = createTestMovie(2, "Movie2", COMEDY, 2021, 200, "trailer2");
@@ -261,6 +285,41 @@ void PlaylistServicesTests::testIdAutoIncrement()
     cout << "ID auto-increment test passed" << endl;
 }
 
+void PlaylistServicesTests::testIterators()
+{
+    cout << "Testing testIterators()..." << endl;
+
+    MemoryRepo repo;
+    PlaylistServices services(repo);
+
+    Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
+    Movie m2 = createTestMovie(2, "The Matrix", SCIFI, 1999, 2000, "trailer2");
+
+    repo.add(m1);
+    repo.add(m2);
+
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = services.iterators();
+
+    try
+    {
+        TElem first = *iterators.first;
+        assert(first.getId() == 1);
+        assert(first.getTitle() == "Inception");
+
+        iterators.first++;
+
+        TElem second = *iterators.first;
+        assert(second.getId() == 2);
+        assert(second.getTitle() == "The Matrix");
+    }
+    catch (exception &)
+    {
+        assert(false);
+    }
+
+    cout << "iterators() test passed" << endl;
+}
+
 void PlaylistServicesTests::runAllPlaylistServicesTests()
 {
 
@@ -272,7 +331,9 @@ void PlaylistServicesTests::runAllPlaylistServicesTests()
     testRemoveNonExistentMovie();
     testUpdateMovieById();
     testGetMovieById();
+    testGetMovieByTitle();
     testGetNonExistentMovie();
     testSequentialOperations();
     testIdAutoIncrement();
+    testIterators();
 }

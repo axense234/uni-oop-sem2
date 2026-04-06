@@ -18,10 +18,12 @@ private:
     void testRemoveNonExistentMovie();
     void testUpdateMovieById();
     void testGetMovieById();
+    void testGetMovieByTitle();
     void testGetNonExistentMovie();
     void testSequentialOperations();
     void testIdAutoIncrement();
     void testFilterMoviesByGenre();
+    void testIterators();
 
 public:
     void runAllMovieServicesTests();

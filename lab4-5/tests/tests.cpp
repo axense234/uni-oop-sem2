@@ -4,6 +4,7 @@
 #include "../tests/domain/Movie.tests.h"
 #include "../tests/domain/DynamicVector.tests.h"
 #include "../tests/services/Movie.services.tests.h"
+#include "../tests/services/Playlist.services.tests.h"
 #include "../tests/repo/Memory.repo.tests.h"
 #include "../tests/helpers/Helpers.tests.h"
 
@@ -23,6 +24,9 @@ int main()
 
     MovieServicesTests movieServicesTests;
     movieServicesTests.runAllMovieServicesTests();
+
+    PlaylistServicesTests playlistServicesTests;
+    playlistServicesTests.runAllPlaylistServicesTests();
 
     HelpersTests helpersTests;
     helpersTests.runAllHelpersTests();

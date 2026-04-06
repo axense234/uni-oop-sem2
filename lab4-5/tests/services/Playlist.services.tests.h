@@ -1,5 +1,5 @@
 #pragma once
-#include "../../src/services/Movie.services.h"
+#include "../../src/services/Playlist.services.h"
 #include "../../src/domain/Movie.h"
 #include <cassert>
 #include <iostream>
@@ -18,9 +18,11 @@ private:
     void testRemoveNonExistentMovie();
     void testUpdateMovieById();
     void testGetMovieById();
+    void testGetMovieByTitle();
     void testGetNonExistentMovie();
     void testSequentialOperations();
     void testIdAutoIncrement();
+    void testIterators();
 
 public:
     void runAllPlaylistServicesTests();

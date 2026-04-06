@@ -172,6 +172,65 @@ void MovieServicesTests::testGetMovieById()
     cout << "getMovieById() test passed" << endl;
 }
 
+void MovieServicesTests::testIterators()
+{
+    cout << "Testing testIterators()..." << endl;
+
+    MemoryRepo repo;
+    MovieServices services(repo);
+
+    Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
+    Movie m2 = createTestMovie(2, "The Matrix", SCIFI, 1999, 2000, "trailer2");
+
+    repo.add(m1);
+    repo.add(m2);
+
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = services.iterators();
+
+    try
+    {
+        TElem first = *iterators.first;
+        assert(first.getId() == 1);
+        assert(first.getTitle() == "Inception");
+
+        iterators.first++;
+
+        TElem second = *iterators.first;
+        assert(second.getId() == 2);
+        assert(second.getTitle() == "The Matrix");
+    }
+    catch (exception &)
+    {
+        assert(false);
+    }
+
+    cout << "iterators() test passed" << endl;
+}
+
+void MovieServicesTests::testGetMovieByTitle()
+{
+    cout << "Testing getMovieByTitle()..." << endl;
+
+    MemoryRepo repo;
+    MovieServices services(repo);
+
+    Movie m1 = createTestMovie(0, "Inception", SCIFI, 2010, 1000, "trailer1");
+    Movie m2 = createTestMovie(0, "The Matrix", SCIFI, 1999, 2000, "trailer2");
+
+    services.addMovie(m1);
+    services.addMovie(m2);
+
+    Movie found1 = services.getMovieByTitle("Inception");
+    assert(found1.getId() == 1);
+    assert(found1.getTitle() == "Inception");
+
+    Movie found2 = services.getMovieByTitle("The Matrix");
+    assert(found2.getId() == 2);
+    assert(found2.getTitle() == "The Matrix");
+
+    cout << "getMovieByTitle() test passed" << endl;
+}
+
 void MovieServicesTests::testGetNonExistentMovie()
 {
     cout << "Testing getMovieById() with non-existent ID..." << endl;
@@ -299,8 +358,10 @@ void MovieServicesTests::runAllMovieServicesTests()
     testRemoveNonExistentMovie();
     testUpdateMovieById();
     testGetMovieById();
+    testGetMovieByTitle();
     testGetNonExistentMovie();
     testSequentialOperations();
     testIdAutoIncrement();
     testFilterMoviesByGenre();
+    testIterators();
 }

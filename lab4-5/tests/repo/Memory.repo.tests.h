@@ -19,6 +19,8 @@ private:
     void testUpdateNonExistent();
     void testSize();
     void testGetElemById();
+    void testGetElemByTitle();
+    void testIterators();
     void testGetElemByIdNonExistent();
     void testMultipleOperations();
     void testEdgeCases();

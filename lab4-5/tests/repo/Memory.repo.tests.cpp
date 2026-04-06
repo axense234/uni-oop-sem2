@@ -158,9 +158,9 @@ void MemoryRepoTests::testSize()
     cout << "size() test passed" << endl;
 }
 
-void MemoryRepoTests::testGetElemById()
+void MemoryRepoTests::testGetElemByTitle()
 {
-    cout << "Testing getElemById()..." << endl;
+    cout << "Testing getElemByTitle()..." << endl;
 
     MemoryRepo repo;
     Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
@@ -185,6 +185,69 @@ void MemoryRepoTests::testGetElemById()
     }
 
     cout << "getElemById() test passed" << endl;
+}
+
+void MemoryRepoTests::testGetElemById()
+{
+    cout << "Testing getElemById()..." << endl;
+
+    MemoryRepo repo;
+    Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
+    Movie m2 = createTestMovie(2, "The Matrix", SCIFI, 1999, 2000, "trailer2");
+
+    repo.add(m1);
+    repo.add(m2);
+
+    try
+    {
+        TElem found = repo.getElemByTitle("Inception");
+        assert(found.getId() == 1);
+        assert(found.getTitle() == "Inception");
+
+        found = repo.getElemByTitle("The Matrix");
+        assert(found.getId() == 2);
+        assert(found.getTitle() == "The Matrix");
+    }
+    catch (exception &)
+    {
+        assert(false);
+    }
+
+    cout << "getElemByTitle() test passed" << endl;
+}
+
+void MemoryRepoTests::testIterators()
+{
+    cout << "Testing testIterators()..." << endl;
+
+    MemoryRepo repo;
+
+    Movie m1 = createTestMovie(1, "Inception", SCIFI, 2010, 1000, "trailer1");
+    Movie m2 = createTestMovie(2, "The Matrix", SCIFI, 1999, 2000, "trailer2");
+
+    repo.add(m1);
+    repo.add(m2);
+
+    std::pair<DynamicVectorIterator, DynamicVectorIterator> iterators = repo.iterators();
+
+    try
+    {
+        TElem first = *iterators.first;
+        assert(first.getId() == 1);
+        assert(first.getTitle() == "Inception");
+
+        iterators.first++;
+
+        TElem second = *iterators.first;
+        assert(second.getId() == 2);
+        assert(second.getTitle() == "The Matrix");
+    }
+    catch (exception &)
+    {
+        assert(false);
+    }
+
+    cout << "iterators() test passed" << endl;
 }
 
 void MemoryRepoTests::testGetElemByIdNonExistent()
@@ -293,6 +356,8 @@ void MemoryRepoTests::runAllMemoryRepoTests()
     testUpdateNonExistent();
     testSize();
     testGetElemById();
+    testGetElemByTitle();
+    testIterators();
     testGetElemByIdNonExistent();
     testMultipleOperations();
     testEdgeCases();

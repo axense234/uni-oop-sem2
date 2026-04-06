@@ -7,6 +7,7 @@
 class MovieServices;
 class PlaylistServices;
 class MemoryRepoTests;
+class MovieServicesTests;
 class MenuUI;
 class HelpersTests;
 
@@ -16,6 +17,7 @@ class MemoryRepo
     friend class MovieServices;
     friend class PlaylistServices;
     friend class MemoryRepoTests;
+    friend class MovieServicesTests;
     friend class MenuUI;
     friend class HelpersTests;
 
