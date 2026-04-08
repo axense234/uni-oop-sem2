@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <string>
+#include <iostream>
 
 template <typename TElem, typename TElemId, typename TElemIdentifier>
 DynamicVector<TElem, TElemId, TElemIdentifier>::DynamicVector(int capacity, int factor)

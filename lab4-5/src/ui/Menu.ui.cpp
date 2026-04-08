@@ -60,7 +60,7 @@ void MenuUI::deleteMovieFromPlaylist()
     std::string movieTitle = this->input.getUserMovieTitle();
 
     // find the movie
-    Movie foundMovie = this->movieServices.getMovieByTitle(movieTitle);
+    Movie foundMovie = this->playlistServices.getMovieByTitle(movieTitle);
 
     if (foundMovie.getId() == -1)
     {
@@ -76,6 +76,7 @@ void MenuUI::deleteMovieFromPlaylist()
     else
     {
         std::cout << "Could not remove a movie from the playlist. >:(" << std::endl;
+        return;
     }
 
     // asking the user if they liked the movie

@@ -108,7 +108,7 @@ std::string MenuUIInput::getUserMovieTitle() const
     {
 
         std::cout << "Movie Title (string): ";
-        if (std::cin >> title)
+        if (std::getline(std::cin, title) && !title.empty())
         {
             return title;
         }
