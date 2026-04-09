@@ -2,6 +2,7 @@
 #include "../helpers/Helpers.h"
 
 #include <iostream>
+#include <limits>
 
 MenuUIInput::MenuUIInput() {}
 
@@ -108,6 +109,8 @@ std::string MenuUIInput::getUserMovieTitle() const
     {
 
         std::cout << "Movie Title (string): ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (std::getline(std::cin, title) && !title.empty())
         {
             return title;
