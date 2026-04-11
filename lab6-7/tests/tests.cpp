@@ -1,0 +1,27 @@
+#include <iostream>
+#include <exception>
+
+#include "../tests/domain/Movie.tests.h"
+#include "../tests/services/Movie.services.tests.h"
+#include "../tests/repo/Memory.repo.tests.h"
+#include "../tests/helpers/Helpers.tests.h"
+
+using namespace std;
+
+int main()
+{
+
+    MovieTests movieTests;
+    movieTests.runAllMovieTests();
+
+    MemoryRepoTests memoryRepoTests;
+    memoryRepoTests.runAllMemoryRepoTests();
+
+    MovieServicesTests movieServicesTests;
+    movieServicesTests.runAllMovieServicesTests();
+
+    HelpersTests helpersTests;
+    helpersTests.runAllHelpersTests();
+
+    return 0;
+}
