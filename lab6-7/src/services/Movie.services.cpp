@@ -5,7 +5,7 @@
 #include <iostream>
 #include <algorithm>
 
-std::vector<TElem> MovieServices::elems() const
+std::vector<TElem> &MovieServices::elems() const
 {
     return this->repo.elements;
 }
@@ -64,7 +64,6 @@ Movie MovieServices::getMovieByTitle(std::string title)
 std::vector<TElem> MovieServices::filterMoviesByGenre(MovieGenre genre) const
 {
 
-    // note for future self, enums dont really work with the ! operator which took me too long to figure out
     if (genre == EMPTY)
     {
         return this->repo.elements;

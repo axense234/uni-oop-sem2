@@ -26,9 +26,10 @@ class MemoryRepo
     friend class MenuUI;
     friend class HelpersTests;
 
-private:
+protected:
     std::vector<TElem> elements;
 
+private:
     /**
      * @brief Get an element by id.
      *
@@ -60,7 +61,7 @@ public:
      * @return true If add was a success.
      * @return false If add was not a success.
      */
-    bool add(TElem elem);
+    virtual bool add(TElem elem);
 
     /**
      * @brief Removes an element from the repo using by id.
@@ -70,7 +71,7 @@ public:
      * @return true If remove was successfull.
      * @return false If remove was not successfull.
      */
-    bool removeById(TElemId id);
+    virtual bool removeById(TElemId id);
 
     /**
      * @brief Updates an element from the repo by id, using a payload.
@@ -81,7 +82,7 @@ public:
      * @return true If update was a success.
      * @return false If update was not a success.
      */
-    bool updateById(TElemId id, TElem payload);
+    virtual bool updateById(TElemId id, TElem payload);
 
     /**
      * @brief Returns the number of elems in the repo.

@@ -71,7 +71,7 @@ public:
     std::vector<TElem> filterMoviesByGenre(MovieGenre genre = EMPTY) const;
 
     /**
-     * @brief Returns an unmodifiable copy of the elems in the repo.
+     * @brief Returns an unmodifiable reference to the elems in the repo.
      */
-    std::vector<TElem> elems() const;
+    std::vector<TElem> &elems() const;
 };

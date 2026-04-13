@@ -201,18 +201,19 @@ void MenuUI::handleUserPlaylist()
         return;
     }
 
-    std::vector<TElem>::const_iterator currentIt = this->databaseServices.elems().begin();
+    auto currentIt = filteredMovies.begin();
 
     while (true)
     {
         // circular thingie
-        if (currentIt == this->databaseServices.elems().end())
+        if (currentIt == filteredMovies.end())
         {
-            currentIt = this->databaseServices.elems().begin();
+            currentIt = filteredMovies.begin();
         }
 
         // display the current movie
         Movie movie = *currentIt;
+
         std::cout << "Title: " << movie.getTitle() << std::endl;
         std::cout << "Id: " << movie.getId() << std::endl;
         std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(movie.getGenre()) << std::endl;
@@ -236,6 +237,7 @@ void MenuUI::handleUserPlaylist()
         {
             this->playlistServices.addMovie(movie);
 
+            currentIt++;
             std::cout << std::endl;
             std::this_thread::sleep_for(std::chrono::seconds(2));
         }
@@ -248,6 +250,7 @@ void MenuUI::handleUserPlaylist()
             if (!continueConfirmation)
                 return;
 
+            currentIt++;
             std::cout << std::endl;
             std::this_thread::sleep_for(std::chrono::seconds(2));
         }
@@ -259,7 +262,10 @@ void MenuUI::start()
     Mode appMode = this->input.getUserMode();
     this->output.intro(appMode);
 
-    Helpers::insertTenMovieEntriesInTheDatabase(this->databaseServices);
+    if (this->databaseServices.elems().size() == 0)
+    {
+        Helpers::insertTenMovieEntriesInTheDatabase(this->databaseServices);
+    }
 
     while (true)
     {

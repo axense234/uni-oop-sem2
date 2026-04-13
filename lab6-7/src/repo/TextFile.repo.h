@@ -1,58 +1,36 @@
 #pragma once
 
-#include "../domain/Movie.h"
-#include <vector>
-#include <utility>
+#include "Memory.repo.h"
 #include <string>
 
-class MovieServices;
-class PlaylistServices;
-class MemoryRepoTests;
-class MovieServicesTests;
-class MenuUI;
-class HelpersTests;
-
-typedef Movie TElem;
-typedef int TElemId;
-typedef std::string TElemIdentifier;
-
-class TextFileRepo
+class TextFileRepo : public MemoryRepo
 {
 
-    friend class MovieServices;
-    friend class PlaylistServices;
-    friend class MemoryRepoTests;
-    friend class MovieServicesTests;
-    friend class MenuUI;
-    friend class HelpersTests;
-
 private:
-    std::vector<TElem> elements;
-
-    /**
-     * @brief Get an element by id.
-     *
-     * @exception Throws std::exception if the elem cannot be found.
-     * @param id Id of desired elem.
-     * @return TElem
-     */
-    TElem getElemById(TElemId id);
-
-    /**
-     * @brief Get an element by title.
-     *
-     * @exception Throws std::exception if the elem cannot be found.
-     * @param title Id of desired elem.
-     * @return TElem
-     */
-    TElem getElemByTitle(TElemIdentifier title);
+    std::string filePath;
 
 public:
     /**
-     * @brief Constructor.
+     * @brief Constructor, needs a given file.
      *
+     * @param file the file, must be std::string
      */
-    TextFileRepo();
+    TextFileRepo(const std::string &filePath);
+
+    /**
+     * @brief Reads from a given file data.
+     *
+     * @return true If read was a success.
+     * @return false If read was not a success.
+     */
+    bool readFromFile();
+    /**
+     * @brief Writes to a certain given file data. Should be used after any data mutation operation.
+     *
+     * @exception std::exception is thrown when file cannot be opened for some reason
+     */
+    void writeToFile();
+
     /**
      * @brief Adds an element in the repo.
      *
@@ -60,7 +38,7 @@ public:
      * @return true If add was a success.
      * @return false If add was not a success.
      */
-    bool add(TElem elem);
+    bool add(TElem elem) override;
 
     /**
      * @brief Removes an element from the repo using by id.
@@ -70,7 +48,7 @@ public:
      * @return true If remove was successfull.
      * @return false If remove was not successfull.
      */
-    bool removeById(TElemId id);
+    bool removeById(TElemId id) override;
 
     /**
      * @brief Updates an element from the repo by id, using a payload.
@@ -81,12 +59,5 @@ public:
      * @return true If update was a success.
      * @return false If update was not a success.
      */
-    bool updateById(TElemId id, TElem payload);
-
-    /**
-     * @brief Returns the number of elems in the repo.
-     *
-     * @return int
-     */
-    int size();
+    bool updateById(TElemId id, TElem payload) override;
 };

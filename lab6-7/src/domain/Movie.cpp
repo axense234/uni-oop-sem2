@@ -98,12 +98,29 @@ std::istream &operator>>(std::istream &stream, Movie &m)
 {
     std::string idStr, title, genreStr, yearStr, likesStr, trailer;
 
-    std::getline(stream, idStr, ',');
-    std::getline(stream, title, ',');
-    std::getline(stream, genreStr, ',');
-    std::getline(stream, yearStr, ',');
-    std::getline(stream, likesStr, ',');
-    std::getline(stream, trailer);
+    if (!std::getline(stream, idStr, ','))
+        return stream;
+    if (!std::getline(stream, title, ','))
+        return stream;
+    if (!std::getline(stream, genreStr, ','))
+        return stream;
+    if (!std::getline(stream, yearStr, ','))
+        return stream;
+    if (!std::getline(stream, likesStr, ','))
+        return stream;
+
+    if (!std::getline(stream, trailer))
+        return stream;
+
+    if (!trailer.empty() && trailer.back() == '\r')
+    {
+        trailer.pop_back();
+    }
+
+    if (stream.peek() == '\n')
+    {
+        stream.ignore();
+    }
 
     m.setId(std::stoi(idStr));
     m.setTitle(title);
