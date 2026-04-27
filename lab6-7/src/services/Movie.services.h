@@ -2,6 +2,9 @@
 
 #include "../repo/Memory.repo.h"
 #include "../domain/Movie.h"
+#include "../repo/Repo.repo.h"
+#include "../exceptions/MovieServicesException.h"
+#include "../exceptions/RepoException.h"
 
 #include <optional>
 
@@ -14,7 +17,7 @@ class MovieServices
     friend class HelpersTests;
 
 private:
-    MemoryRepo &repo;
+    Repo<TElem, TElemId, TElemField> &repo;
 
 public:
     /**
@@ -22,45 +25,51 @@ public:
      *
      * @param repo reference to a repo
      */
-    MovieServices(MemoryRepo &repo);
+    MovieServices(Repo<TElem, TElemId, TElemField> &repo);
 
     /**
      * @brief Adds a movie to the repository.
      *
      * @param movie Movie to be added.
+     * @throw MovieServicesException if a movie with the same title already exists -> TODO
+     * @throw RepoException if the repository failed to add the movie
      */
-    bool addMovie(Movie movie);
+    void addMovie(Movie movie) noexcept(false);
 
     /**
      * @brief Removes a movie from the repository by id.
      *
      * @param id Id of the movie.
+     * @throw RepoException if the repository failed to remove the movie
      */
-    bool removeMovieById(int id);
+    void removeMovieById(int id) noexcept(false);
 
     /**
      * @brief Updates a movie in the repository by id and given payload.
      *
      * @param id Id of the movie.
      * @param payload Update Movie object.
+     * @throw RepoException if elem couldnt be found in the repo or couldn't be updated
      */
-    bool updateMovieById(int id, Movie payload);
+    void updateMovieById(int id, Movie payload) noexcept(false);
 
     /**
      * @brief Finds and returns a movie by given id.
      *
      * @param id int
-     * @return Found Movie or Default Movie (with id = -1)
+     * @throw RepoException if movie couldn't be found by id
+     * @return Movie found movie
      */
-    Movie getMovieById(int id);
+    Movie getMovieById(int id) const noexcept(false);
 
     /**
      * @brief Finds and returns a movie by given title.
      *
      * @param title given title
-     * @return Found Movie or Default Movie (with id = -1)
+     * @throw RepoException if movie couldn't be found by title
+     * @return Movie found movie
      */
-    Movie getMovieByTitle(std::string name);
+    Movie getMovieByTitle(std::string name) const noexcept(false);
 
     /**
      * @brief Filters repo movies by genre and returns a copy of those movies.
@@ -68,10 +77,10 @@ public:
      * @param genre Genre
      * @return std::vector<TElem> copy
      */
-    std::vector<TElem> filterMoviesByGenre(MovieGenre genre = EMPTY) const;
+    std::vector<TElem> filterMoviesByGenre(MovieGenre genre = EMPTY) const noexcept;
 
     /**
      * @brief Returns an unmodifiable reference to the elems in the repo.
      */
-    std::vector<TElem> &elems() const;
+    std::vector<TElem> &getElems() const noexcept;
 };

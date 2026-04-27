@@ -5,43 +5,37 @@
 #include <iostream>
 #include <algorithm>
 
-std::vector<TElem> &MovieServices::elems() const
+std::vector<TElem> &MovieServices::getElems() const noexcept
 {
-    return this->repo.elements;
+    return this->repo.getElems();
 }
 
-MovieServices::MovieServices(MemoryRepo &r) : repo(r) {}
+MovieServices::MovieServices(Repo<TElem, TElemId, TElemField> &r) : repo(r) {}
 
-bool MovieServices::addMovie(Movie movie)
+void MovieServices::addMovie(Movie movie) noexcept(false)
 {
-    movie.setId(this->repo.size() + 1);
-    return this->repo.add(movie);
+    movie.setId(this->repo.getSize() + 1);
+    this->repo.add(movie);
 }
 
-bool MovieServices::removeMovieById(int id)
+void MovieServices::removeMovieById(int id) noexcept(false)
 {
-    return this->repo.removeById(id);
+    return this->repo.remove(id);
 }
 
-bool MovieServices::updateMovieById(int id, Movie payload)
+void MovieServices::updateMovieById(int id, Movie payload) noexcept(false)
 {
 
-    Movie foundMovie = this->repo.getElemById(id);
-
-    if (foundMovie.getId() == -1)
-    {
-        return false;
-    }
-
+    Movie foundMovie = this->repo.getElemByField(ID, id);
     payload.setId(id);
-    return this->repo.updateById(id, payload);
+    this->repo.update(id, payload);
 }
 
-Movie MovieServices::getMovieById(int id)
+Movie MovieServices::getMovieById(int id) const noexcept(false)
 {
     try
     {
-        return this->repo.getElemById(id);
+        return this->repo.getElemByField(ID, id);
     }
     catch (const std::exception &e)
     {
@@ -49,11 +43,11 @@ Movie MovieServices::getMovieById(int id)
     }
 }
 
-Movie MovieServices::getMovieByTitle(std::string title)
+Movie MovieServices::getMovieByTitle(std::string title) const noexcept(false)
 {
     try
     {
-        return this->repo.getElemByTitle(title);
+        return this->repo.getElemByField(TITLE, title);
     }
     catch (const std::exception &e)
     {
@@ -61,16 +55,16 @@ Movie MovieServices::getMovieByTitle(std::string title)
     }
 }
 
-std::vector<TElem> MovieServices::filterMoviesByGenre(MovieGenre genre) const
+std::vector<TElem> MovieServices::filterMoviesByGenre(MovieGenre genre) const noexcept
 {
 
     if (genre == EMPTY)
     {
-        return this->repo.elements;
+        return this->repo.getElems();
     }
 
     std::vector<TElem> filteredElems;
-    std::copy_if(this->repo.elements.begin(), this->repo.elements.end(), std::back_inserter(filteredElems), [&](const TElem elem)
+    std::copy_if(this->repo.getElems().begin(), this->repo.getElems().end(), std::back_inserter(filteredElems), [&](const TElem elem)
                  { return elem.getGenre() == genre; });
 
     return filteredElems;

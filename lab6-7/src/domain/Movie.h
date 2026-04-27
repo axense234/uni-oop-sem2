@@ -3,6 +3,16 @@
 #include <string>
 #include <iostream>
 
+enum MovieField
+{
+    ID,
+    TITLE,
+    GENRE,
+    YEAR_OF_RELEASE,
+    NUMBER_OF_LIKES,
+    TRAILER
+};
+
 enum MovieGenre
 {
     ACTION,

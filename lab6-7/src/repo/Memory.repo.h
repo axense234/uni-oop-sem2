@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../domain/Movie.h"
+#include "Repo.repo.h"
 #include <vector>
 #include <utility>
 #include <string>
@@ -14,9 +15,10 @@ class HelpersTests;
 
 typedef Movie TElem;
 typedef int TElemId;
-typedef std::string TElemIdentifier;
 
-class MemoryRepo
+typedef MovieField TElemField;
+
+class MemoryRepo : public Repo<TElem, TElemId, TElemField>
 {
 
     friend class MovieServices;
@@ -26,27 +28,27 @@ class MemoryRepo
     friend class MenuUI;
     friend class HelpersTests;
 
-protected:
+private:
     std::vector<TElem> elements;
+
+protected:
+    /**
+     * @brief Retrieves the elements of the repo or empty vector if there are no elems.
+     *
+     * @return std::vector<TElem>& elements of the repo
+     */
+    virtual std::vector<TElem> &getElems() noexcept(false);
 
 private:
     /**
-     * @brief Get an element by id.
+     * @brief Gets an element by matching given field with given value.
      *
-     * @exception Throws std::exception if the elem cannot be found.
-     * @param id Id of desired elem.
-     * @return TElem
+     * @param field TElemField field of the elem
+     * @param value std::any value matching value
+     * @throw RepoException if value doesnt match the type of the field, or the field doesnt exisst
+     * @return TElem the element
      */
-    TElem getElemById(TElemId id);
-
-    /**
-     * @brief Get an element by title.
-     *
-     * @exception Throws std::exception if the elem cannot be found.
-     * @param title Id of desired elem.
-     * @return TElem
-     */
-    TElem getElemByTitle(TElemIdentifier title);
+    TElem &getElemByField(TElemField field, std::any value) noexcept(false) override;
 
 public:
     /**
@@ -54,40 +56,36 @@ public:
      *
      */
     MemoryRepo();
-    /**
-     * @brief Adds an element in the repo.
-     *
-     * @param elem Elem to add.
-     * @return true If add was a success.
-     * @return false If add was not a success.
-     */
-    virtual bool add(TElem elem);
-
-    /**
-     * @brief Removes an element from the repo using by id.
-     *
-     * @exception Throws std::exception if elem cannot be found.
-     * @param id The id of the elem desired to be removed.
-     * @return true If remove was successfull.
-     * @return false If remove was not successfull.
-     */
-    virtual bool removeById(TElemId id);
-
-    /**
-     * @brief Updates an element from the repo by id, using a payload.
-     *
-     * @exception Throws std::exception if elem cannot be found.
-     * @param id Id of the desired elem to be updated.
-     * @param payload Update payload.
-     * @return true If update was a success.
-     * @return false If update was not a success.
-     */
-    virtual bool updateById(TElemId id, TElem payload);
 
     /**
      * @brief Returns the number of elems in the repo.
      *
      * @return int
      */
-    int size();
+    int getSize() const noexcept;
+
+    /**
+     * @brief Adds an element in the repo.
+     *
+     * @param elem Elem to add.
+     * @throw RepoException if std::vector throws an exception for some reason
+     */
+    virtual void add(const TElem &elem) noexcept(false);
+
+    /**
+     * @brief Removes an element from the repo using by id.
+     *
+     * @param id The id of the elem desired to be removed.
+     * @throw RepositoryException if we couldn't find the elem in the elems or std::vector throws an exception
+     */
+    virtual void remove(TElemId id) noexcept(false);
+
+    /**
+     * @brief Updates an element from the repo by id, using a payload.
+     *
+     * @param id Id of the desired elem to be updated.
+     * @param payload Update payload.
+     * @throw RepositoryException if we couldn't find the elem in the elems or std::vector throws an exception
+     */
+    virtual void update(TElemId id, TElem payload) noexcept(false);
 };

@@ -2,6 +2,8 @@
 #include "Menu.ui.input.h"
 #include "Menu.ui.output.h"
 #include "../helpers/Helpers.h"
+#include "../exceptions/MovieServicesException.h"
+#include "../exceptions/RepoException.h"
 
 #include <iostream>
 #include <thread>
@@ -21,14 +23,18 @@ Mode MenuUI::getMode() const
 void MenuUI::addMovieToDatabase()
 {
     Movie movie = this->input.getUserMovie();
-
-    if (this->databaseServices.addMovie(movie))
+    try
     {
+        this->databaseServices.addMovie(movie);
         std::cout << "Successfully added a movie to the database. :)" << std::endl;
     }
-    else
+    catch (const MovieServicesException &e)
     {
-        std::cout << "Could not add a movie to the database. >:(" << std::endl;
+        std::cerr << e.what() << '\n';
+    }
+    catch (const RepoException &e)
+    {
+        std::cerr << e.what() << '\n';
     }
 }
 
@@ -36,22 +42,14 @@ void MenuUI::deleteMovieFromDatabase()
 {
     std::string movieTitle = this->input.getUserMovieTitle();
 
-    // find the movie
-    Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
-
-    if (foundMovie.getId() == -1)
+    try
     {
-        std::cout << "Couldn't find the movie to remove it." << std::endl;
-        return;
+        Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
+        this->databaseServices.removeMovieById(foundMovie.getId());
     }
-
-    if (this->databaseServices.removeMovieById(foundMovie.getId()))
+    catch (const RepoException &e)
     {
-        std::cout << "Successfully removed a movie from the database. :)" << std::endl;
-    }
-    else
-    {
-        std::cout << "Could not remove a movie from the database. >:(" << std::endl;
+        std::cerr << e.what() << '\n';
     }
 }
 
@@ -59,36 +57,26 @@ void MenuUI::deleteMovieFromPlaylist()
 {
     std::string movieTitle = this->input.getUserMovieTitle();
 
-    // find the movie
-    Movie foundMovie = this->playlistServices.getMovieByTitle(movieTitle);
-
-    if (foundMovie.getId() == -1)
+    try
     {
-        std::cout << "Couldn't find the movie to remove it." << std::endl;
-        return;
+        Movie foundMovie = this->playlistServices.getMovieByTitle(movieTitle);
+        this->playlistServices.removeMovieById(foundMovie.getId());
+
+        // asking the user if they liked the movie
+        std::cout << "Liked the movie?: " << std::endl;
+        bool confirmation = this->input.getUserConfirmation();
+
+        // liking the movie in the database
+        if (confirmation)
+        {
+            Movie payload = foundMovie;
+            payload.setNumberOfLikes(foundMovie.getNumberOfLikes() + 1);
+            this->databaseServices.updateMovieById(foundMovie.getId(), payload);
+        }
     }
-
-    // deleting from the playlist
-    if (this->playlistServices.removeMovieById(foundMovie.getId()))
+    catch (const RepoException &e)
     {
-        std::cout << "Successfully removed a movie from the playlist. :)" << std::endl;
-    }
-    else
-    {
-        std::cout << "Could not remove a movie from the playlist. >:(" << std::endl;
-        return;
-    }
-
-    // asking the user if they liked the movie
-    std::cout << "Liked the movie?: " << std::endl;
-    bool confirmation = this->input.getUserConfirmation();
-
-    // liking the movie in the database
-    if (confirmation)
-    {
-        Movie payload = foundMovie;
-        payload.setNumberOfLikes(foundMovie.getNumberOfLikes() + 1);
-        this->databaseServices.updateMovieById(foundMovie.getId(), payload);
+        std::cerr << e.what() << '\n';
     }
 }
 
@@ -96,30 +84,21 @@ void MenuUI::updateMovieFromDatabase()
 {
     std::string movieTitle = this->input.getUserMovieTitle();
 
-    // find the movie
-    Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
-
-    if (foundMovie.getId() == -1)
+    try
     {
-        std::cout << "Couldn't find the movie to remove it." << std::endl;
-        return;
+        Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
+        Movie payload = this->input.getUserMovie();
+        this->databaseServices.updateMovieById(foundMovie.getId(), payload);
     }
-
-    Movie payload = this->input.getUserMovie();
-
-    if (this->databaseServices.updateMovieById(foundMovie.getId(), payload))
+    catch (const RepoException &e)
     {
-        std::cout << "Successfully updated a movie from the database. :)" << std::endl;
-    }
-    else
-    {
-        std::cout << "Could not update a movie from the database. >:(" << std::endl;
+        std::cerr << e.what() << '\n';
     }
 }
 
 void MenuUI::displayMoviesFromDatabase()
 {
-    std::vector<TElem> movies = this->databaseServices.elems();
+    std::vector<TElem> movies = this->databaseServices.getElems();
 
     if (movies.size() == 0)
     {
@@ -141,7 +120,7 @@ void MenuUI::displayMoviesFromDatabase()
 
 void MenuUI::displayMoviesFromPlaylist()
 {
-    std::vector<TElem> movies = this->playlistServices.elems();
+    std::vector<TElem> movies = this->playlistServices.getElems();
 
     if (movies.size() == 0)
     {
@@ -165,17 +144,10 @@ void MenuUI::displayMovieFromDatabase()
 {
     std::string movieTitle = this->input.getUserMovieTitle();
 
-    // find the movie
-    Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
-
-    if (foundMovie.getId() == -1)
+    try
     {
-        std::cout << "Couldn't find the movie to remove it." << std::endl;
-        return;
-    }
+        Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
 
-    if (foundMovie.getId() != -1)
-    {
         std::cout << "Title: " << foundMovie.getTitle() << std::endl;
         std::cout << "Id: " << foundMovie.getId() << std::endl;
         std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(foundMovie.getGenre()) << std::endl;
@@ -184,9 +156,9 @@ void MenuUI::displayMovieFromDatabase()
         std::cout << "Trailer: " << foundMovie.getTrailer() << std::endl;
         std::cout << std::endl;
     }
-    else
+    catch (const RepoException &e)
     {
-        std::cout << "Could not find a movie by id from the database. >:(" << std::endl;
+        std::cerr << e.what() << '\n';
     }
 }
 
@@ -235,11 +207,24 @@ void MenuUI::handleUserPlaylist()
 
         if (confirmation)
         {
-            this->playlistServices.addMovie(movie);
 
-            currentIt++;
-            std::cout << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            try
+            {
+                this->playlistServices.addMovie(movie);
+                currentIt++;
+                std::cout << std::endl;
+                std::this_thread::sleep_for(std::chrono::seconds(2));
+            }
+            catch (const MovieServicesException &e)
+            {
+                std::cerr << e.what() << '\n';
+                break;
+            }
+            catch (const RepoException &e)
+            {
+                std::cerr << e.what() << '\n';
+                break;
+            }
         }
         else
         {
@@ -262,7 +247,7 @@ void MenuUI::start()
     Mode appMode = this->input.getUserMode();
     this->output.intro(appMode);
 
-    if (this->databaseServices.elems().size() == 0)
+    if (this->databaseServices.getElems().size() == 0)
     {
         Helpers::insertTenMovieEntriesInTheDatabase(this->databaseServices);
     }

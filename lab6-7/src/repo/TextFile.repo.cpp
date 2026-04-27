@@ -1,36 +1,33 @@
 #include "TextFile.repo.h"
+#include "../exceptions/RepoException.h"
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <exception>
 
-TextFileRepo::TextFileRepo(const std::string &file) : MemoryRepo()
+TextFileRepo::TextFileRepo(const std::string &file) noexcept : MemoryRepo()
 {
     this->filePath = file;
-    bool result = this->readFromFile();
-
-    // im casting it to void for now so the compiler shuts up
-    (void)result;
+    this->readFromFile();
 }
 
-bool TextFileRepo::readFromFile()
+void TextFileRepo::readFromFile()
 {
     std::ifstream file(this->filePath);
 
     if (!file.is_open())
     {
-        return false;
+        throw RepoException("Could not find the file to open.");
     }
 
     TElem elem;
     while (file >> elem)
     {
-        this->elements.push_back(elem);
+        this->getElems().push_back(elem);
     }
 
     file.close();
-    return true;
 }
 
 void TextFileRepo::writeToFile()
@@ -39,10 +36,10 @@ void TextFileRepo::writeToFile()
 
     if (!file.is_open())
     {
-        throw std::exception();
+        throw RepoException("Could not open / find the file to write to.");
     }
 
-    for (const TElem &elem : this->elements)
+    for (const TElem &elem : this->getElems())
     {
         file << elem << '\n';
     }
@@ -50,23 +47,20 @@ void TextFileRepo::writeToFile()
     file.close();
 }
 
-bool TextFileRepo::add(TElem elem)
+void TextFileRepo::add(const TElem &elem) noexcept(false)
 {
-    bool result = MemoryRepo::add(elem);
+    MemoryRepo::add(elem);
     writeToFile();
-    return result;
 }
 
-bool TextFileRepo::removeById(TElemId id)
+void TextFileRepo::remove(TElemId id) noexcept(false)
 {
-    bool result = MemoryRepo::removeById(id);
+    MemoryRepo::remove(id);
     writeToFile();
-    return result;
 }
 
-bool TextFileRepo::updateById(TElemId id, TElem payload)
+void TextFileRepo::update(TElemId id, TElem payload) noexcept(false)
 {
-    bool result = MemoryRepo::updateById(id, payload);
+    MemoryRepo::update(id, payload);
     writeToFile();
-    return result;
 }
