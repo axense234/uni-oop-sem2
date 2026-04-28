@@ -8,6 +8,13 @@ class Repo
 {
 public:
     /**
+     * @brief Gets the outputFilePath of the repo. Returns "nothing" if memory repo is used.
+     *
+     * @return const std::string&
+     */
+    virtual const std::string &getOutputFilePath() const noexcept(false) = 0;
+
+    /**
      * @brief Gets an element by matching given field with given value.
      *
      * @param field TElemField field of the elem

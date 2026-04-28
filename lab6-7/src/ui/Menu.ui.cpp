@@ -10,7 +10,7 @@
 #include <chrono>
 #include <string>
 
-MenuUI::MenuUI(const MenuUIInput &input, const MenuUIOutput &output, MovieServices &playlist, MovieServices &database) : input(input), output(output), playlistServices(playlist), databaseServices(database)
+MenuUI::MenuUI(const MenuUIInput &input, const MenuUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database) : input(input), output(output), repoUsed(repoType), playlistServices(playlist), databaseServices(database)
 {
     this->mode = ADMIN;
 }
@@ -118,7 +118,7 @@ void MenuUI::displayMoviesFromDatabase()
     }
 }
 
-void MenuUI::displayMoviesFromPlaylist()
+void MenuUI::displayMoviesFromPlaylist(const std::string &mode)
 {
     std::vector<TElem> movies = this->playlistServices.getElems();
 
@@ -128,15 +128,34 @@ void MenuUI::displayMoviesFromPlaylist()
         return;
     }
 
-    for (const TElem &elem : movies)
+    if (mode == "normal")
     {
-        std::cout << "Title: " << elem.getTitle() << std::endl;
-        std::cout << "Id: " << elem.getId() << std::endl;
-        std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(elem.getGenre()) << std::endl;
-        std::cout << "Year of Release: " << elem.getYearOfRelease() << std::endl;
-        std::cout << "Number of Likes: " << elem.getNumberOfLikes() << std::endl;
-        std::cout << "Trailer: " << elem.getTrailer() << std::endl;
-        std::cout << std::endl;
+        for (const TElem &elem : movies)
+        {
+            std::cout << "Title: " << elem.getTitle() << std::endl;
+            std::cout << "Id: " << elem.getId() << std::endl;
+            std::cout << "Genre: " << Helpers::convertGivenMovieGenreToString(elem.getGenre()) << std::endl;
+            std::cout << "Year of Release: " << elem.getYearOfRelease() << std::endl;
+            std::cout << "Number of Likes: " << elem.getNumberOfLikes() << std::endl;
+            std::cout << "Trailer: " << elem.getTrailer() << std::endl;
+            std::cout << std::endl;
+        }
+    }
+    else if (mode == "external")
+    {
+        if (this->repoUsed == "CSV")
+        {
+            Helpers::openFileInNotepad(this->playlistServices.repo.getOutputFilePath());
+        }
+        else if (this->repoUsed == "HTML")
+        {
+            Helpers::openFileInBrowser(this->playlistServices.repo.getOutputFilePath());
+        }
+    }
+    else
+    {
+        std::cout << "Invalid mode" << std::endl;
+        return;
     }
 }
 
@@ -278,9 +297,13 @@ void MenuUI::start()
             this->displayMovieFromDatabase();
         }
         // USER
+        else if (command == "playlist-external")
+        {
+            this->displayMoviesFromPlaylist("external");
+        }
         else if (command == "playlist")
         {
-            this->displayMoviesFromPlaylist();
+            this->displayMoviesFromPlaylist("normal");
         }
         else if (command == "playlist-delete")
         {

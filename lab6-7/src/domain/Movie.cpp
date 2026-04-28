@@ -29,6 +29,26 @@ std::string Movie::getCSV() const
     return std::to_string(this->id) + "," + this->title + "," + Helpers::convertGivenMovieGenreToString(this->genre) + "," + std::to_string(this->yearOfRelease) + "," + std::to_string(this->numberOfLikes) + "," + this->trailer;
 }
 
+std::string Movie::getHTMLTableRow() const
+{
+    std::string htmlTableRow;
+
+    std::string movieLink;
+    movieLink = movieLink + "<a " + "href=" + this->trailer + ">" + "Trailer" + "</a>";
+
+    htmlTableRow = htmlTableRow + "<tr>\n";
+
+    htmlTableRow = htmlTableRow + "<td>" + this->title + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + Helpers::convertGivenMovieGenreToString(this->genre) + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + std::to_string(this->yearOfRelease) + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + std::to_string(this->numberOfLikes) + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + movieLink + "</td>\n";
+
+    htmlTableRow = htmlTableRow + "</tr>\n";
+
+    return htmlTableRow;
+}
+
 int Movie::getId() const
 {
     return this->id;

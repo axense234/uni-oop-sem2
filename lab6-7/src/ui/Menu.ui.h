@@ -22,6 +22,8 @@ private:
 
     const MenuUIInput &input;
     const MenuUIOutput &output;
+    const std::string &repoUsed;
+
     MovieServices &playlistServices;
     MovieServices &databaseServices;
 
@@ -30,7 +32,7 @@ public:
      * @brief Constructor
      *
      */
-    MenuUI(const MenuUIInput &input, const MenuUIOutput &output, MovieServices &playlist, MovieServices &database);
+    MenuUI(const MenuUIInput &input, const MenuUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database);
 
     /**
      * @brief Getter
@@ -72,8 +74,9 @@ public:
     /**
      * @brief Displays all the movies in the user's playlist.
      *
+     * @param mode: normal or external, normal is normal behaviour and external opens up data externally
      */
-    void displayMoviesFromPlaylist();
+    void displayMoviesFromPlaylist(const std::string &mode);
 
     /**
      * @brief Displays a movie from the database.

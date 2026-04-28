@@ -38,4 +38,18 @@ public:
      * @param url the url
      */
     static void openURL(const std::string &url);
+
+    /**
+     * @brief Opens up a file in the browser.
+     *
+     * @param file the file to be opened
+     */
+    static void openFileInBrowser(const std::string &file);
+
+    /**
+     * @brief Opens up a file in notepad.
+     *
+     * @param file the file to be opened
+     */
+    static void openFileInNotepad(const std::string &file);
 };

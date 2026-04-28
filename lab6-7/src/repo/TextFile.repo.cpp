@@ -6,10 +6,16 @@
 #include <fstream>
 #include <exception>
 
-TextFileRepo::TextFileRepo(const std::string &file) noexcept : MemoryRepo()
+TextFileRepo::TextFileRepo(const std::string &file, const std::string &outputFilePath) noexcept : MemoryRepo()
 {
     this->filePath = file;
+    this->outputFilePath = outputFilePath;
     this->readFromFile();
+}
+
+const std::string &TextFileRepo::getOutputFilePath() const noexcept(false)
+{
+    return this->outputFilePath;
 }
 
 void TextFileRepo::readFromFile()

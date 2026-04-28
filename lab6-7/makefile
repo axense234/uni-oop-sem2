@@ -1,6 +1,6 @@
 run:
 	g++ -o main -Wall -Werror -Wextra src/domain/*.cpp src/helpers/*.cpp src/repo/*.cpp src/services/*.cpp src/ui/*.cpp src/main.cpp && \
-	./main textfile src/repo/data
+	./main
 
 testAndGenCoverage:
 	g++ -fprofile-arcs -ftest-coverage -g -o test_bin src/domain/*.cpp src/helpers/*.cpp src/repo/*.cpp src/services/*.cpp src/ui/*.cpp tests/tests.cpp tests/domain/*.cpp tests/helpers/*.cpp tests/repo/*.cpp tests/services/*.cpp && \

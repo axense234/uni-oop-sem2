@@ -25,12 +25,22 @@ void Helpers::insertTenMovieEntriesInTheDatabase(MovieServices &services)
     }
 }
 
-// this should work?
 void Helpers::openURL(const std::string &url)
 {
-    // no idea if this works with macos
     std::string command = "cmd.exe /c start chrome --incognito " + url;
     std::system(command.c_str());
+}
+
+void Helpers::openFileInBrowser(const std::string &file)
+{
+    std::string command = "cmd.exe /c start " + file;
+    system(command.c_str());
+}
+
+void Helpers::openFileInNotepad(const std::string &file)
+{
+    std::string command = "cmd.exe /c notepad.exe " + file;
+    system(command.c_str());
 }
 
 MovieGenre Helpers::convertGivenStringToMovieGenre(const std::string &raw)

@@ -52,6 +52,7 @@ void MenuUIOutput::help(Mode mode) const
     std::cout << "user commands" << std::endl;
     std::cout << "=======================================" << std::endl;
     std::cout << "playlist: Displays all the Movies in the user's playlist." << std::endl;
+    std::cout << "playlist --external: Displays all the Movies in the user's playlist externally depending on the chosen output type." << std::endl;
     std::cout << "playlist-delete: Removes a Movie from the user playlist using a movie name." << std::endl;
     std::cout << "scroll: Scrolls through the Movies of the Database allowing the user to add a certain movie to the playlist if they desire so." << std::endl;
 

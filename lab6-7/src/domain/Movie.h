@@ -90,6 +90,9 @@ public:
     // csv
     std::string getCSV() const;
 
+    // html table row
+    std::string getHTMLTableRow() const;
+
     // setters
     void setTitle(const std::string &title);
     void setGenre(MovieGenre genre);

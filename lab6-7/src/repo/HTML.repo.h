@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Memory.repo.h"
+#include "TextFile.repo.h"
 #include <string>
 
-class TextFileRepo : public MemoryRepo
+class HTMLRepo : public TextFileRepo
 {
 
 private:
@@ -14,29 +14,17 @@ public:
     /**
      * @brief Constructor, needs a given file.
      *
-     * @param file the file, must be std::string
+     * @param filePath the file, must be std::string
+     * @param outputFilePath the output file
      */
-    TextFileRepo(const std::string &filePath, const std::string &outputFilePath) noexcept;
+    HTMLRepo(const std::string &filePath, const std::string &outputFilePath) noexcept;
 
-    /**
-     * @brief Gets the outputFilePath of the text file repo.
-     *
-     * @return const std::string&
-     */
-    const std::string &getOutputFilePath() const noexcept(false);
-
-    /**
-     * @brief Reads from a given file data.
-     *
-     * @exception std::exception is thrown when file cannot be opened for some reason
-     */
-    void readFromFile() noexcept(false);
     /**
      * @brief Writes to a certain given file data. Should be used after any data mutation operation.
      *
      * @exception std::exception is thrown when file cannot be opened for some reason
      */
-    virtual void writeToFile() noexcept(false);
+    void outputToFile() noexcept(false);
 
     /**
      * @brief Adds an element in the repo.
