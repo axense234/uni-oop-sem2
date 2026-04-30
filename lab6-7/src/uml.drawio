@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="vrVIdLVIv-yCtDZiSnHm" name="Page-1">
-        <mxGraphModel dx="7780" dy="3175" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="4946" dy="2192" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -40,292 +40,286 @@
                 <mxCell id="26" value="&lt;div&gt;&lt;b&gt;+ TextFileRepo(const std::string &amp;amp;filePath, const std::string &amp;amp;outputFilePath)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getOutputFilePath(): const std::string &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ readFromFile(): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ writeToFile(): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ add(const TElem &amp;amp;elem): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ remove(TElemId id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ update(TElemId id, TElem payload): void&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="23" vertex="1">
                     <mxGeometry y="78" width="380" height="182" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="CSVRepo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="29" value="CSVRepo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-330" y="1100" width="380" height="260" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="&lt;b&gt;- filePath: std::string&lt;/b&gt;&lt;div&gt;&lt;b&gt;- outputFilePath: std::string&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="29">
+                <mxCell id="30" value="&lt;b&gt;- filePath: std::string&lt;/b&gt;&lt;div&gt;&lt;b&gt;- outputFilePath: std::string&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="29" vertex="1">
                     <mxGeometry y="26" width="380" height="44" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="29">
+                <mxCell id="31" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="29" vertex="1">
                     <mxGeometry y="70" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="&lt;div&gt;&lt;b&gt;+ CSVRepo(const std::string &amp;amp;filePath, const std::string &amp;amp;outputFilePath)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ outputToFile(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ add(const TElem &amp;amp;elem): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ remove(TElemId id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ update(TElemId id, TElem payload): void&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="29">
+                <mxCell id="32" value="&lt;div&gt;&lt;b&gt;+ CSVRepo(const std::string &amp;amp;filePath, const std::string &amp;amp;outputFilePath)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ outputToFile(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ add(const TElem &amp;amp;elem): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ remove(TElemId id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ update(TElemId id, TElem payload): void&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="29" vertex="1">
                     <mxGeometry y="78" width="380" height="182" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="HTMLRepo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="36" value="HTMLRepo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="620" y="1100" width="380" height="260" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="&lt;b&gt;- filePath: std::string&lt;/b&gt;&lt;div&gt;&lt;b&gt;- outputFilePath: std::string&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="36">
+                <mxCell id="37" value="&lt;b&gt;- filePath: std::string&lt;/b&gt;&lt;div&gt;&lt;b&gt;- outputFilePath: std::string&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="36" vertex="1">
                     <mxGeometry y="26" width="380" height="44" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="36">
+                <mxCell id="38" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="36" vertex="1">
                     <mxGeometry y="70" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="&lt;div&gt;&lt;b&gt;+ HTMLRepo(const std::string &amp;amp;filePath, const std::string &amp;amp;outputFilePath)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ outputToFile(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ add(const TElem &amp;amp;elem): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ remove(TElemId id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ update(TElemId id, TElem payload): void&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="36">
+                <mxCell id="39" value="&lt;div&gt;&lt;b&gt;+ HTMLRepo(const std::string &amp;amp;filePath, const std::string &amp;amp;outputFilePath)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ outputToFile(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ add(const TElem &amp;amp;elem): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ remove(TElemId id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ update(TElemId id, TElem payload): void&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="36" vertex="1">
                     <mxGeometry y="78" width="380" height="182" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="MovieServices" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="45" value="MovieServices" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="100" y="-200" width="380" height="210" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="&lt;b&gt;- repo: Repo&amp;lt;TElem, TElemId, TElemField&amp;gt; &amp;amp;&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="45">
+                <mxCell id="46" value="&lt;b&gt;- repo: Repo&amp;lt;TElem, TElemId, TElemField&amp;gt; &amp;amp;&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="45" vertex="1">
                     <mxGeometry y="26" width="380" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="45">
+                <mxCell id="47" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="45" vertex="1">
                     <mxGeometry y="52" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" value="&lt;div&gt;&lt;b style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;+ MovieServices(Repo&amp;lt;TElem, TElemId, TElemField&amp;gt; &amp;amp;repo)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ addMovie(Movie&amp;nbsp; movie): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ removeMovieById(int id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ updateMovieById(int id, Movie payload): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ getMovieById(int id): Movie&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ getMovieByTitle(std::string name): Movie&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b&gt;+ filterMoviessByGenre(MovieGenre genre = EMPTY): std::vector&amp;lt;TElem&amp;gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b&gt;+ getElems(): std::vector&amp;lt;TElem&amp;gt; &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="45">
+                <mxCell id="48" value="&lt;div&gt;&lt;b style=&quot;color: rgb(63, 63, 63); background-color: transparent;&quot;&gt;+ MovieServices(Repo&amp;lt;TElem, TElemId, TElemField&amp;gt; &amp;amp;repo)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ addMovie(Movie&amp;nbsp; movie): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ removeMovieById(int id): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ updateMovieById(int id, Movie payload): void&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ getMovieById(int id): Movie&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;+ getMovieByTitle(std::string name): Movie&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b&gt;+ filterMoviessByGenre(MovieGenre genre = EMPTY): std::vector&amp;lt;TElem&amp;gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;b&gt;+ getElems(): std::vector&amp;lt;TElem&amp;gt; &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="45" vertex="1">
                     <mxGeometry y="60" width="380" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.466;entryY=1.032;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="26">
+                <mxCell id="54" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.466;entryY=1.032;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="26" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-150" y="1100" as="sourcePoint"/>
                         <mxPoint x="-100" y="1050" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="55" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+                <mxCell id="55" value="" style="shape=flexArrow;endArrow=classic;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="830" y="1100" as="sourcePoint"/>
                         <mxPoint x="270" y="1020" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="56" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.438;entryY=1.008;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="19">
+                <mxCell id="56" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.438;entryY=1.008;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="19" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="280" y="760" as="sourcePoint"/>
                         <mxPoint x="330" y="710" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="57" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.417;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="9">
+                <mxCell id="57" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.417;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="9" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="270" y="450" as="sourcePoint"/>
                         <mxPoint x="320" y="400" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="58" value="MenuUIInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="58" value="MenuUIInput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-440" y="-200" width="380" height="250" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" value="&lt;b&gt;none&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="58">
+                <mxCell id="59" value="&lt;b&gt;none&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="58" vertex="1">
                     <mxGeometry y="26" width="380" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="58">
+                <mxCell id="60" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="58" vertex="1">
                     <mxGeometry y="52" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="&lt;div&gt;&lt;b&gt;- getUserCommand(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserConfirmation(): bool&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieId(): bool&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieTitle(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieGenre(): MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieYearOfRelease(): short&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieNumberOfLikes(): int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieTrailer(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMode(): Mode&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovie(): Movie&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ MenuUIInput()&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="58">
+                <mxCell id="61" value="&lt;div&gt;&lt;b&gt;- getUserCommand(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserConfirmation(): bool&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieId(): bool&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieTitle(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieGenre(): MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieYearOfRelease(): short&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieNumberOfLikes(): int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovieTrailer(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMode(): Mode&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- getUserMovie(): Movie&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ MenuUIInput()&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="58" vertex="1">
                     <mxGeometry y="60" width="380" height="190" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="MenuUIOutput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="62" value="MenuUIOutput" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-960" y="-200" width="380" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="&lt;b&gt;none&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="62">
+                <mxCell id="63" value="&lt;b&gt;none&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="62" vertex="1">
                     <mxGeometry y="26" width="380" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="62">
+                <mxCell id="64" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="62" vertex="1">
                     <mxGeometry y="52" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="65" value="&lt;div&gt;&lt;b&gt;- genres(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- intro(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- help(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ MenuUIOutput()&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="62">
+                <mxCell id="65" value="&lt;div&gt;&lt;b&gt;- genres(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- intro(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- help(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ MenuUIOutput()&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="62" vertex="1">
                     <mxGeometry y="60" width="380" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="66" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="66" value="" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="260" y="10" width="20" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="67" value="" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="66">
+                <mxCell id="67" value="" style="endArrow=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="66" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="270" y="110" as="sourcePoint"/>
                         <mxPoint x="320" y="60" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="68" value="MenuUI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="68" value="MenuUI" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-540" y="-680" width="570" height="350" as="geometry"/>
                 </mxCell>
-                <mxCell id="69" value="&lt;b&gt;- mode: Mode&lt;/b&gt;&lt;div&gt;&lt;b&gt;- input: const MenuUIInput &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- output: const MenuUIOutput &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- repoUsed: const std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- playlistServices: MovieServices &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- databaseServices: MovieServices &amp;amp;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="68">
+                <mxCell id="69" value="&lt;b&gt;- mode: Mode&lt;/b&gt;&lt;div&gt;&lt;b&gt;- input: const MenuUIInput &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- output: const MenuUIOutput &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- repoUsed: const std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- playlistServices: MovieServices &amp;amp;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- databaseServices: MovieServices &amp;amp;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="68" vertex="1">
                     <mxGeometry y="26" width="570" height="104" as="geometry"/>
                 </mxCell>
-                <mxCell id="70" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="68">
+                <mxCell id="70" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="68" vertex="1">
                     <mxGeometry y="130" width="570" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="71" value="&lt;div&gt;&lt;b&gt;+ MenuUI(const MenuUIInput &amp;amp;input, const MenuUIOutput &amp;amp;output, const std::string &amp;amp;repoType, MovieServices &amp;amp;playlist, MovieServices &amp;amp;database)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getMode(): Mode&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ addMovieToDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ deleteMovieFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ deleteMovieFromPlaylist(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ updateMovieFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ displayMoviesFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ displayMoviesFromPlaylist(const std::string &amp;amp;mode): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ displayMovieFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ handleUserPlaylist(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ start(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="68">
+                <mxCell id="71" value="&lt;div&gt;&lt;b&gt;+ MenuUI(const MenuUIInput &amp;amp;input, const MenuUIOutput &amp;amp;output, const std::string &amp;amp;repoType, MovieServices &amp;amp;playlist, MovieServices &amp;amp;database)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getMode(): Mode&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ addMovieToDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ deleteMovieFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ deleteMovieFromPlaylist(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ updateMovieFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ displayMoviesFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ displayMoviesFromPlaylist(const std::string &amp;amp;mode): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ displayMovieFromDatabase(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ handleUserPlaylist(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ start(): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="68" vertex="1">
                     <mxGeometry y="138" width="570" height="212" as="geometry"/>
                 </mxCell>
-                <mxCell id="72" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="72" value="" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-60" y="-330" width="20" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="73" value="" style="endArrow=none;html=1;" edge="1" parent="1">
+                <mxCell id="73" value="" style="endArrow=none;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="275" y="-200" as="sourcePoint"/>
                         <mxPoint x="-50" y="-310" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="74" value="" style="endArrow=classic;html=1;entryX=0.126;entryY=1.034;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="71">
+                <mxCell id="74" value="" style="endArrow=classic;html=1;entryX=0.126;entryY=1.034;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="71" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-780" y="-200" as="sourcePoint"/>
                         <mxPoint x="-730" y="-250" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="76" value="" style="endArrow=classic;html=1;entryX=0.511;entryY=1.014;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="71">
+                <mxCell id="76" value="" style="endArrow=classic;html=1;entryX=0.511;entryY=1.014;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="71" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-250" y="-200" as="sourcePoint"/>
                         <mxPoint x="-200" y="-250" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="77" value="Movie" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="77" value="Movie" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-1630" y="-270" width="380" height="450" as="geometry"/>
                 </mxCell>
-                <mxCell id="78" value="&lt;b&gt;- id: int&lt;/b&gt;&lt;div&gt;&lt;b&gt;- title: std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- genre: MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- yearOfRelease: short&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- numberOfLikes: int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- trailer: std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setId(int id): void&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="77">
+                <mxCell id="78" value="&lt;b&gt;- id: int&lt;/b&gt;&lt;div&gt;&lt;b&gt;- title: std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- genre: MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- yearOfRelease: short&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- numberOfLikes: int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;- trailer: std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setId(int id): void&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="77" vertex="1">
                     <mxGeometry y="26" width="380" height="124" as="geometry"/>
                 </mxCell>
-                <mxCell id="79" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="77">
+                <mxCell id="79" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="77" vertex="1">
                     <mxGeometry y="150" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" value="&lt;b&gt;+ Movie()&lt;/b&gt;&lt;div&gt;&lt;b&gt;+ Movie(int id, const std::string &amp;amp;title, MovieGenre genre, short yearOfRelease, int numberOfLikes, const std::string &amp;amp;trailer)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getId(): int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getTitle(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getGenre(): MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getYearOfRelease(): short&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getNumberOfLikes(): int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getTrailer(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getCSV(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getHTMLTableRow(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setTitle(const std::string &amp;amp;title): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setGenre(MovieGenre genre): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setYearOfRelease(short yor): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setNumberOfLikes(int nbLikes): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setTrailer(const std::string &amp;amp;trailer): void&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="77">
+                <mxCell id="80" value="&lt;b&gt;+ Movie()&lt;/b&gt;&lt;div&gt;&lt;b&gt;+ Movie(int id, const std::string &amp;amp;title, MovieGenre genre, short yearOfRelease, int numberOfLikes, const std::string &amp;amp;trailer)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getId(): int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getTitle(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getGenre(): MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getYearOfRelease(): short&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getNumberOfLikes(): int&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getTrailer(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getCSV(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ getHTMLTableRow(): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setTitle(const std::string &amp;amp;title): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setGenre(MovieGenre genre): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setYearOfRelease(short yor): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setNumberOfLikes(int nbLikes): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ setTrailer(const std::string &amp;amp;trailer): void&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="77" vertex="1">
                     <mxGeometry y="158" width="380" height="292" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="MovieField (enum)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="81" value="MovieField (enum)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-1970" y="340" width="380" height="134" as="geometry"/>
                 </mxCell>
-                <mxCell id="83" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="81">
+                <mxCell id="83" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="81" vertex="1">
                     <mxGeometry y="26" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="84" value="&lt;b&gt;ID&lt;/b&gt;&lt;div&gt;&lt;b&gt;TITLE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;GENRE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;YEAR_OF_RELEASE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;NUMBER_OF_LIKES&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;TRAILER&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="81">
+                <mxCell id="84" value="&lt;b&gt;ID&lt;/b&gt;&lt;div&gt;&lt;b&gt;TITLE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;GENRE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;YEAR_OF_RELEASE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;NUMBER_OF_LIKES&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;TRAILER&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="81" vertex="1">
                     <mxGeometry y="34" width="380" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="85" value="MovieGenre (enum)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="85" value="MovieGenre (enum)" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-1380" y="250" width="380" height="350" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="85">
+                <mxCell id="86" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="85" vertex="1">
                     <mxGeometry y="26" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="&lt;b&gt;ACTION&lt;/b&gt;&lt;div&gt;&lt;b&gt;ADVENTURE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;ANIMATION&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;BIOGRAPHY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;COMEDY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;CRIME&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;DOCUMENTARY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;DRAMA&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;FAMILY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;FANTASY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;HISTORY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;HORROR&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;MUSIC&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;MYSTERY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;ROMANCE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;SCIFI&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;SPORT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;WAR&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;WESTERN&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;EMPTY&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="85">
+                <mxCell id="87" value="&lt;b&gt;ACTION&lt;/b&gt;&lt;div&gt;&lt;b&gt;ADVENTURE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;ANIMATION&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;BIOGRAPHY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;COMEDY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;CRIME&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;DOCUMENTARY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;DRAMA&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;FAMILY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;FANTASY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;HISTORY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;HORROR&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;MUSIC&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;MYSTERY&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;ROMANCE&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;SCIFI&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;SPORT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;WAR&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;WESTERN&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;EMPTY&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="85" vertex="1">
                     <mxGeometry y="34" width="380" height="316" as="geometry"/>
                 </mxCell>
-                <mxCell id="88" value="" style="endArrow=none;dashed=1;html=1;entryX=0.373;entryY=1.013;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="80">
+                <mxCell id="88" value="" style="endArrow=none;dashed=1;html=1;entryX=0.373;entryY=1.013;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="80" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-1805" y="340" as="sourcePoint"/>
                         <mxPoint x="-1755" y="290" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="89" value="" style="endArrow=none;dashed=1;html=1;entryX=0.512;entryY=1.013;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="80">
+                <mxCell id="89" value="" style="endArrow=none;dashed=1;html=1;entryX=0.512;entryY=1.013;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="80" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-1200" y="250" as="sourcePoint"/>
                         <mxPoint x="-1150" y="200" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="91" value="" style="endArrow=none;dashed=1;html=1;entryX=0.476;entryY=1.065;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="65">
+                <mxCell id="91" value="" style="endArrow=none;dashed=1;html=1;entryX=0.476;entryY=1.065;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="65" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-1250" y="180" as="sourcePoint"/>
                         <mxPoint x="-1200" y="130" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="92" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1" target="61">
+                <mxCell id="92" value="" style="endArrow=none;dashed=1;html=1;" parent="1" target="61" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-1260" y="100" as="sourcePoint"/>
                         <mxPoint x="-1210" y="50" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="93" value="" style="endArrow=none;dashed=1;html=1;entryX=0.003;entryY=0.227;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="71">
+                <mxCell id="93" value="" style="endArrow=none;dashed=1;html=1;entryX=0.003;entryY=0.227;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="71" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-1440" y="-270" as="sourcePoint"/>
                         <mxPoint x="-1390" y="-320" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="94" value="Helpers" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="94" value="Helpers" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-1200" y="-820" width="450" height="190" as="geometry"/>
                 </mxCell>
-                <mxCell id="95" value="&lt;b&gt;none&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="94">
+                <mxCell id="95" value="&lt;b&gt;none&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="94" vertex="1">
                     <mxGeometry y="26" width="450" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="96" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="94">
+                <mxCell id="96" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="94" vertex="1">
                     <mxGeometry y="52" width="450" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="97" value="&lt;b&gt;+ insertTenMovieEntriesInTheDatabase(MovieServices &amp;amp;services)&lt;/b&gt;&lt;div&gt;&lt;b&gt;+ convertGivenStringToMovieGenre(const std::string &amp;amp;raw): MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ convertGivenMovieGenreToString(MovieGenre genre): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ openURL(const std::string &amp;amp;url): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ openFileInBrowser(const std::string &amp;amp;file): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ openFileInNotepad(const std::string &amp;amp;file): void&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="94">
+                <mxCell id="97" value="&lt;b&gt;+ insertTenMovieEntriesInTheDatabase(MovieServices &amp;amp;services)&lt;/b&gt;&lt;div&gt;&lt;b&gt;+ convertGivenStringToMovieGenre(const std::string &amp;amp;raw): MovieGenre&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ convertGivenMovieGenreToString(MovieGenre genre): std::string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ openURL(const std::string &amp;amp;url): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ openFileInBrowser(const std::string &amp;amp;file): void&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ openFileInNotepad(const std::string &amp;amp;file): void&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="94" vertex="1">
                     <mxGeometry y="60" width="450" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="99" value="" style="endArrow=none;dashed=1;html=1;entryX=0.233;entryY=0.981;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="97">
+                <mxCell id="99" value="" style="endArrow=none;dashed=1;html=1;entryX=0.233;entryY=0.981;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="97" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-1540" y="-270" as="sourcePoint"/>
                         <mxPoint x="-1490" y="-320" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="100" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1">
+                <mxCell id="100" value="" style="endArrow=none;dashed=1;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="340" y="-200" as="sourcePoint"/>
                         <mxPoint x="340" y="-810" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="101" value="" style="endArrow=none;dashed=1;html=1;entryX=1.014;entryY=0.137;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="97">
+                <mxCell id="101" value="" style="endArrow=none;dashed=1;html=1;entryX=1.014;entryY=0.137;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="97" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="340" y="-800" as="sourcePoint"/>
                         <mxPoint x="390" y="-850" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="102" value="" style="endArrow=none;dashed=1;html=1;entryX=0.421;entryY=0.991;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="97">
+                <mxCell id="102" value="" style="endArrow=none;dashed=1;html=1;entryX=0.421;entryY=0.991;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="97" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-330" y="-200" as="sourcePoint"/>
                         <mxPoint x="-280" y="-250" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="103" value="" style="endArrow=none;dashed=1;html=1;entryX=1.002;entryY=0.414;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="97">
+                <mxCell id="103" value="" style="endArrow=none;dashed=1;html=1;entryX=1.002;entryY=0.414;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="97" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="-290" y="-680" as="sourcePoint"/>
                         <mxPoint x="-240" y="-730" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="104" value="MovieServiceException&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="104" value="MovieServiceException&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="630" y="-110" width="380" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="105" value="&lt;b&gt;- message: std::string&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="104">
+                <mxCell id="105" value="&lt;b&gt;- message: std::string&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="104" vertex="1">
                     <mxGeometry y="26" width="380" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="113" value="" style="endArrow=none;dashed=1;html=1;entryX=0.999;entryY=0.224;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="104" target="48">
+                <mxCell id="113" value="" style="endArrow=none;dashed=1;html=1;entryX=0.999;entryY=0.224;entryDx=0;entryDy=0;entryPerimeter=0;" parent="104" target="48" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint y="64" as="sourcePoint"/>
                         <mxPoint x="50" y="14" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="106" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="104">
+                <mxCell id="106" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="104" vertex="1">
                     <mxGeometry y="52" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="107" value="&lt;b&gt;+ MovieServicesException(const std::string &amp;amp;msg)&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ what(): const char *&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="104">
+                <mxCell id="107" value="&lt;b&gt;+ MovieServicesException(const std::string &amp;amp;msg)&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ what(): const char *&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="104" vertex="1">
                     <mxGeometry y="60" width="380" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="108" value="&lt;div&gt;RepoException&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="108" value="&lt;div&gt;RepoException&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="630" y="160" width="380" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="114" value="" style="endArrow=none;dashed=1;html=1;entryX=1.001;entryY=1.197;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="108" target="7">
+                <mxCell id="114" value="" style="endArrow=none;dashed=1;html=1;entryX=1.001;entryY=1.197;entryDx=0;entryDy=0;entryPerimeter=0;" parent="108" target="7" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint y="64" as="sourcePoint"/>
                         <mxPoint x="50" y="14" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="109" value="&lt;b&gt;- message: std::string&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="108">
+                <mxCell id="109" value="&lt;b&gt;- message: std::string&lt;/b&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="108" vertex="1">
                     <mxGeometry y="26" width="380" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="110" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="108">
+                <mxCell id="110" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="108" vertex="1">
                     <mxGeometry y="52" width="380" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="111" value="&lt;b&gt;+ MovieServicesException(const std::string &amp;amp;msg)&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ what(): const char *&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="108">
+                <mxCell id="111" value="&lt;b&gt;+ MovieServicesException(const std::string &amp;amp;msg)&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;+ what(): const char *&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="108" vertex="1">
                     <mxGeometry y="60" width="380" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="115" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.417;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+                <mxCell id="115" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.417;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="1290" y="80" as="sourcePoint"/>
                         <mxPoint x="1010" y="220" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="116" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.417;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+                <mxCell id="116" value="" style="shape=flexArrow;endArrow=classic;html=1;entryX=0.417;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="1280" y="70" as="sourcePoint"/>
                         <mxPoint x="1010" y="-50" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="117" value="&lt;div&gt;std::exception&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="117" value="&lt;div&gt;std::exception&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1300" y="60" width="130" height="34" as="geometry"/>
                 </mxCell>
-                <mxCell id="119" value="" style="endArrow=none;dashed=1;html=1;entryX=0.999;entryY=0.224;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="117">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint y="64" as="sourcePoint"/>
-                        <mxPoint x="50" y="14" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="120" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="117">
+                <mxCell id="120" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="117" vertex="1">
                     <mxGeometry y="26" width="130" height="8" as="geometry"/>
                 </mxCell>
             </root>

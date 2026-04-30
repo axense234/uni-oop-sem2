@@ -71,7 +71,12 @@ void MenuUI::deleteMovieFromPlaylist()
         {
             Movie payload = foundMovie;
             payload.setNumberOfLikes(foundMovie.getNumberOfLikes() + 1);
-            this->databaseServices.updateMovieById(foundMovie.getId(), payload);
+
+            // find the movie in the database to get its title
+            // this is dumb
+            Movie foundDBMovie = this->databaseServices.getMovieByTitle(foundMovie.getTitle());
+
+            this->databaseServices.updateMovieById(foundDBMovie.getId(), payload);
         }
     }
     catch (const RepoException &e)
