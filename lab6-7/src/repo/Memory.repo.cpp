@@ -5,6 +5,11 @@
 #include <algorithm>
 #include <any>
 
+const std::vector<TElem> &MemoryRepo::getElems() const noexcept(false)
+{
+    return this->elements;
+}
+
 std::vector<TElem> &MemoryRepo::getElems() noexcept(false)
 {
     return this->elements;

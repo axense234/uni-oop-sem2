@@ -1,14 +1,12 @@
 #pragma once
 
 #include "TextFile.repo.h"
+#include "../helpers/RepoOutput.h"
+
 #include <string>
 
 class CSVRepo : public TextFileRepo
 {
-
-private:
-    std::string filePath;
-    std::string outputFilePath;
 
 public:
     /**
@@ -18,13 +16,6 @@ public:
      * @param outputFilePath the output file
      */
     CSVRepo(const std::string &filePath, const std::string &outputFilePath) noexcept;
-
-    /**
-     * @brief Writes to a certain given file data. Should be used after any data mutation operation.
-     *
-     * @exception std::exception is thrown when file cannot be opened for some reason
-     */
-    void outputToFile() noexcept(false);
 
     /**
      * @brief Adds an element in the repo.
@@ -50,4 +41,11 @@ public:
      * @throw RepositoryException if we couldn't find the elem in the elems or std::vector throws an exception
      */
     void update(TElemId id, TElem payload) noexcept(false) override;
+
+    /**
+     * @brief Repo Output.
+     *
+     * @return RepoOutput
+     */
+    const RepoOutput output() const;
 };

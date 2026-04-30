@@ -10,6 +10,7 @@ TextFileRepo::TextFileRepo(const std::string &file, const std::string &outputFil
 {
     this->filePath = file;
     this->outputFilePath = outputFilePath;
+
     this->readFromFile();
 }
 
@@ -24,7 +25,7 @@ void TextFileRepo::readFromFile()
 
     if (!file.is_open())
     {
-        throw RepoException("Could not find the file to open.");
+        throw RepoException("Could not find the file to open in order to read from it.");
     }
 
     TElem elem;

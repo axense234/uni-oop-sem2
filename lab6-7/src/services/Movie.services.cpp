@@ -14,8 +14,18 @@ MovieServices::MovieServices(Repo<TElem, TElemId, TElemField> &r) : repo(r) {}
 
 void MovieServices::addMovie(Movie movie) noexcept(false)
 {
-    movie.setId(this->repo.getSize() + 1);
-    this->repo.add(movie);
+    // unique constraint
+    try
+    {
+        Movie foundMovie = this->repo.getElemByField(TITLE, movie.getTitle());
+        throw MovieServicesException("A movie with the same title already exists.");
+    }
+    catch (const RepoException &e)
+    {
+        // this here is fine but it could be better
+        movie.setId(this->repo.getSize() + 1);
+        this->repo.add(movie);
+    }
 }
 
 void MovieServices::removeMovieById(int id) noexcept(false)

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#include "exceptions/RepoException.h"
+#include "helpers/RepoOutput.h"
 #include "repo/Repo.repo.h"
 #include "repo/TextFile.repo.h"
 #include "repo/CSV.repo.h"
@@ -37,15 +39,22 @@ int main()
         std::cout << "CSV or HTML\n";
     }
 
-    if (outputMode == "CSV")
+    try
     {
-        repoUsedForDatabase = new CSVRepo{repoDir + "/movies.txt", outputDir + "/movies.csv"};
-        repoUsedForPlaylist = new CSVRepo{repoDir + "/playlist.txt", outputDir + "/playlist.csv"};
+        if (outputMode == "CSV")
+        {
+            repoUsedForDatabase = new CSVRepo{repoDir + "/movies.txt", outputDir + "/movies.csv"};
+            repoUsedForPlaylist = new CSVRepo{repoDir + "/playlist.txt", outputDir + "/playlist.csv"};
+        }
+        else if (outputMode == "HTML")
+        {
+            repoUsedForDatabase = new HTMLRepo{repoDir + "/movies.txt", outputDir + "/movies.html"};
+            repoUsedForPlaylist = new HTMLRepo{repoDir + "/playlist.txt", outputDir + "/playlist.html"};
+        }
     }
-    else if (outputMode == "HTML")
+    catch (const RepoException &e)
     {
-        repoUsedForDatabase = new HTMLRepo{repoDir + "/movies.txt", outputDir + "/movies.html"};
-        repoUsedForPlaylist = new HTMLRepo{repoDir + "/playlist.txt", outputDir + "/playlist.html"};
+        std::cerr << e.what() << '\n';
     }
 
     MovieServices databaseServices{*repoUsedForDatabase};

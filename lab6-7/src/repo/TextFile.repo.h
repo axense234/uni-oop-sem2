@@ -6,7 +6,7 @@
 class TextFileRepo : public MemoryRepo
 {
 
-private:
+protected:
     std::string filePath;
     std::string outputFilePath;
 

@@ -31,15 +31,16 @@ class MemoryRepo : public Repo<TElem, TElemId, TElemField>
 private:
     std::vector<TElem> elements;
 
-protected:
+public:
     /**
      * @brief Retrieves the elements of the repo or empty vector if there are no elems.
      *
      * @return std::vector<TElem>& elements of the repo
      */
-    virtual std::vector<TElem> &getElems() noexcept(false);
+    virtual std::vector<TElem> &getElems() noexcept(false) override;
+    virtual const std::vector<TElem> &getElems() const noexcept(false) override;
 
-private:
+public:
     /**
      * @brief Gets an element by matching given field with given value.
      *

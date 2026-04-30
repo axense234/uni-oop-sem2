@@ -58,6 +58,7 @@ public:
      * @return std::vector<TElem>& elements of the repo
      */
     virtual std::vector<TElem> &getElems() noexcept(false) = 0;
+    virtual const std::vector<TElem> &getElems() const noexcept(false) = 0;
 
     virtual ~Repo() = default;
 };
