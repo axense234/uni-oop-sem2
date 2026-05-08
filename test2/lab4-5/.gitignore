@@ -1,0 +1,14 @@
+# Ignore all files
+*
+	
+# whitelist folders
+!*/
+
+# whitelist source files
+!*.c
+!*.cpp
+!*.h
+
+.vscode
+
+!makefile

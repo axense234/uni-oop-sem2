@@ -1,0 +1,153 @@
+#include "Movie.h"
+#include "../helpers/Helpers.h"
+
+#include <string>
+#include <iostream>
+
+Movie::Movie()
+{
+    this->id = -1;
+    this->title = "";
+    this->genre = ACTION;
+    this->yearOfRelease = 0;
+    this->numberOfLikes = 0;
+    this->trailer = "";
+}
+
+Movie::Movie(int id, const std::string &title, MovieGenre genre, short yearOfRelease, int numberOfLikes, const std::string &trailer)
+{
+    this->id = id;
+    this->title = title;
+    this->genre = genre;
+    this->yearOfRelease = yearOfRelease;
+    this->numberOfLikes = numberOfLikes;
+    this->trailer = trailer;
+}
+
+std::string Movie::getCSV() const
+{
+    return std::to_string(this->id) + "," + this->title + "," + Helpers::convertGivenMovieGenreToString(this->genre) + "," + std::to_string(this->yearOfRelease) + "," + std::to_string(this->numberOfLikes) + "," + this->trailer;
+}
+
+std::string Movie::getHTMLTableRow() const
+{
+    std::string htmlTableRow;
+
+    std::string movieLink;
+    movieLink = movieLink + "<a " + "href=" + this->trailer + ">" + "Trailer" + "</a>";
+
+    htmlTableRow = htmlTableRow + "<tr>\n";
+
+    htmlTableRow = htmlTableRow + "<td>" + this->title + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + Helpers::convertGivenMovieGenreToString(this->genre) + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + std::to_string(this->yearOfRelease) + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + std::to_string(this->numberOfLikes) + "</td>\n";
+    htmlTableRow = htmlTableRow + "<td>" + movieLink + "</td>\n";
+
+    htmlTableRow = htmlTableRow + "</tr>\n";
+
+    return htmlTableRow;
+}
+
+int Movie::getId() const
+{
+    return this->id;
+}
+
+std::string Movie::getTitle() const
+{
+    return this->title;
+}
+
+MovieGenre Movie::getGenre() const
+{
+    return this->genre;
+}
+
+short Movie::getYearOfRelease() const
+{
+    return this->yearOfRelease;
+}
+
+int Movie::getNumberOfLikes() const
+{
+    return this->numberOfLikes;
+}
+
+std::string Movie::getTrailer() const
+{
+    return this->trailer;
+}
+
+void Movie::setTitle(const std::string &title)
+{
+    this->title = title;
+}
+
+void Movie::setTrailer(const std::string &trailer)
+{
+    this->trailer = trailer;
+}
+
+void Movie::setGenre(MovieGenre genre)
+{
+    this->genre = genre;
+}
+
+void Movie::setYearOfRelease(short yor)
+{
+    this->yearOfRelease = yor;
+}
+
+void Movie::setNumberOfLikes(int nbLikes)
+{
+    this->numberOfLikes = nbLikes;
+}
+
+void Movie::setId(int id)
+{
+    this->id = id;
+}
+
+std::ostream &operator<<(std::ostream &stream, const Movie &m)
+{
+    stream << m.getCSV();
+    return stream;
+}
+std::istream &operator>>(std::istream &stream, Movie &m)
+{
+    std::string idStr, title, genreStr, yearStr, likesStr, trailer;
+
+    if (!std::getline(stream, idStr, ','))
+        return stream;
+    if (!std::getline(stream, title, ','))
+        return stream;
+    if (!std::getline(stream, genreStr, ','))
+        return stream;
+    if (!std::getline(stream, yearStr, ','))
+        return stream;
+    if (!std::getline(stream, likesStr, ','))
+        return stream;
+
+    if (!std::getline(stream, trailer))
+        return stream;
+
+    if (!trailer.empty() && trailer.back() == '\r')
+    {
+        trailer.pop_back();
+    }
+
+    if (stream.peek() == '\n')
+    {
+        stream.ignore();
+    }
+
+    m.setId(std::stoi(idStr));
+    m.setTitle(title);
+    m.setGenre(Helpers::convertGivenStringToMovieGenre(genreStr));
+    m.setYearOfRelease(std::stoi(yearStr));
+    m.setNumberOfLikes(std::stoi(likesStr));
+    m.setTrailer(trailer);
+
+    return stream;
+}
