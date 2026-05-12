@@ -8,44 +8,35 @@
 #include "ui/Menu.ui.input.h"
 #include "ui/Menu.ui.output.h"
 #include "ui/Menu.ui.h"
+#include "ui/Menu.gui.h"
 
-#include <QTWidgets/QApplication>
-#include <QtWidgets/QLabel>
+#include <QApplication>
+#include <QInputDialog>
+#include <QDir>
 
 int main(int argc, char *argv[])
 {
-
-    // Repo<Movie, int, MovieField> *repoUsedForDatabase = nullptr;
-    // Repo<Movie, int, MovieField> *repoUsedForPlaylist = nullptr;
-
     QApplication app(argc, argv);
-
-    QLabel label("Hello world");
-
-    label.show();
-    return app.exec();
 
     TextFileRepo *repoUsedForDatabase = nullptr;
     TextFileRepo *repoUsedForPlaylist = nullptr;
 
-    std::string outputMode;
-    std::string outputDir = "src/repo/output";
-    std::string repoDir = "src/repo/data";
+    std::string repoDir = "C:/Users/axense/Desktop/Coding/workspace/cpp/uni-oop-sem2/a89/src/repo/data";
+    std::string outputDir = "C:/Users/axense/Desktop/Coding/workspace/cpp/uni-oop-sem2/a89/src/repo/output";
 
-    while (true)
+    std::cout << repoDir << std::endl;
+
+    QStringList modes = {"CSV", "HTML"};
+    QString selectedMode = QInputDialog::getItem(nullptr, "Select Output Mode (CSV or HTML)",
+                                                 "Choose output format:",
+                                                 modes, 0, false);
+
+    if (selectedMode.isEmpty())
     {
-        std::cout << "Output Mode (CSV or HTML): ";
-        if (std::cin >> outputMode)
-        {
-            if (outputMode == "CSV" || outputMode == "HTML")
-            {
-                break;
-            }
-        }
-
-        std::cin.clear();
-        std::cout << "CSV or HTML\n";
+        return 0;
     }
+
+    std::string outputMode = selectedMode.toStdString();
 
     try
     {
@@ -63,6 +54,7 @@ int main(int argc, char *argv[])
     catch (const RepoException &e)
     {
         std::cerr << e.what() << '\n';
+        return 1;
     }
 
     MovieServices databaseServices{*repoUsedForDatabase};
@@ -71,11 +63,13 @@ int main(int argc, char *argv[])
     MenuUIInput input;
     MenuUIOutput output;
 
-    MenuUI ui{input, output, outputMode, playlistServices, databaseServices};
-    ui.start();
+    MenuGUI window(input, output, outputMode, playlistServices, databaseServices);
+    window.show();
+
+    int result = app.exec();
 
     delete repoUsedForDatabase;
     delete repoUsedForPlaylist;
 
-    return 0;
+    return result;
 }

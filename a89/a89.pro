@@ -16,6 +16,7 @@ SOURCES += \
     src/repo/Memory.repo.cpp \
     src/repo/TextFile.repo.cpp \
     src/services/Movie.services.cpp \
+    src/ui/Menu.gui.cpp \
     src/ui/Menu.ui.cpp \
     src/ui/Menu.ui.input.cpp \
     src/ui/Menu.ui.output.cpp
@@ -32,6 +33,7 @@ HEADERS += \
     src/repo/Repo.repo.h \
     src/repo/TextFile.repo.h \
     src/services/Movie.services.h \
+    src/ui/Menu.gui.h \
     src/ui/Menu.ui.h \
     src/ui/Menu.ui.input.h \
     src/ui/Menu.ui.output.h

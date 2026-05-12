@@ -17,7 +17,7 @@ enum Mode
 class MenuUI
 {
 
-private:
+protected:
     Mode mode;
 
     const MenuUIInput &input;

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <QString>
 
 enum MovieField
 {
@@ -89,6 +90,9 @@ public:
 
     // csv
     std::string getCSV() const;
+
+    // qstring
+    QString getQString() const;
 
     // html table row
     std::string getHTMLTableRow() const;

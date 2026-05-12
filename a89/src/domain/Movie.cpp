@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 
+#include <QString>
+
 Movie::Movie()
 {
     this->id = -1;
@@ -27,6 +29,16 @@ Movie::Movie(int id, const std::string &title, MovieGenre genre, short yearOfRel
 std::string Movie::getCSV() const
 {
     return std::to_string(this->id) + "," + this->title + "," + Helpers::convertGivenMovieGenreToString(this->genre) + "," + std::to_string(this->yearOfRelease) + "," + std::to_string(this->numberOfLikes) + "," + this->trailer;
+}
+
+QString Movie::getQString() const
+{
+    return QString("%1 (%2) - %3 | %4 likes | Trailer: %5")
+        .arg(QString::fromStdString(title))
+        .arg(yearOfRelease)
+        .arg(QString::fromStdString(Helpers::convertGivenMovieGenreToString(genre)))
+        .arg(numberOfLikes)
+        .arg(QString::fromStdString(trailer));
 }
 
 std::string Movie::getHTMLTableRow() const
