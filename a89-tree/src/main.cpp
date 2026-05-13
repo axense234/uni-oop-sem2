@@ -2,12 +2,17 @@
 #include <string>
 
 #include "exceptions/RepoException.h"
+
 #include "repo/TextFile.repo.h"
 #include "repo/CSV.repo.h"
 #include "repo/HTML.repo.h"
+
 #include "ui/Menu.ui.input.h"
 #include "ui/Menu.ui.output.h"
 #include "ui/Menu.ui.h"
+
+#include "ui/Menu.gui.input.h"
+#include "ui/Menu.gui.output.h"
 #include "ui/Menu.gui.h"
 
 #include <QApplication>
@@ -60,8 +65,8 @@ int main(int argc, char *argv[])
     MovieServices databaseServices{*repoUsedForDatabase};
     MovieServices playlistServices{*repoUsedForPlaylist};
 
-    MenuUIInput input;
-    MenuUIOutput output;
+    MenuGUIInput input;
+    MenuGUIOutput output;
 
     MenuGUI window(input, output, outputMode, playlistServices, databaseServices);
     window.show();

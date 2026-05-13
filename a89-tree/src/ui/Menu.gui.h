@@ -6,14 +6,31 @@
 
 #include "../domain/Movie.h"
 #include "../services/Movie.services.h"
-#include "Menu.ui.h"
 
-class MenuUIInput;
-class MenuUIOutput;
+#include "Menu.gui.h"
 
-class MenuGUI : public QMainWindow, public MenuUI
+class MenuGUIInput;
+class MenuGUIOutput;
+
+enum Mode
+{
+    ADMIN,
+    USER
+};
+
+class MenuGUI : public QMainWindow
 {
     Q_OBJECT
+
+private:
+    Mode mode;
+
+    const MenuGUIInput &input;
+    const MenuGUIOutput &output;
+    const std::string &repoUsed;
+
+    MovieServices &playlistServices;
+    MovieServices &databaseServices;
 
 private slots:
     void onDisplayMoviesFromDatabaseAction();
@@ -39,5 +56,5 @@ public:
      *
      * @param parent
      */
-    MenuGUI(const MenuUIInput &input, const MenuUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database);
+    MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database);
 };

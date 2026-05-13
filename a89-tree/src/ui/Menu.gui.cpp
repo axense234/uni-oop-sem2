@@ -7,8 +7,9 @@
 #include <QVBoxLayout>
 #include <QMenuBar>
 
-MenuGUI::MenuGUI(const MenuUIInput &input, const MenuUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database) : MenuUI(input, output, repoType, playlist, database), QMainWindow(nullptr)
+MenuGUI::MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database) : input(input), output(output), repoUsed(repoType), playlistServices(playlist), databaseServices(database)
 {
+    this->mode = ADMIN;
 
     QWidget *central = new QWidget(this);
     setCentralWidget(central);

@@ -1,16 +1,15 @@
 #pragma once
 
 #include "../domain/Movie.h"
-
-#include "Menu.ui.h"
+#include "Menu.gui.h"
 
 #include <string>
 
-class MenuUI;
+class MenuGUI;
 
-class MenuUIInput
+class MenuGUIInput
 {
-    friend class MenuUI;
+    friend class MenuGUI;
 
 private:
     /**
@@ -81,5 +80,5 @@ public:
      * @brief Constructor.
      *
      */
-    MenuUIInput();
+    MenuGUIInput();
 };
