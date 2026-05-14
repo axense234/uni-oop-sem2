@@ -26,7 +26,8 @@ int main(int argc, char *argv[])
     std::cout << repoDir << std::endl;
 
     QStringList modes = {"CSV", "HTML"};
-    QString selectedMode = QInputDialog::getItem(nullptr, "Select Output Mode (CSV or HTML)",
+    QString selectedMode = QInputDialog::getItem(nullptr,
+                                                 "Select Output Mode (CSV or HTML)",
                                                  "Choose output format:",
                                                  modes, 0, false);
 

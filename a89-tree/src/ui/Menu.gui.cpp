@@ -35,6 +35,9 @@ MenuGUI::MenuGUI(MenuGUIInput &input, const MenuGUIOutput &output, const std::st
 
     connect(displayMoviesFromDatabaseAction, &QAction::triggered, this, &MenuGUI::onDisplayMoviesFromDatabaseAction);
     connect(addMovieToDatabaseAction, &QAction::triggered, this, &MenuGUI::onAddMovieToDatabaseAction);
+    connect(deleteMovieFromDatabaseAction, &QAction::triggered, this, &MenuGUI::onDeleteMovieFromDatabaseAction);
+    connect(updateMovieFromDatabaseAction, &QAction::triggered, this, &MenuGUI::onUpdateMovieFromDatabaseAction);
+    connect(displayMovieFromDatabaseAction, &QAction::triggered, this, &MenuGUI::onDisplayMovieFromDatabaseAction);
 
     // user
     QMenu *userMenu = menuBar->addMenu("&User");
@@ -81,14 +84,16 @@ MenuGUI::MenuGUI(MenuGUIInput &input, const MenuGUIOutput &output, const std::st
 
 void MenuGUI::onDisplayMoviesFromDatabaseAction()
 {
-    this->itemsList->clear();
-    this->itemsList->show();
 
-    std::vector<TElem> movies = this->databaseServices.getElems();
+    std::vector<Movie> movies = this->databaseServices.getElems();
 
-    for (const Movie &movie : movies)
+    if (movies.size() <= 0)
     {
-        this->itemsList->addItem(movie.getQString());
+        // error window
+    }
+    else
+    {
+        this->output.displayDatabaseMovies(movies);
     }
 }
 
@@ -96,31 +101,96 @@ void MenuGUI::onAddMovieToDatabaseAction()
 {
     try
     {
+        this->input.setWindowTitle("Add Movie to Database");
         Movie newMovie = this->input.getUserMovie();
         this->databaseServices.addMovie(newMovie);
     }
     catch (const std::exception &e)
     {
-        std::cerr << "error somewhere" << '\n';
+        std::cerr << "something went wrong during movie addition" << '\n';
     }
 }
 
-void MenuGUI::onDeleteMovieFromDatabaseAction() {}
+void MenuGUI::onDeleteMovieFromDatabaseAction()
+{
+    try
+    {
+        this->input.setWindowTitle("Delete Movie from Database");
+        std::string movieTitle = this->input.getUserMovieTitle();
 
-void MenuGUI::onUpdateMovieFromDatabaseAction() {}
+        Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
 
-void MenuGUI::onDisplayMovieFromDatabaseAction() {}
+        this->databaseServices.removeMovieById(foundMovie.getId());
+    }
+    catch (const RepoException &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "something went wrong during movie deletion" << '\n';
+    }
+}
 
-void MenuGUI::onDisplayMoviesFromPlaylistAction()
+void MenuGUI::onUpdateMovieFromDatabaseAction()
+{
+    try
+    {
+        this->input.setWindowTitle("Update Movie from Database | Movie Title");
+        std::string movieTitle = this->input.getUserMovieTitle();
+
+        Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
+
+        this->input.setWindowTitle("Update Movie From Database | Payload");
+        Movie newMovie = this->input.getUserMovie();
+
+        this->databaseServices.updateMovieById(foundMovie.getId(), newMovie);
+    }
+    catch (const RepoException &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "something went wrong during movie update" << '\n';
+    }
+}
+
+void MenuGUI::onDisplayMovieFromDatabaseAction()
 {
     this->itemsList->clear();
     this->itemsList->show();
 
-    std::vector<TElem> movies = this->playlistServices.getElems();
-
-    for (const Movie &movie : movies)
+    try
     {
-        this->itemsList->addItem(movie.getQString());
+        this->input.setWindowTitle("Display Movie from Database | Movie Title");
+        std::string movieTitle = this->input.getUserMovieTitle();
+
+        Movie foundMovie = this->databaseServices.getMovieByTitle(movieTitle);
+
+        this->output.displayGivenMovie(foundMovie);
+    }
+    catch (const RepoException &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "something went wrong during movie update" << '\n';
+    }
+}
+
+void MenuGUI::onDisplayMoviesFromPlaylistAction()
+{
+    std::vector<Movie> movies = this->playlistServices.getElems();
+
+    if (movies.size() <= 0)
+    {
+        // error window
+    }
+    else
+    {
+        this->output.displayPlaylistMovies(movies);
     }
 }
 
@@ -130,12 +200,12 @@ void MenuGUI::onHandleUserPlaylistAction() {}
 
 void MenuGUI::onDisplayMovieGenresAction()
 {
-    this->output.genres(this->itemsList);
+    this->output.genres();
 }
 
 void MenuGUI::onHelpAction()
 {
-    this->output.help(this->itemsList, this->mode);
+    this->output.help(this->mode);
 }
 
 void MenuGUI::onExitAction()

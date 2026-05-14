@@ -7,76 +7,87 @@
 
 MenuGUIInput::MenuGUIInput() : QDialog(nullptr)
 {
-    setModal(true);
-    resize(300, 300);
+    this->setModal(true);
+    this->resize(300, 300);
     this->layout = new QVBoxLayout(this);
+    this->layout->setAlignment(Qt::AlignTop);
+
+    this->setupButtonsLayout();
 };
 
 void MenuGUIInput::clearLayout()
 {
-    while (QLayoutItem *item = this->layout->takeAt(0))
+    this->clearFormControlState();
+
+    while (this->layout->count() > 2)
     {
+        QLayoutItem *item = this->layout->takeAt(0);
         if (item->widget())
         {
             delete item->widget();
         }
         delete item;
     }
+
+    movieTitleFormControl = nullptr;
+    movieGenreFormControl = nullptr;
+    movieYearOfReleaseFormControl = nullptr;
+    movieNumberOfLikesFormControl = nullptr;
+    movieTrailerFormControl = nullptr;
+};
+
+std::string MenuGUIInput::getUserCommand() {}
+
+bool MenuGUIInput::getUserConfirmation() {}
+
+std::string MenuGUIInput::getUserMovieTitle()
+{
+    this->clearLayout();
+    this->clearFormControlState();
+
+    this->addFormControl("Movie Title:", this->movieTitleFormControl);
+
+    this->disconnect(this->confirmationButton, nullptr, this, nullptr);
+    this->disconnect(this->cancelButton, nullptr, this, nullptr);
+    this->connect(this->confirmationButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserMovieTitleSuccess);
+    this->connect(this->cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onClose);
+
+    if (this->exec() == QDialog::Accepted)
+    {
+        return this->movieTitle;
+    }
+    else
+    {
+        throw std::runtime_error("Cancel.");
+    }
 }
 
-std::string MenuGUIInput::getUserCommand() const {}
+void MenuGUIInput::onGetUserMovieTitleSuccess()
+{
+    this->movieTitle = movieTitleFormControl->text().toStdString();
+    this->accept();
+}
 
-bool MenuGUIInput::getUserConfirmation() const {}
+MovieGenre MenuGUIInput::getUserMovieGenre() {}
 
-std::string MenuGUIInput::getUserMovieTitle() const {}
-
-MovieGenre MenuGUIInput::getUserMovieGenre() const {}
-
-Mode MenuGUIInput::getUserMode() const {}
+Mode MenuGUIInput::getUserMode() {}
 
 Movie MenuGUIInput::getUserMovie()
 {
 
     this->clearLayout();
-    setWindowTitle("Add Movie");
+    this->clearFormControlState();
 
-    QLabel *movieTitleLabel = new QLabel("Movie Title:", this);
-    this->movieTitleFormControl = new QLineEdit(this);
-    this->layout->addWidget(movieTitleLabel);
-    this->layout->addWidget(movieTitleFormControl);
+    this->addFormControl("Movie Title:", this->movieTitleFormControl);
+    this->addFormControl("Movie Genre:", this->movieGenreFormControl);
+    this->addFormControl("Movie Year of Release:", this->movieYearOfReleaseFormControl);
+    this->addFormControl("Movie Number of Likes:", this->movieNumberOfLikesFormControl);
+    this->addFormControl("Movie Trailer:", this->movieTrailerFormControl);
 
-    QLabel *movieGenreLabel = new QLabel("Movie Genre:", this);
-    this->movieGenreFormControl = new QLineEdit(this);
-    this->layout->addWidget(movieGenreLabel);
-    this->layout->addWidget(movieGenreFormControl);
-
-    QLabel *movieYearOfReleaseLabel = new QLabel("Movie Year of Release:", this);
-    this->movieYearOfReleaseFormControl = new QLineEdit(this);
-    this->layout->addWidget(movieYearOfReleaseLabel);
-    this->layout->addWidget(movieYearOfReleaseFormControl);
-
-    QLabel *movieNumberOfLikesLabel = new QLabel("Movie Number of Likes:", this);
-    this->movieNumberOfLikesFormControl = new QLineEdit(this);
-    this->layout->addWidget(movieNumberOfLikesLabel);
-    this->layout->addWidget(movieNumberOfLikesFormControl);
-
-    QLabel *movieTrailerLabel = new QLabel("Movie Trailer:", this);
-    this->movieTrailerFormControl = new QLineEdit(this);
-    this->layout->addWidget(movieTrailerLabel);
-    this->layout->addWidget(movieTrailerFormControl);
-
-    this->okButton = new QPushButton("OK");
-    this->cancelButton = new QPushButton("Cancel");
-
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-
-    buttonLayout->addWidget(okButton);
-    buttonLayout->addWidget(cancelButton);
-
-    layout->addLayout(buttonLayout);
-
-    connect(okButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserMovieSuccess);
-    connect(cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onClose);
+    this->disconnect(this->confirmationButton, nullptr, this, nullptr);
+    this->disconnect(this->cancelButton, nullptr, this, nullptr);
+    this->connect(this->confirmationButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserMovieSuccess);
+    this->connect(this->cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onClose);
 
     if (this->exec() == QDialog::Accepted)
     {
@@ -90,7 +101,7 @@ Movie MenuGUIInput::getUserMovie()
     }
     else
     {
-        throw std::runtime_error("User cancelled");
+        throw std::runtime_error("Cancel.");
     }
 }
 
@@ -107,4 +118,36 @@ void MenuGUIInput::onGetUserMovieSuccess()
     this->movieNumberOfLikes = movieNumberOfLikesFormControl->text().toInt();
     this->movieTrailer = movieTrailerFormControl->text().toStdString();
     this->accept();
+}
+
+void MenuGUIInput::clearFormControlState()
+{
+    this->movieTitle = "";
+    this->movieGenre = ACTION;
+    this->movieYearOfRelease = 0;
+    this->movieNumberOfLikes = 0;
+    this->movieTrailer = "";
+}
+
+void MenuGUIInput::setupButtonsLayout()
+{
+    this->confirmationButton = new QPushButton("Ok", this);
+    this->cancelButton = new QPushButton("Cancel", this);
+
+    this->buttonsLayout = new QHBoxLayout();
+    this->buttonsLayout->addWidget(confirmationButton);
+    this->buttonsLayout->addWidget(cancelButton);
+
+    this->layout->addStretch();
+    this->layout->addLayout(this->buttonsLayout);
+}
+
+void MenuGUIInput::addFormControl(const QString &labelText, QLineEdit *&control)
+{
+    int insertPosition = this->layout->count() - 2;
+    QLabel *label = new QLabel(labelText, this);
+    control = new QLineEdit(this);
+
+    this->layout->insertWidget(insertPosition, label);
+    this->layout->insertWidget(insertPosition + 1, control);
 }

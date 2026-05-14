@@ -28,17 +28,22 @@ private slots:
     void onClose();
 
     void onGetUserMovieSuccess();
+    void onGetUserMovieTitleSuccess();
 
 private:
-    std::string getUserCommand() const;
-    bool getUserConfirmation() const;
-    std::string getUserMovieTitle() const;
-    MovieGenre getUserMovieGenre() const;
-    Mode getUserMode() const;
+    std::string getUserCommand();
+    bool getUserConfirmation();
+    std::string getUserMovieTitle();
+    MovieGenre getUserMovieGenre();
+    Mode getUserMode();
     Movie getUserMovie();
 
 private:
     void clearLayout();
+    void clearFormControlState();
+
+    void setupButtonsLayout();
+    void addFormControl(const QString &labelText, QLineEdit *&control);
 
     QVBoxLayout *layout;
 
@@ -57,6 +62,7 @@ private:
     QLineEdit *movieTrailerFormControl;
     std::string movieTrailer;
 
-    QPushButton *okButton;
+    QHBoxLayout *buttonsLayout;
+    QPushButton *confirmationButton;
     QPushButton *cancelButton;
 };
