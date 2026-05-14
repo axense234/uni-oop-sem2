@@ -1,3 +1,5 @@
+#include "Menu.gui.output.h"
+#include "Menu.gui.input.h"
 #include "Menu.gui.h"
 
 #include "../helpers/Helpers.h"
@@ -7,7 +9,7 @@
 #include <QVBoxLayout>
 #include <QMenuBar>
 
-MenuGUI::MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database) : input(input), output(output), repoUsed(repoType), playlistServices(playlist), databaseServices(database)
+MenuGUI::MenuGUI(MenuGUIInput &input, const MenuGUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database) : input(input), output(output), repoUsed(repoType), playlistServices(playlist), databaseServices(database)
 {
     this->mode = ADMIN;
 
@@ -32,6 +34,7 @@ MenuGUI::MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const s
     adminMenu->addAction(displayMovieFromDatabaseAction);
 
     connect(displayMoviesFromDatabaseAction, &QAction::triggered, this, &MenuGUI::onDisplayMoviesFromDatabaseAction);
+    connect(addMovieToDatabaseAction, &QAction::triggered, this, &MenuGUI::onAddMovieToDatabaseAction);
 
     // user
     QMenu *userMenu = menuBar->addMenu("&User");
@@ -41,8 +44,10 @@ MenuGUI::MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const s
     QAction *handleUserPlaylistAction = new QAction("&Handle User Playlist");
 
     userMenu->addAction(displayMoviesFromPlaylistAction);
-    userMenu->addAction(deleteMovieFromDatabaseAction);
+    userMenu->addAction(deleteMovieFromPlaylistAction);
     userMenu->addAction(handleUserPlaylistAction);
+
+    connect(displayMoviesFromPlaylistAction, &QAction::triggered, this, &MenuGUI::onDisplayMoviesFromPlaylistAction);
 
     // util
     QMenu *utilMenu = menuBar->addMenu("&Util");
@@ -55,6 +60,8 @@ MenuGUI::MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const s
     utilMenu->addAction(helpAction);
     utilMenu->addAction(exitAction);
 
+    connect(displayMovieGenresAction, &QAction::triggered, this, &MenuGUI::onDisplayMovieGenresAction);
+    connect(helpAction, &QAction::triggered, this, &MenuGUI::onHelpAction);
     connect(exitAction, &QAction::triggered, this, &MenuGUI::onExitAction);
 
     // components
@@ -63,6 +70,9 @@ MenuGUI::MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const s
     this->itemsList = new QListWidget(this);
     this->layout->addWidget(this->itemsList);
     this->itemsList->hide();
+
+    // intro
+    this->output.intro(this->itemsList, this->mode);
 
     // settings
     setWindowTitle("Movies App");
@@ -82,7 +92,18 @@ void MenuGUI::onDisplayMoviesFromDatabaseAction()
     }
 }
 
-void MenuGUI::onAddMovieToDatabaseAction() {}
+void MenuGUI::onAddMovieToDatabaseAction()
+{
+    try
+    {
+        Movie newMovie = this->input.getUserMovie();
+        this->databaseServices.addMovie(newMovie);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "error somewhere" << '\n';
+    }
+}
 
 void MenuGUI::onDeleteMovieFromDatabaseAction() {}
 
@@ -90,15 +111,32 @@ void MenuGUI::onUpdateMovieFromDatabaseAction() {}
 
 void MenuGUI::onDisplayMovieFromDatabaseAction() {}
 
-void MenuGUI::onDisplayMoviesFromPlaylistAction() {}
+void MenuGUI::onDisplayMoviesFromPlaylistAction()
+{
+    this->itemsList->clear();
+    this->itemsList->show();
+
+    std::vector<TElem> movies = this->playlistServices.getElems();
+
+    for (const Movie &movie : movies)
+    {
+        this->itemsList->addItem(movie.getQString());
+    }
+}
 
 void MenuGUI::onDeleteMovieFromPlaylistAction() {}
 
 void MenuGUI::onHandleUserPlaylistAction() {}
 
-void MenuGUI::onDisplayMovieGenresAction() {}
+void MenuGUI::onDisplayMovieGenresAction()
+{
+    this->output.genres(this->itemsList);
+}
 
-void MenuGUI::onHelpAction() {}
+void MenuGUI::onHelpAction()
+{
+    this->output.help(this->itemsList, this->mode);
+}
 
 void MenuGUI::onExitAction()
 {

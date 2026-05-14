@@ -7,16 +7,11 @@
 #include "../domain/Movie.h"
 #include "../services/Movie.services.h"
 
+#include "Mode.h"
 #include "Menu.gui.h"
 
 class MenuGUIInput;
 class MenuGUIOutput;
-
-enum Mode
-{
-    ADMIN,
-    USER
-};
 
 class MenuGUI : public QMainWindow
 {
@@ -25,7 +20,7 @@ class MenuGUI : public QMainWindow
 private:
     Mode mode;
 
-    const MenuGUIInput &input;
+    MenuGUIInput &input;
     const MenuGUIOutput &output;
     const std::string &repoUsed;
 
@@ -56,5 +51,5 @@ public:
      *
      * @param parent
      */
-    MenuGUI(const MenuGUIInput &input, const MenuGUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database);
+    MenuGUI(MenuGUIInput &input, const MenuGUIOutput &output, const std::string &repoType, MovieServices &playlist, MovieServices &database);
 };

@@ -1,23 +1,17 @@
 #include <iostream>
 #include <string>
 
+#include <QtWidgets>
+
 #include "exceptions/RepoException.h"
 
 #include "repo/TextFile.repo.h"
 #include "repo/CSV.repo.h"
 #include "repo/HTML.repo.h"
 
-#include "ui/Menu.ui.input.h"
-#include "ui/Menu.ui.output.h"
-#include "ui/Menu.ui.h"
-
 #include "ui/Menu.gui.input.h"
 #include "ui/Menu.gui.output.h"
 #include "ui/Menu.gui.h"
-
-#include <QApplication>
-#include <QInputDialog>
-#include <QDir>
 
 int main(int argc, char *argv[])
 {
@@ -26,8 +20,8 @@ int main(int argc, char *argv[])
     TextFileRepo *repoUsedForDatabase = nullptr;
     TextFileRepo *repoUsedForPlaylist = nullptr;
 
-    std::string repoDir = "C:/Users/axense/Desktop/Coding/workspace/cpp/uni-oop-sem2/a89/src/repo/data";
-    std::string outputDir = "C:/Users/axense/Desktop/Coding/workspace/cpp/uni-oop-sem2/a89/src/repo/output";
+    std::string repoDir = "C:/Users/axense/Desktop/Coding/workspace/cpp/uni-oop-sem2/a89-tree/src/repo/data";
+    std::string outputDir = "C:/Users/axense/Desktop/Coding/workspace/cpp/uni-oop-sem2/a89-tree/src/repo/output";
 
     std::cout << repoDir << std::endl;
 

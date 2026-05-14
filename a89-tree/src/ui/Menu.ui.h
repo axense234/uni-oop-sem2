@@ -3,16 +3,12 @@
 #include "../domain/Movie.h"
 #include "../services/Movie.services.h"
 
+#include "Mode.h"
+
 #include <string>
 
 class MenuUIInput;
 class MenuUIOutput;
-
-enum Mode
-{
-    ADMIN,
-    USER
-};
 
 class MenuUI
 {
