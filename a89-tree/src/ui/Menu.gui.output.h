@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QDialog>
+#include <QPushButton>
 
 class MenuGUI;
 
@@ -17,12 +18,14 @@ class MenuGUIOutput
 
 private:
     void genres() const;
-    void intro(QListWidget *itemsList, Mode mode) const;
     void help(Mode mode) const;
 
-    void displayGivenMovie(const Movie &movie) const;
+    QDialog *displayGivenMovie(const Movie &movie) const;
     void displayDatabaseMovies(std::vector<Movie>) const;
     void displayPlaylistMovies(std::vector<Movie>) const;
+    void plotMovies(std::vector<Movie>) const;
+
+    void displayResponse(const std::string &response) const;
 
 public:
     MenuGUIOutput();

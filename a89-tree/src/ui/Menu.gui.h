@@ -3,6 +3,7 @@
 #include <QtWidgets>
 
 #include <string>
+#include <functional>
 
 #include "../domain/Movie.h"
 #include "../services/Movie.services.h"
@@ -27,6 +28,9 @@ private:
     MovieServices &playlistServices;
     MovieServices &databaseServices;
 
+    void addButton(const QString &buttonText, const MenuGUI *receiver, void (MenuGUI::*method)());
+    void intro();
+
 private slots:
     void onDisplayMoviesFromDatabaseAction();
     void onAddMovieToDatabaseAction();
@@ -35,8 +39,12 @@ private slots:
     void onDisplayMovieFromDatabaseAction();
 
     void onDisplayMoviesFromPlaylistAction();
+    void onDisplayMoviesFromPlaylistExternalAction();
     void onDeleteMovieFromPlaylistAction();
     void onHandleUserPlaylistAction();
+
+    void onPlotMoviesFromDatabaseAction();
+    void onPlotMoviesFromPlaylistAction();
 
     void onDisplayMovieGenresAction();
     void onHelpAction();
@@ -44,7 +52,6 @@ private slots:
 
 public:
     QVBoxLayout *layout;
-    QListWidget *itemsList;
 
     /**
      * @brief Constructor.

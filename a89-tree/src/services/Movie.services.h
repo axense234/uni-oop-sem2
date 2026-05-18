@@ -9,11 +9,13 @@
 #include <optional>
 
 class MenuUI;
+class MenuGUI;
 class HelpersTests;
 
 class MovieServices
 {
     friend class MenuUI;
+    friend class MenuGUI;
     friend class HelpersTests;
 
 private:
@@ -31,10 +33,10 @@ public:
      * @brief Adds a movie to the repository.
      *
      * @param movie Movie to be added.
-     * @throw MovieServicesException if a movie with the same title already exists -> TODO
+     * @throw MovieServicesException if a movie with the same title already exists
      * @throw RepoException if the repository failed to add the movie
      */
-    void addMovie(Movie movie) noexcept(false);
+    void addMovie(Movie movie, bool bypassUniqueConstraint = false) noexcept(false);
 
     /**
      * @brief Removes a movie from the repository by id.

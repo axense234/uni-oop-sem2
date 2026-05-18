@@ -12,17 +12,20 @@ std::vector<TElem> &MovieServices::getElems() const noexcept
 
 MovieServices::MovieServices(Repo<TElem, TElemId, TElemField> &r) : repo(r) {}
 
-void MovieServices::addMovie(Movie movie) noexcept(false)
+void MovieServices::addMovie(Movie movie, bool bypassUniqueConstraint) noexcept(false)
 {
     // unique constraint
     try
     {
         Movie foundMovie = this->repo.getElemByField(TITLE, movie.getTitle());
-        throw MovieServicesException("A movie with the same title already exists.");
+
+        if (!bypassUniqueConstraint)
+        {
+            throw MovieServicesException("A movie with the same title already exists.");
+        }
     }
     catch (const RepoException &e)
     {
-        // this here is fine but it could be better
         movie.setId(this->repo.getSize() + 1);
         this->repo.add(movie);
     }
@@ -61,7 +64,7 @@ Movie MovieServices::getMovieByTitle(std::string title) const noexcept(false)
     }
     catch (const std::exception &e)
     {
-        return Movie{};
+        throw RepoException("Couldnt find movie.");
     }
 }
 

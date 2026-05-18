@@ -3,6 +3,7 @@
 #include <QtWidgets>
 
 #include "../domain/Movie.h"
+#include "../exceptions/MenuGUIException.h"
 
 #include "Menu.gui.h"
 
@@ -29,14 +30,23 @@ private slots:
 
     void onGetUserMovieSuccess();
     void onGetUserMovieTitleSuccess();
+    void onGetUserMovieGenreSuccess();
+    void onGetUserConfirmationSuccess();
+    void onGetUserConfirmationFail();
 
 private:
     std::string getUserCommand();
-    bool getUserConfirmation();
+    bool getUserConfirmation(const std::string &label);
     std::string getUserMovieTitle();
     MovieGenre getUserMovieGenre();
     Mode getUserMode();
-    Movie getUserMovie();
+    /**
+     * @brief Gets a movie from the user through the gui.
+     *
+     * @exception MenuGUIException is thrown if user cancels the process
+     * @return Movie
+     */
+    Movie getUserMovie() noexcept(false);
 
 private:
     void clearLayout();
@@ -44,6 +54,7 @@ private:
 
     void setupButtonsLayout();
     void addFormControl(const QString &labelText, QLineEdit *&control);
+    void addLabel(const QString &labelText);
 
     QVBoxLayout *layout;
 
@@ -61,6 +72,8 @@ private:
 
     QLineEdit *movieTrailerFormControl;
     std::string movieTrailer;
+
+    bool userConfirmation;
 
     QHBoxLayout *buttonsLayout;
     QPushButton *confirmationButton;

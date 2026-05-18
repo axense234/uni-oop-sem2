@@ -2,6 +2,13 @@
 
 #include "../helpers/Helpers.h"
 
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QValueAxis>
+#include <QtCharts/QChart>
+
 MenuGUIOutput::MenuGUIOutput() {}
 
 void MenuGUIOutput::genres() const
@@ -49,28 +56,6 @@ void MenuGUIOutput::genres() const
     int optimalHeight = list->sizeHintForRow(0) * list->count();
     newWindow->resize(optimalWidth, optimalHeight);
     newWindow->show();
-}
-
-void MenuGUIOutput::intro(QListWidget *itemsList, Mode mode) const
-{
-
-    itemsList->clear();
-    itemsList->show();
-
-    QListWidgetItem *introTitle = new QListWidgetItem();
-    introTitle->setText("Movies Application GUI");
-    introTitle->setFont(QFont("Arial", 16, QFont::Bold));
-    itemsList->addItem(introTitle);
-
-    QListWidgetItem *ctaTitle = new QListWidgetItem();
-    ctaTitle->setText("access the navigation bar commands");
-    ctaTitle->setFont(QFont("Arial", 14, QFont::Bold));
-    itemsList->addItem(ctaTitle);
-
-    QListWidgetItem *helpTitle = new QListWidgetItem();
-    helpTitle->setText("use the help command from the Util section for help");
-    helpTitle->setFont(QFont("Arial", 14, QFont::Bold));
-    itemsList->addItem(helpTitle);
 }
 
 void MenuGUIOutput::help(Mode mode) const
@@ -123,7 +108,7 @@ void MenuGUIOutput::help(Mode mode) const
     newWindow->show();
 }
 
-void MenuGUIOutput::displayGivenMovie(const Movie &movie) const
+QDialog *MenuGUIOutput::displayGivenMovie(const Movie &movie) const
 {
     QDialog *newWindow = new QDialog(nullptr);
     newWindow->resize(400, 300);
@@ -162,6 +147,8 @@ void MenuGUIOutput::displayGivenMovie(const Movie &movie) const
     int optimalHeight = list->sizeHintForRow(0) * list->count() + 50;
     newWindow->resize(optimalWidth, optimalHeight);
     newWindow->show();
+
+    return newWindow;
 }
 
 void MenuGUIOutput::displayDatabaseMovies(std::vector<Movie> movies) const
@@ -209,5 +196,106 @@ void MenuGUIOutput::displayPlaylistMovies(std::vector<Movie> movies) const
     int optimalWidth = list->sizeHintForColumn(0) + 50;
     int optimalHeight = list->sizeHintForRow(0) * list->count() + 50;
     newWindow->resize(optimalWidth, optimalHeight);
+    newWindow->show();
+}
+
+void MenuGUIOutput::plotMovies(std::vector<Movie> movies) const
+{
+    if (movies.empty())
+        return;
+
+    QDialog *newWindow = new QDialog(nullptr);
+    newWindow->resize(1400, 1200);
+    newWindow->setWindowTitle("Movie Statistics - Grouped by Genre");
+    newWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    QVBoxLayout *layout = new QVBoxLayout(newWindow);
+
+    QMap<QString, QVector<QPair<QString, int>>> genreMovieMap;
+    for (const auto &movie : movies)
+    {
+        QString genre = QString::fromStdString(Helpers::convertGivenMovieGenreToString(movie.getGenre()));
+        genreMovieMap[genre].append(qMakePair(movie.getQString(), movie.getNumberOfLikes()));
+    }
+
+    QChart *chart = new QChart();
+    chart->setTitle("Movie Likes by Genre (Grouped View)");
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    QList<QColor> colors = {QColor(231, 76, 60), QColor(46, 204, 113), QColor(52, 152, 219),
+                            QColor(155, 89, 182), QColor(241, 141, 86), QColor(26, 188, 156)};
+
+    int colorIndex = 0;
+    QStringList allMovieNames;
+
+    QBarSeries *series = new QBarSeries();
+    series->setBarWidth(0.9);
+
+    for (auto it = genreMovieMap.begin(); it != genreMovieMap.end(); ++it)
+    {
+        QBarSet *barSet = new QBarSet(it.key());
+        barSet->setColor(colors[colorIndex % colors.size()]);
+
+        for (const auto &moviePair : it.value())
+        {
+            allMovieNames.append(moviePair.first);
+            *barSet << moviePair.second;
+        }
+
+        series->append(barSet);
+        colorIndex++;
+    }
+
+    chart->addSeries(series);
+
+    QBarCategoryAxis *xAxis = new QBarCategoryAxis();
+    xAxis->append(allMovieNames);
+    xAxis->setTitleText("Movie Titles");
+    xAxis->setLabelsAngle(45);
+    xAxis->setLabelsFont(QFont("Arial", 8));
+
+    QValueAxis *yAxis = new QValueAxis();
+    yAxis->setTitleText("Number of Likes");
+
+    int maxLikes = 0;
+    for (const auto &movie : movies)
+    {
+        maxLikes = std::max(maxLikes, movie.getNumberOfLikes());
+    }
+    yAxis->setRange(0, maxLikes * 1.2);
+
+    chart->setAxisX(xAxis, series);
+    chart->setAxisY(yAxis, series);
+
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setRubberBand(QChartView::RectangleRubberBand);
+
+    layout->addWidget(chartView);
+    newWindow->show();
+}
+
+void MenuGUIOutput::displayResponse(const std::string &response) const
+{
+    QDialog *newWindow = new QDialog(nullptr);
+    newWindow->setWindowTitle("Response");
+    newWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    QVBoxLayout *layout = new QVBoxLayout(newWindow);
+
+    QLabel *label = new QLabel(QString::fromStdString(response));
+    label->setFont(QFont("Arial", 14, QFont::Bold));
+    label->setWordWrap(true);
+    layout->addWidget(label);
+
+    newWindow->adjustSize();
+
+    newWindow->setMinimumSize(300, 200);
+
+    layout->setAlignment(Qt::AlignCenter);
+
     newWindow->show();
 }

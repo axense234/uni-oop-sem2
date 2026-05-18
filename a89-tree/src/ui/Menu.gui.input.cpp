@@ -38,7 +38,42 @@ void MenuGUIInput::clearLayout()
 
 std::string MenuGUIInput::getUserCommand() {}
 
-bool MenuGUIInput::getUserConfirmation() {}
+bool MenuGUIInput::getUserConfirmation(const std::string &label)
+{
+    this->clearLayout();
+    this->clearFormControlState();
+
+    this->addLabel(QString::fromStdString(label));
+
+    this->disconnect(this->confirmationButton, nullptr, this, nullptr);
+    this->disconnect(this->cancelButton, nullptr, this, nullptr);
+    this->connect(this->confirmationButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserConfirmationSuccess);
+    this->connect(this->cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserConfirmationFail);
+
+    int optimalHeight = this->layout->sizeHint().height();
+    this->resize(300, optimalHeight);
+
+    if (this->exec() == QDialog::Accepted)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void MenuGUIInput::onGetUserConfirmationSuccess()
+{
+    this->userConfirmation = true;
+    this->accept();
+}
+
+void MenuGUIInput::onGetUserConfirmationFail()
+{
+    this->userConfirmation = false;
+    this->reject();
+}
 
 std::string MenuGUIInput::getUserMovieTitle()
 {
@@ -52,13 +87,16 @@ std::string MenuGUIInput::getUserMovieTitle()
     this->connect(this->confirmationButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserMovieTitleSuccess);
     this->connect(this->cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onClose);
 
+    int optimalHeight = this->layout->sizeHint().height();
+    this->resize(300, optimalHeight);
+
     if (this->exec() == QDialog::Accepted)
     {
         return this->movieTitle;
     }
     else
     {
-        throw std::runtime_error("Cancel.");
+        throw MenuGUIException("User cancel.");
     }
 }
 
@@ -68,11 +106,40 @@ void MenuGUIInput::onGetUserMovieTitleSuccess()
     this->accept();
 }
 
-MovieGenre MenuGUIInput::getUserMovieGenre() {}
+MovieGenre MenuGUIInput::getUserMovieGenre()
+{
+    this->clearLayout();
+    this->clearFormControlState();
+
+    this->addFormControl("Movie Genre:", this->movieGenreFormControl);
+
+    this->disconnect(this->confirmationButton, nullptr, this, nullptr);
+    this->disconnect(this->cancelButton, nullptr, this, nullptr);
+    this->connect(this->confirmationButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserMovieGenreSuccess);
+    this->connect(this->cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onClose);
+
+    int optimalHeight = this->layout->sizeHint().height();
+    this->resize(300, optimalHeight);
+
+    if (this->exec() == QDialog::Accepted)
+    {
+        return this->movieGenre;
+    }
+    else
+    {
+        throw MenuGUIException("User cancel.");
+    }
+}
+
+void MenuGUIInput::onGetUserMovieGenreSuccess()
+{
+    this->movieGenre = Helpers::convertGivenStringToMovieGenre(movieGenreFormControl->text().toStdString());
+    this->accept();
+}
 
 Mode MenuGUIInput::getUserMode() {}
 
-Movie MenuGUIInput::getUserMovie()
+Movie MenuGUIInput::getUserMovie() noexcept(false)
 {
 
     this->clearLayout();
@@ -89,6 +156,9 @@ Movie MenuGUIInput::getUserMovie()
     this->connect(this->confirmationButton, &QPushButton::clicked, this, &MenuGUIInput::onGetUserMovieSuccess);
     this->connect(this->cancelButton, &QPushButton::clicked, this, &MenuGUIInput::onClose);
 
+    int optimalHeight = this->layout->sizeHint().height();
+    this->resize(300, optimalHeight);
+
     if (this->exec() == QDialog::Accepted)
     {
         return Movie{
@@ -101,7 +171,7 @@ Movie MenuGUIInput::getUserMovie()
     }
     else
     {
-        throw std::runtime_error("Cancel.");
+        throw MenuGUIException("User cancel.");
     }
 }
 
@@ -112,12 +182,19 @@ void MenuGUIInput::onClose()
 
 void MenuGUIInput::onGetUserMovieSuccess()
 {
-    this->movieTitle = movieTitleFormControl->text().toStdString();
-    this->movieGenre = Helpers::convertGivenStringToMovieGenre(movieGenreFormControl->text().toStdString());
-    this->movieYearOfRelease = movieYearOfReleaseFormControl->text().toShort();
-    this->movieNumberOfLikes = movieNumberOfLikesFormControl->text().toInt();
-    this->movieTrailer = movieTrailerFormControl->text().toStdString();
-    this->accept();
+    try
+    {
+        this->movieTitle = movieTitleFormControl->text().toStdString();
+        this->movieGenre = Helpers::convertGivenStringToMovieGenre(movieGenreFormControl->text().toStdString());
+        this->movieYearOfRelease = movieYearOfReleaseFormControl->text().toShort();
+        this->movieNumberOfLikes = movieNumberOfLikesFormControl->text().toInt();
+        this->movieTrailer = movieTrailerFormControl->text().toStdString();
+        this->accept();
+    }
+    catch (const std::exception &e)
+    {
+        QMessageBox::critical(this, "Input Error", "Invalid input detected.");
+    }
 }
 
 void MenuGUIInput::clearFormControlState()
@@ -150,4 +227,13 @@ void MenuGUIInput::addFormControl(const QString &labelText, QLineEdit *&control)
 
     this->layout->insertWidget(insertPosition, label);
     this->layout->insertWidget(insertPosition + 1, control);
+}
+
+void MenuGUIInput::addLabel(const QString &labelText)
+{
+    int insertPosition = this->layout->count() - 2;
+    QLabel *label = new QLabel(labelText, this);
+    label->setFont(QFont("Arial", 14, QFont::Bold));
+
+    this->layout->insertWidget(insertPosition, label);
 }
